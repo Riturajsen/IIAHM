@@ -45,6 +45,7 @@ Contact Area Start
   --heading-color: #292929;
   --para-color: #aaaaaa;
   --main-color: #222324;
+  --btn-change-color : rgb(20, 20, 20);
 }
 
 body {
@@ -527,11 +528,13 @@ span{
     line-height: 50px;
     overflow: hidden;
     text-transform: uppercase;
-    border: 1px solid white;
+    border: 1px solid rgba(230, 224, 224, 0.938);
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
     z-index: 1;
 }
+
+
 
 .cmn-btn::before ,.cmn-btn::after{
     position: absolute;

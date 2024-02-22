@@ -1,11 +1,10 @@
 <?php
 session_start();
-include "Emp_Upload/dbconfig.php";
+include "../config/connect.php";
 include "globalGet.php";
 
 
 
-$conn = mysqli_connect($host, $username, $password, $database);
 
 if (!isset($_SESSION["username"])) {
   header("Location: ../index.php");

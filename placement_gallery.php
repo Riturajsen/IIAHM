@@ -1,5 +1,5 @@
 <?php
- $connect = mysqli_connect("localhost","root","","iiahm");
+ include "app/config/connect.php";
  $res = mysqli_query($connect, "SELECT * from placementImg ORDER BY id DESC");
  $num = mysqli_num_rows($res);
  if ($num != 0){

@@ -1,5 +1,5 @@
 <?php
-$con = mysqli_connect("localhost","root","","iiahm");
+include "app/config/connect.php";
 session_start();
 $username = $_SESSION["username"];
 $default = "DEFAULT";

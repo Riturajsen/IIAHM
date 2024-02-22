@@ -3,15 +3,7 @@ session_start();
 include_once 'globalGet.php';
 
 
-
-include "Emp_Upload/dbconfig.php";
-
-// $host = "localhost";
-// $username = "root";
-// $password = "admin";
-// $database = "Alpha_Main";
-
-$conn = mysqli_connect($host, $username, $password, $database);
+include "../config/connect.php";
 
 if (!isset($_SESSION["username"])) {
   header("Location: ../index.php");
@@ -234,12 +226,13 @@ if (!isset($_SESSION["username"])) {
                                                 
 
                                   <?php if($page_name === "View_Emp"){ include "view.php"; }?>
-
+                                  
                                   <?php if($page_name === "Add_Admin"){ include "addAdmin.php"; }?>
                                   <?php if($page_name === "placementPics"){ include "Placement/index.php"; }?>
                                   <?php if($page_name === "Add_page"){ include "pagemaker.php"; }?>
                                   <?php if($page_name === "coreSet"){ include "coreSet.php"; }?>
                                   <?php if($page_name === "Upload_Emp"){ include "Emp_Upload/index.php"; }?>
+                                  <?php if($page_name === "Website_edit"){ include "websiteSetting/index.php"; }?>
 
                             </div>
                         </div>

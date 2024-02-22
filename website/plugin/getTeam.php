@@ -53,7 +53,7 @@
                             <img src="assets/images/team/avnishpanday.jpg" alt="avnishpanday">
                         </div>
                         <div class="team-content">
-                            <h3 class="title"><a href="#"></a>Avnish Panday</h3>
+                            <h3 class="title"><a href="#"></a>Avnish Pandey</h3>
                             <span class="sub-title">Communication & Soft skills Trainer</span>
                         </div>
                     </div>

@@ -39,7 +39,7 @@
                             <img src="assets/images/team/avnishpanday.jpg" alt="Avnish Panday">
                         </div>
                         <div class="team-content">
-                            <h3 class="title">Avnish Panday</h3>
+                            <h3 class="title">Avnish Pandey</h3>
                             <span class="sub-title">Communication & Soft skills Trainer</span>
                             <p>Pellentesque cumtes nemper non nul lstrices in risus eget est ipsum interdum ullarper justo tempus non ac nullam. </p>
                         </div>

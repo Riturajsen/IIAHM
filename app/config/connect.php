@@ -5,7 +5,7 @@ $pass = "";
 $database = "iiahm";
 
 $con = mysqli_connect($host,$user,$pass,$database);
-if($con){
-    // echo "Connected";
-}
+$conn = mysqli_connect($host,$user,$pass,$database);
+$connect = mysqli_connect($host,$user,$pass,$database);
+
 ?>

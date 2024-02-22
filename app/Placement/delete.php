@@ -1,6 +1,6 @@
 <?php
 $id = $_GET['id'];
-$connect = mysqli_connect("localhost","root","","iiahm");
+include "../config/connect.php";
 $res = mysqli_query($connect, "SELECT * from placementImg where id=$id");
 $num = mysqli_num_rows($res);
 if ($num != 0){

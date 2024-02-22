@@ -2,7 +2,7 @@
 error_reporting(false);
 
 use PhpOffice\PhpSpreadsheet\Calculation\Statistical\Distributions\StudentT;
-include 'Emp_Upload/dbconfig.php';
+include "config/connect.php";
 
 $query = 'SELECT * FROM core_details ';
 

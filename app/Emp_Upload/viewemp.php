@@ -1,6 +1,6 @@
 <?php
 $id = $_GET['id'];
-include "dbconfig.php";
+include "../config/connect.php";
 ?>
 
 <!doctype html>

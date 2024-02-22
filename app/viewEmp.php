@@ -1,7 +1,7 @@
 <?php
 session_start();
 $id = $_GET['id'];
-include "Emp_Upload/dbconfig.php";
+include "config/connect.php";
 include_once 'globalGet.php';
 
 if (!isset($_SESSION["username"])) {

@@ -1,5 +1,5 @@
 <?php
-include "dbconfig.php";
+include "../config/connect.php";
 if(isset($_POST['input'])){
 
     $input = $_POST['input'];

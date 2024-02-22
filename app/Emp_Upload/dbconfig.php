@@ -4,11 +4,7 @@
     $password = "";
     $database = "iiahm";
 
-    // hostinger
-    // $host = "srv946.hstgr.io"; 
-    // $username = "u726396859_Emp";
-    // $password = "~5iy?YyQYDk4";
-    // $database = "u726396859_Emp";
+   
 
 
     // Create DB Connection

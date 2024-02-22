@@ -61,7 +61,7 @@
                                 </ul>
                             </div> -->
                         </div>
-                        <a href="<?=$registerLink?>" class="cmn-btn">Register Now</a>
+                        <a href="<?=$registerLink?>" class="cmn-btn ">Register Now</a>
                     </div>
                 </div>
             </div>

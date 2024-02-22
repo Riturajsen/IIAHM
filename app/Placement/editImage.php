@@ -1,7 +1,6 @@
 <?php
 $id = $_GET['id'];
-
-$connect = mysqli_connect("localhost","root","","iiahm");
+include "../config/connect.php";
 
 //$query = mysqli_query($connect , "SELECT * FROM);
 

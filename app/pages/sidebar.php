@@ -26,7 +26,11 @@
                                     
                         <?php if($rights == 2 || $rights == 3){ echo '<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="dashboard.php?page-name=placementPics" aria-expanded="false"><i class="mdi me-2 mdi-image-multiple"></i><span
-                                    class="hide-menu">Placement Gallery </span></a></li>';} ?>                     
+                                    class="hide-menu">Placement Gallery </span></a></li>';} ?>     
+
+                                     <?php if($rights == 1 || $rights == 2 || $rights == 3){ echo '<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="dashboard.php?page-name=Website_edit" aria-expanded="false"><i class="mdi me-2 mdi-sitemap"></i><span
+                                    class="hide-menu">Edit Website</span></a></li>';} ?>                
                         
                         <!-- <?php if($rights == 1 || $rights == 2 || $rights == 3){ echo '<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="dashboard.php?page-name=Add_page" aria-expanded="false"><i class="mdi me-2 mdi-book"></i><span
@@ -43,5 +47,8 @@
                                 href="pages-error-404.html" aria-expanded="false"><i class="mdi me-2 mdi-help-circle"></i><span
                                     class="hide-menu">Error 404</span></a>
                         </li> -->
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="../logout.php" aria-expanded="false"><i class="mdi me-2 mdi-logout"></i><span
+                                    class="hide-menu">Logout</span></a></li>
                       
                     </ul>

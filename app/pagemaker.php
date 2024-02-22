@@ -1,14 +1,7 @@
 <?php
 session_start();
 
-include "Emp_Upload/dbconfig.php";
-
-// $host = "localhost";
-// $username = "root";
-// $password = "admin";
-// $database = "Alpha_Main";
-
-$conn = mysqli_connect($host, $username, $password, $database);
+include "config/connect.php";
 
 if (!isset($_SESSION["username"])) {
   header("Location: ../index.php");

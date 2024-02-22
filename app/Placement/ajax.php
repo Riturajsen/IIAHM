@@ -1,6 +1,6 @@
 <?php
 error_reporting(true);
-$connect = mysqli_connect("localhost","root","","iiahm");
+include "../config/connect.php";
 
 
 $file = $_FILES['img']['name'];

@@ -1,5 +1,5 @@
 <?php
-include "Emp_Upload/dbconfig.php";
+include "config/connect.php";
 $limit = 10;  // Number of entries to show in a page.
 // Look for a GET variable page if not found default is 1.     
 if (isset($_GET["page"])) { 
@@ -26,7 +26,7 @@ $num_row2 = mysqli_num_rows($ret2)
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Alpha Employee</title>
+    <title> </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
         
         
@@ -42,6 +42,9 @@ $num_row2 = mysqli_num_rows($ret2)
     .disabled{
       visibility:collapse;
     }
+    #list-tbl{
+  overflow: scroll;
+}
     </style>
   </head>
   <body>
@@ -58,7 +61,7 @@ $num_row2 = mysqli_num_rows($ret2)
      
           <div class="col-sm-6 text-end"><small>Total number of records on this page <?=$num_row2?></small></div>
          </div>
-    <table class="table">
+    <table class="table" id="list-tbl">
   <thead>
     <tr>
       <th scope="col">#</th>

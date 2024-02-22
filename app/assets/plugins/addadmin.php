@@ -1,12 +1,6 @@
 <?php
 session_start();
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "iiahm";
-
-$connect = mysqli_connect($host, $username, $password, $database);
-
+include "../../config/connect.php";
 $fname = $_POST['fname'];
 $username = $_POST['username'] ;
 $pasword = md5($_POST['pasword']) ;
