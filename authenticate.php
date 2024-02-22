@@ -1,13 +1,8 @@
 <?php
 session_start();
 error_reporting(true);
-// include "app/config/connect.php";
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "iiahm";
+include "app/config/connect.php";
 
-$conn = mysqli_connect($host, $username, $password, $database);
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
