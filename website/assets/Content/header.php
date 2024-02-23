@@ -1,5 +1,5 @@
 <?php
-$registerLink = "#";
+$registerLink = "https://form.iiahmaviationacademy.com/?utm_source=website_rgstr_btn&utm_target=student";
 ?>
 
 <head>
@@ -94,7 +94,7 @@ $registerLink = "#";
         <div class="header-bottom">
             <div class="container">
                 <div class="row align-items-center justify-content-between">
-                    <a class="site-logo site-title" href="index.php"><img src="assets/images/IIAHM.png" alt="site-logo"></a>
+                    <a class="site-logo site-title" href="index.php"><img src="assets/images/logo.jpg" alt="site-logo"></a>
                     <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="fas fa-bars"></span>
                     </button>

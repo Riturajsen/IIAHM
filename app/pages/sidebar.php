@@ -15,7 +15,12 @@
                         <?php if($rights == 2 || $rights == 3){ echo '<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="dashboard.php?page-name=Upload_Emp" aria-expanded="false"><i class="mdi me-2 mdi-table"></i><span
                                     class="hide-menu">Upload Students</span></a></li>';} ?>
-
+                                               <?php if($rights == 1 || $rights == 2 || $rights == 3){ echo '<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="dashboard.php?page-name=form" aria-expanded="false"><i class="mdi me-2 mdi-forum"></i><span
+                                    class="hide-menu">Form Entries</span></a></li>';} ?>
+                                <?php if($rights == 1 || $rights == 2 || $rights == 3){ echo '<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="dashboard.php?page-name=job-post" aria-expanded="false"><i class="mdi me-2 mdi-briefcase-check"></i><span
+                                    class="hide-menu">Job Posting</span></a></li>';} ?>
                         <?php if($rights == 3){ echo '<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="dashboard.php?page-name=Add_Admin" aria-expanded="false"><i class="mdi me-2 mdi-account-key"></i><span
                                     class="hide-menu">Add Admin</span></a></li>';} ?>    
