@@ -15,19 +15,27 @@ if($rights == 2 || $rights == 3){
   <style>
     input{
         margin: 10px;
-        
+
     }
   </style>
-
-<form  method="post" id="myform" class="p-3">
-            <input type="text" name="fname" id="name" class="form-control" placeholder="Enter Your FullName" required>
-            <input type="text" name="email" id="email" class="form-control" placeholder="Enter Your Email Id" >
-            <input type="text" name="Pnumber" pattern="[6-9]{1}[0-9]{9}" id="contact" class="form-control" placeholder="Contact Number" required >
-            <input type="text" name="education"  id="education" class="form-control" placeholder="Qualification" required>
+ <script src="https://cdn.ckeditor.com/4.16.2/standard-all/ckeditor.js"></script>
+ <div id="alert"></div>
+<form  method="post" id="myform" >
+<label>Job Title</label>
+            <input type="text" name="job_title" id="job_title" class="form-control" placeholder="Enter Your Title" required>
+            
+            <label>Job Description</label>
+									<textarea name="Job_discp"></textarea>
+										<script>
+												CKEDITOR.replace( 'Job_discp' );
+										</script>
+            
+           <label>Job Location : </label>
             <input type="text" name="city"  id="city" class="form-control" placeholder="Enter Your Location "required >
+            <input type="hidden" name="posted_by"  id="posted_by" class="form-control" value="IIAHM">
           
         
-            <input type="submit" value="SUBMIT" id="submit" class="btn mt-3 form-control btn-success"  name="Submit">
+            <input type="submit" value="SUBMIT" id="submit" class="btn mt-3 text-white form-control btn-success"  name="Submit">
         </form>
 
         <script type="text/javascript">
@@ -47,8 +55,7 @@ if($rights == 2 || $rights == 3){
                     success:function(data){
                        
                         $("#alert").html(data.output);
-                        document.getElementById("fname").value = "";
-                        document.getElementById("Pnumber").value = "";
+                        
                     }
             
                 });

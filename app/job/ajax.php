@@ -1,32 +1,25 @@
 <?php
 error_reporting(false);
-include "../core/main.php";
+include "../config/connect.php";
 
+$num = rand(00000,99999);
 
-$fname = $_POST['fname'];
-$utm_source = $_POST['utm_source']; 
-$utm_target = $_POST['utm_target'];
-$email = $_POST['email'];
-$Pnumber = $_POST['Pnumber'];
-$education = $_POST['education'];
+$job_title = $_POST['job_title'];
+$jobid = md5($num) ;
+$Job_discp = $_POST['Job_discp']; 
 $city = $_POST['city'];
-$course = $_POST['course'];
-$output = "";
-if(strlen($fname) == 0){
-    $output = '<div class="alert alert-danger" role="alert">
-    Name Not Filled
-  </div>
-  ';
-}
-   else{ 
+$posted_by = $_POST['posted_by'];
 
-$query = "INSERT INTO `form`(`fname`, `utm_source`, `utm_target`, `email`, `Pnumber`, `education`, `city` ,`course`) VALUES ('$fname','$utm_source','$utm_target','$email','$Pnumber','$education','$city','$course')";
+$output = "";
+
+
+$query = "INSERT INTO `jobs`(`jobid`, `job_title`, `Job_discp`, `city`, `posted_by`) VALUES ('$jobid','$job_title','$Job_discp','$city','$posted_by')";
 $res  = mysqli_query($connect,$query);
 
 if($res){
 
     $output = '<div class="alert alert-success" role="alert">
-    Form Submitted
+    Job Posted
   </div>
   ';
 }else{
@@ -35,7 +28,7 @@ if($res){
   </div>
   ';
 }
-}
+
 $resp = array(
     'output' => $output
 );
