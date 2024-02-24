@@ -1,5 +1,6 @@
 <?php
 error_reporting(false);
+session_start();
 include "../config/connect.php";
 
 $num = rand(00000,99999);
@@ -18,15 +19,17 @@ $res  = mysqli_query($connect,$query);
 
 if($res){
 
-    $output = '<div class="alert alert-success" role="alert">
+    $_SESSION['msg'] = '<div class="alert alert-success" role="alert">
     Job Posted
   </div>
   ';
+  header("Location: ../dashboard.php?page-name=job-post");
 }else{
-    $output = '<div class="alert alert-danger" role="alert">
+    $_SESSION['msg'] = '<div class="alert alert-danger" role="alert">
     Form Cannot be submitted As of Now
   </div>
   ';
+  header("Location: ../dashboard.php?page-name=job-post");
 }
 
 $resp = array(

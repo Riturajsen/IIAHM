@@ -33,6 +33,8 @@
     </form>
 
     <a href="website/"><button class="btn btn-success mt-3">Go To Website</button></a>
+    <a href="jobs/"><button class="btn btn-success mt-3">Go To jobs</button></a>
+    <a href="form/"><button class="btn btn-success mt-3">Go To Form</button></a>
     </div> 
     </div>
     </div>

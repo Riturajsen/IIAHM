@@ -227,8 +227,7 @@ if (!isset($_SESSION["username"])) {
 
                                   <?php if($page_name === "View_Emp"){ include "view.php"; }?>
                                   <?php if($page_name === "form"){ include "getFormData.php"; }?>
-                                  <?php if($page_name === "job-post"){ include "job/index.php"; }?>
-                                  
+                                  <?php if($page_name === "job-post"){ include "job/index.php"; }?>                                  
                                   <?php if($page_name === "Add_Admin"){ include "addAdmin.php"; }?>
                                   <?php if($page_name === "placementPics"){ include "Placement/index.php"; }?>
                                   <?php if($page_name === "Add_page"){ include "pagemaker.php"; }?>

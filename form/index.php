@@ -57,6 +57,8 @@ $utm_target = $_GET['utm_target'];
             <input type="text" name="Pnumber" pattern="[6-9]{1}[0-9]{9}" id="contact" class="form-control" placeholder="Contact Number" required >
             <input type="text" name="education"  id="education" class="form-control" placeholder="Qualification" required>
             <input type="text" name="city"  id="city" class="form-control" placeholder="Enter Your Location "required >
+      
+           
            <?php
            
            if($utm_target == "student"){
