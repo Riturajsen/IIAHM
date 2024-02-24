@@ -1,18 +1,25 @@
 <?php
 include "../config/connect.php";
-    
+    session_start();
 $uid = $_POST['jobid'];
-$query_del = "DELETE From jobs where `jobid`=`$uid`";
-$dele_res = mysqli_query($conn,$query_del);
+if($uid >= 1){
+
+    $dele_res = mysqli_query($connect,"DELETE from jobs where id=$uid");
+
 if (!$dele_res){
-    $_SESSION['msg'] = "Something went Wrong! cannot delete this Application ";
+    $_SESSION['msg'] = "Something went Wrong! cannot delete this Job ";
     header("location: viewjobs.php");
     exit();
 }else{
-    $_SESSION['msg'] = "Application Deleted Successfully";
+    $_SESSION['msg'] = "Job Deleted Successfully";
     header("location: viewjobs.php"); 
     exit();
 }
-
+}
+else {
+    $_SESSION['msg'] = "Invalid Token";
+    header('location: viewjobs.php');
+    exit();
+}
 
 ?>
