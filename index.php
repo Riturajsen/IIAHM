@@ -42,6 +42,7 @@
       <button type="submit" class="btn btn-primary form-control">Login</button>
 
     </form>
+    <a href="forgotPass.php">Forgot Password ?</a>
     <hr>
     <div class="text-center">IIAHM © <?=date('Y')?>. All Rights Reserved </div>
 
