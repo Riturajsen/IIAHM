@@ -15,6 +15,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo $token;
     $secure_query = "UPDATE `users` SET `token`='$token' WHERE email ='$email'";
     $sec_res = mysqli_query($conn,$secure_query);
+    if($sec_res){
+        $row = mysqli_fetch_array($result);
+        $fname = $row['fname'];
+        $email = $row['email'];
+        include 'mail/getMessage.php';
+    }
   } else {
     echo "No Account Found Associated with This Email";
   }
