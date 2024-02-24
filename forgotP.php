@@ -13,8 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   if (mysqli_num_rows($result) == 1) {
     echo $token;
-    // $secure_query = "UPDATE `users` SET `token`='$token' WHERE email ='$email'";
-    // $sec_res = mysqli_query($conn,$secure_query);
+    $secure_query = "UPDATE `users` SET `token`='$token' WHERE email ='$email'";
+    $sec_res = mysqli_query($conn,$secure_query);
   } else {
     echo "No Account Found Associated with This Email";
   }
