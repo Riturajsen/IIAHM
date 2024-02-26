@@ -4,6 +4,7 @@
 0=Users
 1=editor
 2=admin -->
+<?php error_reporting(false); ?>
 
 <!DOCTYPE html>
 <html>
@@ -24,12 +25,14 @@
 </head>
 <body>
   <div class="container mt-5">
+    
     <div class="card p-3 shadow-lg">
       <div class="text-center"><img src="app/assets/images/logo.jpg" alt="LOGO"></div>
     <hr>
       <div class="row justify-content-center">
       <div class="col-md-6">
     <h2><u>Login</u></h2>
+    <div class="text-success"><?=$_GET['msg'];?></div>
     <form action="authenticate.php" method="POST">
       <div class="form-group">
         <label for="username">Username:</label>
@@ -43,6 +46,10 @@
 
     </form>
     <a href="forgotPass.php">Forgot Password ?</a>
+<br>
+    <a href="jobs/" class="btn-success btn">Jobs</a><br>
+    <a href="form/" class="btn-success btn">form</a><br>
+    <a href="website/" class="btn-success btn">Website</a>
     <hr>
     <div class="text-center">IIAHM © <?=date('Y')?>. All Rights Reserved </div>
 

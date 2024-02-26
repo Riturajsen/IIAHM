@@ -25,20 +25,22 @@ if ($num != 0){
       <div class="card-body">
         <h5 class="card-title"><?=$ret['job_title'];?></h5>
         <p class="card-text" style="display:block;text-overflow: ellipsis;width: 200px;overflow: hidden; white-space: nowrap;"></p>
-        
-        <form method="post" action="viewjob.php">
+        <hr>
+        <h6>Job Link Share it :- </h6>   
+<p class="form-control m-1" ><?="http://localhost/iiahm/jobs/viewjob.php?jobid=".$ret['jobid'];?></p>
+<form method="post" action="viewjob.php">
   <input type="hidden" name="jobid" value="<?=$ret['jobid'] ?>" /> 
-        <input type="submit" value="View Job">
+  <input type="submit" class="form-control btn mt-2 btn-primary" value="View Job">
 </form>
-
       </div>
-      <div class="card-footer"><?=$ret['city'];?></div>
+      <div class="card-footer"><h4><?=$ret['city'];?></h4></div>
     </div>
   </div>
   <?php }} else{ echo " <h1>NO JOBS POSTED YET</h1>";}?>
   </div>
 </div>
     </div>
+  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>

@@ -15,6 +15,7 @@ require 'Email/mailConfig.php';
 $mailto  = $email; // "iiahm.bho@gmail.com";
 $mailsub = $fname." | Here is your password Reset Link";
 $mailname =$fname;
+$link = "http://localhost/iiahm/changePass.php?token='.$token.'";
 // $mailMsg = $_POST['msg'];
 // $mail_pass = $_['mail_pass'];
  
@@ -97,10 +98,10 @@ img{
     <div class="container">
     <div class="logo center"><img src="https://iiahmaviationacademy.com/assets/images/logo.jpg" alt="LOGO"></div>
     <hr>
-    <div class="heading"><h3>IIAHM MAIL SERVER</h3></div>
+    <div class="heading"><h3>Password Reset Link</h3></div>
     <div class="message-body">
-      <p class="msg-field">You can find your Password reset Link in this mail</p>
-      <a href="http://localhost/iiahm/forgotP.php?token='.$token.'">Click me</a>
+      <p class="msg-field">'.$fname.' can find your Password reset Link in this mail</p>
+      <a href="'.$link.'">Click me</a>
     </div>
 
     </div>
@@ -118,13 +119,13 @@ error_reporting($err_rp);
 if(!$mail ->Send())
 {
     $msg = "Opss!!! Something Went Wrong";
-    header("Location: ../forgotPass.php.php?rmsg=$rmsg");
+    header("Location: forgotPass.php.php?rmsg=$rmsg");
     exit();
 }
 else{
    
     $rmsg = "Mail Sent";
-    header("Location: ../forgotPass.php.php?rmsg=$rmsg");
+    header("Location: forgotPass.php.php?rmsg=$rmsg");
     exit();
 }
 ?>

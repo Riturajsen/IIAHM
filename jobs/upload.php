@@ -5,6 +5,7 @@ include "../core/main.php";
         $name = $_POST['name'];
         $Pnumber = $_POST['Pnumber'];
         $utm_data = $_POST['utm_data'];
+        $utm_source = $_POST['utm_source'];
  
         if (isset($_FILES['pdf_file']['name']))
         {
@@ -13,7 +14,7 @@ include "../core/main.php";
  
           move_uploaded_file($file_tmp,"./pdf/".$file_name);
  
-          $insertquery = "INSERT INTO jobapply(username,cvname,Pnumber,utm_data) VALUES('$name','$file_name','$Pnumber','$utm_data')";
+          $insertquery = "INSERT INTO jobapply(username,cvname,Pnumber,utm_data,utm_source) VALUES('$name','$file_name','$Pnumber','$utm_data','$utm_source')";
           $iquery = mysqli_query($con, $insertquery);
         }
         else

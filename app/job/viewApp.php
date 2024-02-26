@@ -33,6 +33,7 @@ if (!isset($_SESSION["username"])) {
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Phone</th>
+      <th scope="col">Came From</th>
       <th scope="col">CV Link</th>
       <th scope="col">Delete</th>
     </tr>
@@ -48,6 +49,7 @@ if (!isset($_SESSION["username"])) {
       <th scope="row"><?=$i?></th>
       <td><?=$row['username']?></td>
       <td><?=$row['Pnumber']?></td>
+      <td><?=$row['utm_source']?></td>
       <td><a href="https://career.iiahmaviationacademy.com/pdf/<?=$row['cvname']?>">Click</a></td>
 
 

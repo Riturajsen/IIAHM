@@ -7,9 +7,10 @@
   </head>
 
 <?php
-$jobid = $_POST['jobid'];
+error_reporting(false);
+$jobid = $_REQUEST['jobid'];
 
-echo $jobid;
+
 include "../app/config/connect.php";
 $query = "SELECT * from `jobs` where `jobid`='$jobid'";
 $res = mysqli_query($conn,$query);
@@ -26,7 +27,7 @@ if(mysqli_num_rows($res) >= 1){
   <div class="card-body">
     <h5 class="card-title"> Job Location : <?=$ret['city'];?></h5>
     <p class="card-text"><?=$ret['Job_discp'];?></p>
-    <a href="#" class="btn btn-primary">Apply</a>
+    <a href="apply.php?utm_target=<?=$ret['job_title'];?>&utm_source=<?=$_GET['utm_source']?>" class="btn btn-primary">Apply</a>
   </div>
 </div>
 </div>

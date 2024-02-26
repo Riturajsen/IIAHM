@@ -4,6 +4,10 @@
 0=Users
 1=editor
 2=admin -->
+<?php
+error_reporting(false);
+$msg = $_GET['rmsg'];
+?>
 
 <!DOCTYPE html>
 <html>
@@ -24,10 +28,17 @@
 </head>
 <body>
   <div class="container mt-5">
+  <?php if($msg == ""){ }else{ ?>
+  <div class="alert alert-info" role="alert">
+  <?=$msg?>
+</div><?php } ?>
     <div class="card p-3 shadow-lg">
       <div class="text-center"><img src="app/assets/images/logo.jpg" alt="LOGO"></div>
     <hr>
+   
       <div class="row justify-content-center">
+    
+  
       <div class="col-md-6">
     <h2><u>Forgot Password</u></h2>
     <form action="forgotP.php" method="POST">
