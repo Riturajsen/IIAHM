@@ -194,7 +194,7 @@ if (!isset($_SESSION["username"])) {
                         <div class="d-flex align-items-center">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="dashboard.php?page-name=Dashboard">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Admin Panel</li>
                                 </ol>
                             </nav>
@@ -219,23 +219,17 @@ if (!isset($_SESSION["username"])) {
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-
-
-                                <?php if($page_name == "" || $page_name == "Dashboard") { include "dashboarditem.php"; }?>
-                                    
-                                                
-
-                                  <?php if($page_name === "View_Emp"){ include "view.php"; }?>
-                                  <?php if($page_name === "blogs"){ include "blog/index.php"; }?>
-                                  <?php if($page_name === "form"){ include "getFormData.php"; }?>
-                                  <?php if($page_name === "job-post"){ include "job/index.php"; }?>                                  
-                                  <?php if($page_name === "Add_Admin"){ include "addAdmin.php"; }?>
-                                  <?php if($page_name === "placementPics"){ include "Placement/index.php"; }?>
-                                  <?php if($page_name === "Add_page"){ include "pagemaker.php"; }?>
-                                  <?php if($page_name === "coreSet"){ include "coreSet.php"; }?>
-                                  <?php if($page_name === "Upload_Emp"){ include "Emp_Upload/index.php"; }?>
-                                  <?php if($page_name === "Website_edit"){ include "websiteSetting/index.php"; }?>
-
+                            <?php if($page_name === "" || $page_name === "Dashboard"){ include "dashboarditem.php"; }?>
+                            <?php if($page_name === "View_Emp"){ include "view.php"; }?>
+                            <?php if($page_name === "blogs"){ include "blog/index.php"; }?>
+                            <?php if($page_name === "form"){ include "getFormData.php"; }?>
+                            <?php if($page_name === "job-post"){ include "job/index.php";}?>
+                            <?php if($page_name === "Add_Admin"){ include "addAdmin.php"; }?>
+                            <?php if($page_name === "placementPics"){ include "Placement/index.php"; }?>
+                            <?php if($page_name === "Add_page"){ include "pagemaker.php"; }?>
+                            <?php if($page_name === "coreSet"){ include "coreSet.php"; }?>
+                            <?php if($page_name === "Upload_Emp"){ include "Emp_Upload/index.php"; }?>
+                            <?php if($page_name === "Website_edit"){ include "websiteSetting/index.php"; }?>
                             </div>
                         </div>
                     </div>
