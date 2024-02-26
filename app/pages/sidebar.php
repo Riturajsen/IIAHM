@@ -35,7 +35,10 @@
 
                                      <?php if($rights == 1 || $rights == 2 || $rights == 3){ echo '<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="dashboard.php?page-name=Website_edit" aria-expanded="false"><i class="mdi me-2 mdi-sitemap"></i><span
-                                    class="hide-menu">Edit Website</span></a></li>';} ?>                
+                                    class="hide-menu">Edit Website</span></a></li>';} ?>        
+                                        <?php if($rights == 1 || $rights == 2 || $rights == 3){ echo '<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="dashboard.php?page-name=blogs" aria-expanded="false"><i class="mdi me-2 mdi-blogger"></i><span
+                                    class="hide-menu">Blogs</span></a></li>';} ?>          
                         
                         <!-- <?php if($rights == 1 || $rights == 2 || $rights == 3){ echo '<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="dashboard.php?page-name=Add_page" aria-expanded="false"><i class="mdi me-2 mdi-book"></i><span

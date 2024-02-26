@@ -9,7 +9,7 @@ if (!isset($_SESSION["username"])) {
 
 }else{
 include("../globalGet.php");
-if($rights == 2 || $rights == 3){
+if($rights == 2 || $rights == 3 || $rights == 1){
   ?>
 
   <style>
@@ -23,29 +23,26 @@ if($rights == 2 || $rights == 3){
  <script src="https://cdn.ckeditor.com/4.16.2/standard-all/ckeditor.js"></script>
  <div id="alert"><?php echo $_SESSION['msg'] ?></div>
 
- <a href="job/viewApp.php" class="btn btn-primary">View Application</a>
- <a href="job/viewjobs.php" class="btn btn-success">View Jobs</a>
-<form  method="POST" id="" action="job/ajax.php">
-<label>Job Title</label>
-            <input type="text" name="job_title" id="job_title" class="form-control" placeholder="Enter Your Title" required>
+ <a href="blog/viewBlog.php" class="btn btn-success m-2">View Blogs</a>
+<form  method="POST" id="" enctype="multipart/form-data" action="blog/ajax.php">
+<label>Blog Image</label>
+            <input type="file" name="blogimg"  class="form-control" placeholder="" >
+            <label>Blog Title</label>
+            <input type="text" name="title" id="job_title" class="form-control" placeholder="Enter Your Title" required>
             <input type="hidden" name="posted_by" id="posted_by" class="form-control" value="<?=$_SESSION["username"]?>" required>
            
             
-            <label>Job Description</label>
-									<textarea name="Job_discp" id="Job_discp" ></textarea>
+            <label>Blog</label>
+									<textarea name="blog" id="blog" ></textarea>
 									
             
-           <label>Job Location : </label>
-            <input type="text" name="city"  id="city" class="form-control" placeholder="Enter Your Location "required >
-            <input type="hidden" name="posted_by"  id="posted_by" class="form-control" value="IIAHM">
-          
         
             <input type="submit" value="SUBMIT" id="submit" class="btn mt-3 text-white form-control btn-success"  name="Submit">
         </form>
 
    	
     <script>
-												CKEDITOR.replace( 'Job_discp' );
+												CKEDITOR.replace( 'blog' );
 										</script>
 
 <?php $_SESSION['msg'] =" "; } else{ echo "<h1>you do not have required rights</h1>";} }?>

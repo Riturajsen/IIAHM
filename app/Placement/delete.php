@@ -13,3 +13,4 @@ if ($num != 0){
 }
 
 ?>
+ <td><a href="<?='deleteBlog.php?id='.$row['id'];?>">Delete</a></td>

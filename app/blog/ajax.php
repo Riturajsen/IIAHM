@@ -3,33 +3,33 @@ error_reporting(false);
 session_start();
 include "../config/connect.php";
 
-$num = rand(00000,99999);
+$file = $_FILES['blogimg']['name'];
+$target_dir = "blogimg/";
+$target_file = md5("Image".basename($file)).".png";
 
-$job_title = $_POST['job_title'];
-$jobid = md5($num) ;
-$Job_discp = $_POST['Job_discp']; 
-$city = $_POST['city'];
+$title = $_POST['title']; 
+$blog = $_POST['blog'];
 $posted_by = $_POST['posted_by'];
 
 $output = "";
 
 
-$query = "INSERT INTO `jobs`(`jobid`, `job_title`, `Job_discp`, `city`, `posted_by`) VALUES ('$jobid','$job_title','$Job_discp','$city','$posted_by')";
+$query = "INSERT INTO `blog`( `img`, `title`, `blog`, `poated_by`) VALUES ('$target_file','$title','$blog','$posted_by')";
 $res  = mysqli_query($connect,$query);
 
 if($res){
-
+  move_uploaded_file($_FILES["blogimg"]["tmp_name"], "blogimg/".$target_file);
     $_SESSION['msg'] = '<div class="alert alert-success" role="alert">
-    Job Posted
+  Blog Submitted
   </div>
   ';
-  header("Location: ../dashboard.php?page-name=job-post");
+  header("Location: ../dashboard.php?page-name=blogs");
 }else{
     $_SESSION['msg'] = '<div class="alert alert-danger" role="alert">
     Form Cannot be submitted As of Now
   </div>
   ';
-  header("Location: ../dashboard.php?page-name=job-post");
+  header("Location: ../dashboard.php?page-name=blogs");
 }
 
 $resp = array(

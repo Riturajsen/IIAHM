@@ -44,3 +44,6 @@ if ($num != 0){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>
+<h6>Job Link Share it :- </h6>   
+ <a href='https://api.whatsapp.com/send?text=https://career.iiahmaviationacademy.com/viewjob.php?jobid=<?=$ret['jobid']?>&utr_source=whatsapp_share_btn' class="btn btn-success">Whatsapp</a>
+      </div>

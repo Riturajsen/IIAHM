@@ -18,10 +18,10 @@ if (!isset($_SESSION["username"])) {
     $get_user = mysqli_fetch_array($User_response);
     $rights = $get_user['rights'];
   
-    if($rights == 3){
+    if($rights == 3 | $rights == 2 | $rights == 1){
 ?>
 <head>
-    <title>Admin Record Database | IIAHM</title>
+    <title>Blogs Record Database | IIAHM</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
@@ -31,36 +31,32 @@ if (!isset($_SESSION["username"])) {
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Phone</th>
-      <th scope="col">Came From</th>
-      <th scope="col">CV Link</th>
+      <th scope="col">Title</th>
+      <th scope="col">image</th>
       <th scope="col">Delete</th>
     </tr>
   </thead>
   <tbody>
     <?php
-  $ret = mysqli_query($conn , "SELECT * FROM jobapply");
+  $ret = mysqli_query($conn , "SELECT * FROM blog ORDER BY id DESC");
   if(mysqli_num_rows($ret) > 0) {
        $i =1;
     while ($row=mysqli_fetch_array($ret)){
     ?>
     <tr>
       <th scope="row"><?=$i?></th>
-      <td><?=$row['username']?></td>
-      <td><?=$row['Pnumber']?></td>
-      <td><?=$row['utm_source']?></td>
-      <td><a href="https://career.iiahmaviationacademy.com/pdf/<?=$row['cvname']?>">Click</a></td>
+      <td><?=$row['title']?></td>
+      <td><img src="<?='blogimg/'.$row['img']?>" alt="Blog Image" width="90px" height="50px"></td>
+   
 
-
-      <td> <a href= "deleteApp.php?id=<?=$row['id']?>&unlink=<?=$row['cvname']?>" class="btn btn-danger"> Delete</a> </td>
+      <td>  Delete </td>
     </tr>
 
     <?php $i++; } }?>
 
   </tbody>
   <tfoot>
-    <a href="../dashboard.php?page-name=job-post" class="btn btn-success">Go back</a>
+    <a href="../dashboard.php?page-name=blogs" class="btn btn-success">Go back</a>
   </tfoot>
 </table>
 </div>
