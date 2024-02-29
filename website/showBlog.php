@@ -51,7 +51,7 @@ if(mysqli_num_rows($ret) > 0) {
                 <div class="col-lg-8">
                     <div class="blog-item mb-60">
                         <div class="blog-thumb--style2">
-                            <img src="https://app.iiahmaviationacademy.com/blog/blogimg/<?=$row['img']?>" alt="blog image">
+                            <img src="https://app.iiahmaviationacademy.com/blog/blogimg/<?=$row['img']?>" alt="<?=$row['title']?>">
                           
                         </div>
                         <div class="blog-content--style2 blog-content--style3">
