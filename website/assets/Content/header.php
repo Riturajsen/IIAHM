@@ -32,11 +32,11 @@ $registerLink = "https://form.iiahmaviationacademy.com/?utm_source=website_rgstr
 
 
     <!-- preloader -->
-    <div class="preloader" id="preloader">
+    <!-- <div class="preloader" id="preloader">
         <div class="preloader-thumb">
             <img src="assets/images/propeller.png" alt="image">
         </div>
-    </div>
+    </div> -->
     <div class="bg-danger text-center p-3">
     <a href="#"><h4 class="text-white">See Our Placements </h4> </a>
                 </div>

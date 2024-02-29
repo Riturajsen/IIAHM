@@ -219,7 +219,7 @@ if (!isset($_SESSION["username"])) {
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                            <?php if($page_name === "" || $page_name === "Dashboard"){ include "dashboarditem.php"; }?>
+                            <?php if($page_name == "" || $page_name === "Dashboard"){ include "dashboarditem.php"; }?>
                             <?php if($page_name === "View_Emp"){ include "view.php"; }?>
                             <?php if($page_name === "blogs"){ include "blog/index.php"; }?>
                             <?php if($page_name === "form"){ include "getFormData.php"; }?>
