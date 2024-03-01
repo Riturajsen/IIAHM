@@ -12,7 +12,7 @@ require 'Email/mailConfig.php';
 // mail template
 // $message = file_get_contents('mailtype/mail_change.php');
 
-$mailto  = $email; // "iiahm.bho@gmail.com";
+$mailto  = $email; 
 $mailsub = $fname." | Here is your password Reset Link";
 $mailname =$fname;
 $link = "http://localhost/iiahm/changePass.php?token='.$token.'";
