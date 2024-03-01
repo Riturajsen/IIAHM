@@ -18,8 +18,8 @@ if($rights == 2 || $rights == 3){
   ?>
  <script src="https://cdn.ckeditor.com/4.16.2/standard-all/ckeditor.js"></script>
   
-
-<form class="form-horizontal form-material mx-2" method="POST" action="">
+ <h4 class="text-danger"><?=$_SESSION['output']?></h4>
+<form class="form-horizontal form-material mx-2" enctype="multipart/form-data" method="POST" action="websiteSetting/update.php">
     <input type="hidden" value= '<?=$get_user["fname"]?>' required="true">
                                     <div class="form-group">
                                         <label class="col-md-12 mb-0">Scroller Text</label>
@@ -33,7 +33,7 @@ if($rights == 2 || $rights == 3){
                                         <label class="col-md-12 mb-0">Company Address</label>
                                         <div class="col-md-12">
                                             <input type="text" 
-                                                class="form-control ps-0 form-control-line" name="adress" value="<?=$res['address'];?>" required="true"> 
+                                                class="form-control ps-0 form-control-line" name="adress" value="<?=$res['adress'];?>" required="true"> 
                                         </div>
                                     </div>
                                         <div class="form-group mt-3">
@@ -99,8 +99,8 @@ why people choose IIAHM Aviation academy  </u></h4>
 <div class="form-group mt-3">
                                         <label class="col-md-12 mb-0"> Why us image</label>
                                         <div class="col-md-12">
-                                            <input type="file" 
-                                                class="form-control ps-0 form-control-line" name="Whyimg" value=""  > 
+                                            <input type="text" 
+                                                class="form-control ps-0 form-control-line" name="Whyimg" value="<?=$res['Whyimg']?>"  > 
                                         </div>
                                     </div>
                                         <div class="form-group mt-3">
@@ -134,4 +134,4 @@ why people choose IIAHM Aviation academy  </u></h4>
 										</script>
 
 
-<?php } else{ echo "<h1>you do not have required rights</h1>";} }?>
+<?php } else{ echo "<h1>you do not have required rights</h1>";} $_SESSION['output']= "";}?>

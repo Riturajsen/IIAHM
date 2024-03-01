@@ -221,6 +221,8 @@ if (!isset($_SESSION["username"])) {
                             <div class="card-body">
                             <?php if($page_name == "" || $page_name === "Dashboard"){ include "dashboarditem.php"; }?>
                             <?php if($page_name === "View_Emp"){ include "view.php"; }?>
+                            <?php if($page_name === "trainers"){ include "trainers/index.php"; }?>
+                            <?php if($page_name === "trainersEdit"){ include "trainers/edit.php"; }?>
                             <?php if($page_name === "blogs"){ include "blog/index.php"; }?>
                             <?php if($page_name === "form"){ include "getFormData.php"; }?>
                             <?php if($page_name === "job-post"){ include "job/index.php";}?>
