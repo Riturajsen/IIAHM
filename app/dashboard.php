@@ -224,6 +224,8 @@ if (!isset($_SESSION["username"])) {
                             <?php if($page_name === "trainers"){ include "trainers/index.php"; }?>
                             <?php if($page_name === "trainersEdit"){ include "trainers/edit.php"; }?>
                             <?php if($page_name === "blogs"){ include "blog/index.php"; }?>
+                            <?php if($page_name === "testimonial"){ include "websiteSetting/testimonial.php"; }?>
+                            <?php if($page_name === "Viewtestimonial"){ include "websiteSetting/Viewtest.php"; }?>
                             <?php if($page_name === "form"){ include "getFormData.php"; }?>
                             <?php if($page_name === "job-post"){ include "job/index.php";}?>
                             <?php if($page_name === "Add_Admin"){ include "addAdmin.php"; }?>

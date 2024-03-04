@@ -2240,7 +2240,9 @@ span{
         margin-bottom: 26px; 
     } 
 }
-
+#testimonial {
+    color: white !important;
+  }
 .client-item .client-content .client-header .sub-title {
     text-transform: capitalize;
     margin-bottom: 5px;

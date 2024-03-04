@@ -104,6 +104,7 @@
         </div>
     </section>
     <!-- overview-section start -->
+    
 
 
     <!-- choose-us-section start -->
@@ -142,13 +143,15 @@
     </section>
     <!-- team-section end -->
 
+    
 
     <!-- client-section start -->
-    <section class="client-section bg_img" data-background="assets/images/testimonial-bg.png">
-        <div class="container">
-            <div class="client-slider">
-       <?php include "plugin/testmonial.php"; ?>
-            </div>
+    <section class="client-section bg_img " data-background="assets/images/testimonial-bg.png">
+  
+    <h3 class="text-center white-icon  pt-80"> <u>What Our students think about us ?</u></h3>
+        <div class="container white-icon pt-80 pb-120">
+            <?php include "plugin/testimonial/index.php"; ?>
+           
         </div>
     </section>
     <!-- client-section end -->
