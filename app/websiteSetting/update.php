@@ -29,6 +29,19 @@ $query= "UPDATE `websitesetting` SET `scrollert`='$scrollert',`adress`='$adress'
 $res  = mysqli_query($connect,$query);
 
 
+// if($res){
+
+//     if( move_uploaded_file($_FILES["logo"]["tmp_name"], $target_dir.$target_file_logo)){
+//     if( move_uploaded_file($_FILES['bgimghero']['tmp_name'], $target_dir.$target_file_bghero)){
+ 
+//      $_SESSION['output'] = '<div class="alert alert-success" role="alert">
+//          Data Updated Successfully
+//          </div>
+//          ';
+//      header('location: ../dashboard.php?page-name=Website_edit');
+//     }else { echo "BgLogo cannot be uploaded"; } }else { echo "Logo cannot be uploaded"; }
+//  }else{
+
 if($res){
 
     move_uploaded_file($_FILES["logo"]["tmp_name"], $target_dir.$target_file_logo);

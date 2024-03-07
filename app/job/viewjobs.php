@@ -24,7 +24,6 @@ if (!isset($_SESSION["username"])) {
     <div class="container mt-5"> <h4 class="bg-danger text-white"><?=$_SESSION['msg']?></h4>
     <div class="row">
     <?php
-include "../config/connect.php";
 $query = "SELECT * from jobs ORDER BY id DESC";
 $res = mysqli_query($conn,$query);
 $num = mysqli_num_rows($res);
@@ -35,14 +34,18 @@ if ($num != 0){
     <div class="col-sm-4">
     <div class="card m-3">
       <div class="card-body">
-        <h5 class="card-title"><?=$ret['job_title'];?></h5>
-        <p class="card-text" style="display:block;text-overflow: ellipsis;width: 200px;overflow: hidden; white-space: nowrap;"></p>
-        
+        <h5 class="card-title"><?=$ret['job_title'];?> </h5>
+        Share this job :-
+         
+        <textarea readonly="true" class="form-control" ><?="https://career.iiahmaviationacademy.com/viewjob.php?jobid=".$ret['jobid']."&utm_source=".$_SESSION['username']; ?></textarea>
+     
+                    
         <form method="post" action="deletejob.php">
   <input type="hidden" name="jobid" value="<?=$ret['id'] ?>" /> 
-        <input type="submit" class="btn btn-danger" value="Delete Job">
+        <input type="submit" class="btn btn-danger mt-3" value="Delete Job">
 </form>
 
+<a href="../dashboard.php?page-name=job-edit&id=<?=$ret['jobid']?>" class="btn btn-warning mt-3">Edit Job</a>
       </div>
       <div class="card-footer"><?=$ret['city'];?></div>
     </div>

@@ -1,4 +1,11 @@
 <?php
+error_reporting(false);
+include "../../db/connect.php";  
+
+$queryWebSet = "SELECT * From websitesetting where id=1";
+$retWeb = mysqli_query($conn , $queryWebSet);
+$resWeb = mysqli_fetch_assoc($retWeb);
+
 $registerLink = "https://form.iiahmaviationacademy.com/?utm_source=website_rgstr_btn&utm_target=student";
 ?>
 
@@ -38,7 +45,7 @@ $registerLink = "https://form.iiahmaviationacademy.com/?utm_source=website_rgstr
         </div>
     </div> -->
     <div class="bg-danger text-center p-3">
-    <a href="#"><h4 class="text-white">See Our Placements </h4> </a>
+    <a href="#"><h4 class="text-white"> <?=$resWeb['scrollert']?> </h4> </a>
                 </div>
 <header class="header-section">
         <div class="header-top d-none d-xl-block">
@@ -54,7 +61,7 @@ $registerLink = "https://form.iiahmaviationacademy.com/?utm_source=website_rgstr
                                     </div>
                                     <div class="info-content">
                                         <h6 class="title">Corp. Office</h6>
-                                        <span>162, Modi Heights ,Zone-2 ,<br>MP Nagar ,Bhopal(M.P) ,India</span>
+                                        <span><?=$resWeb['adress']?></span>
                                     </div>
                                 </div>
                                 <div class="info-item">
@@ -63,7 +70,7 @@ $registerLink = "https://form.iiahmaviationacademy.com/?utm_source=website_rgstr
                                     </div>
                                     <div class="info-content">
                                         <h6 class="title">email address</h6>
-                                        <span><a href="mailto:iiahm.bho@gmail.com">iiahm.bho@gmail.com</a></span>
+                                        <span><a href="mailto:<?=$resWeb['email']?>"><?=$resWeb['email']?></a></span>
                                     </div>
                                 </div>
                                 <div class="info-item">
@@ -72,21 +79,21 @@ $registerLink = "https://form.iiahmaviationacademy.com/?utm_source=website_rgstr
                                     </div>
                                     <div class="info-content">
                                         <h6 class="title">Phone</h6>
-                                        <span>+91 8109520248, +91 6265715454</span>
+                                        <span><?=$resWeb['ContactNo']?></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-2">
-                        <div class="language-select-list d-flex flex-wrap">
+                        <!-- <div class="language-select-list d-flex flex-wrap">
                             
                             <div class="language-select">
                                 <select class="select-bar">
                                     <option data-display="English">English</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -94,7 +101,7 @@ $registerLink = "https://form.iiahmaviationacademy.com/?utm_source=website_rgstr
         <div class="header-bottom">
             <div class="container">
                 <div class="row align-items-center justify-content-between">
-                    <a class="site-logo site-title" href="index.php"><img src="assets/images/logo.jpg" alt="site-logo"></a>
+                    <a class="site-logo site-title" href="index.php"><img src="https://app.iiahmaviationacademy.com/assets/images/logo.jpg" alt="site-logo"></a>
                     <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="fas fa-bars"></span>
                     </button>

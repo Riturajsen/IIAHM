@@ -39,12 +39,15 @@ Contact Area Start
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i,800,800i|Roboto:400,400i,500,500i,700,700i,900,900i&amp;display=swap');
 
 /* reset css start */
+
+
 :root{
   --heading-font: 'Roboto', sans-serif;
   --para-font: 'Open Sans', sans-serif;
   --heading-color: #292929;
-  --para-color: #aaaaaa;
+  --para-color: #383838;
   --main-color: #222324;
+  --white-color: #ffffff;
   --btn-change-color : rgb(20, 20, 20);
 }
 
@@ -1035,7 +1038,7 @@ span{
     padding-top: 245px;
     padding-bottom: 100px;
     position: relative;
-    background-image: url("../images/banner.png");
+    background-image: url("https://app.iiahmaviationacademy.com/assets/images/bghero.jpg");
     z-index: 2;
     background-size: cover;
     background-position: center;
@@ -1304,7 +1307,7 @@ span{
 
 .choose-us-thumb {
     position: relative;
-    background-image: url("../images/EmiratesCrew.jpg");
+    background-image: url("https://source.unsplash.com/random/?aviation,airpo");
     z-index: 2;
     background-size: cover;
     background-position: center;
@@ -1312,12 +1315,15 @@ span{
 }
 
 .choose-us-thumb--style {
+    margin-top: 20%;
     position: relative;
-    background-image: url("https://lh3.googleusercontent.com/p/AF1QipPlflvuYtN7wkAtvxXfDGKyeauY2BDayyX3O0ug=w768-h768-n-o-v1");
+    background-image: url("../images/dac.jpg");
     z-index: 2;
-    background-size: cover;
+    /* background-size: cover; */
+    background-repeat: no-repeat;
     background-position: center;
     height: 80%;
+    
 }
 
 .choose-us-thumb--style2 {

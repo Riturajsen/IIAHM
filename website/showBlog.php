@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+   
 <?php include "assets/Content/header.php";
 $id = $_GET['id'];
 include ('db/connect.php');
@@ -8,6 +9,12 @@ if(mysqli_num_rows($ret) > 0) {
     $row=mysqli_fetch_assoc($ret)
 
 ?>
+ <head>
+<title>
+    <meta name="title" content="<?=$row['metaT']?>">
+    <meta name="description" content="<?=$row['metaD']?>">
+</title>        
+</head>
 
     <!-- header-section end -->
 

@@ -1,6 +1,18 @@
+<?php
+include "db/connect.php";
+$queryWebSet = "SELECT * From websitesetting where id=1";
+$retWeb = mysqli_query($conn , $queryWebSet);
+$resWeb = mysqli_fetch_assoc($retWeb);
+//$resWeb['']
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
+<head>
+<meta name="description" content="Take your maiden flight with IIAHM Aviation Academy! The vision of IIAHM is to mould the youth who are keen to go in the aviation and hospitality industry.">
+  <meta name="keywords" content="Aviation, iiahm, JavaScript ,management,iiahm academy, hospitality,diploma,custome servicer,ground staff">
+  <link rel="canonical" href="http://www.iiahmaviationacademy.com/">
+</head>
 <!-- index.html  30 Nov 2019 03:15:44 GMT -->
 
 
@@ -15,8 +27,8 @@
             <div class="row justify-content-center">
                 <div class="col-lg-9 text-center">
                     <div class="banner-content">
-                        <h2 class="title">Take your maiden flight with IIAHM Aviation Academy!</h2>
-                        <p>The vision of IIAHM is to mould the youth who are keen to go in the aviation and hospitality industry to highly competent and trained professionals.</p>
+                        <h2 class="title"><?=$resWeb['h1text']?></h2>
+                        <p><?=$resWeb['subhead']?></p>
                         <div class="btn-area">
                             <a href="contact.php" class="cmn-btn">contact us</a>
                         </div>
@@ -44,14 +56,11 @@
                 <div class="col-lg-6">
                     <div class="about-left-content">
                         <h2 class="title">Our Methodology</h2>
-                        <p>Ascertaining client needs and expectations Designing methodologies to match these needs and expectations Assigning the appropriate consulting and training experts for the assignment Creating customized training manuals.
-                        </p><p>
-                        We proudly introduce ourselves as one of the emerging Institute for Air Hostess training in Bhopal & Indore and Personality Development. In fact we are proud to say that we are the pioneers in organizing campus selections. IIAHM offers most alluring career with Aviation courses in Bhopal and Indore.</p>
+                        <p><?=$resWeb['paraM'];?></p>
                         <div class="row">
                             <div class="col-lg-6">
                                 <ul class="about-item">
-                                    <li>Over All Development.</li>
-                                    <li>Guarantee Placement.</li>
+                                <?=$resWeb['listM'];?>
                                 </ul>
                             </div>
                             <!-- <div class="col-lg-6">
@@ -185,11 +194,7 @@
                     <div class="choose-content choose-content--style">
                         <h2 class="title">AFFILIATION</h2>
                         <ul class="choose-item--style">
-                            <li class="text-danger">DUBAI ACCREDITATION COUNCIL [DAC]</li>
-                        <p>Dubai Accreditation Centre (DAC), approved under the Dubai Municipality, Govt. of Dubai. Accreditation by DAC is formal recognition that a Conformity Assessment Body (CAB) is competent to carry out specific tasks, i.e. specific types of tests, calibration methods, inspections, or certification activities.</p>
-                            <li class="text-danger">INTERNATIONAL ACCREDITATION SERVICES [IAS]</li>
-
-                            <p>IAS is a nonprofit, public-benefit corporation that has been providing accreditation services since 1975. IAS accredits a wide range of companies and organizations including governmental entities, commercial businesses, and professional associations.</p>
+                  <?=$resWeb['textaff']?>
                         </ul>
                     </div>
                 </div>

@@ -7,56 +7,29 @@
                 </div>
             </div>
             <div class="row mb-30-none">
-                <div class="col-lg-6 col-md-6 mb-30">
-                    <div class="team-item d-flex flex-wrap">
-                        <div class="team-thumb">
-                            <img src="assets/images/team/Founder.jpg" alt="image">
-                        </div>
-                        <div class="team-content">
-                            <h3 class="title">Shalini Fouzdar</h3>
-                            <span class="sub-title">Founder</span>
-                            <p>Pellentesque cumtes nemper non nul lstrices in risus eget est ipsum interdum ullarper justo tempus non ac nullam. </p>
-                        </div>
-                    </div>
-                </div>
-               
-                <div class="col-lg-6 col-md-6 mb-30">
-                    <div class="team-item d-flex flex-wrap">
-                        <div class="team-thumb">
-                            <img src="assets/images/team/mahendrasingh.jpg" alt="Mahendra Singh">
-                        </div>
-                        <div class="team-content">
-                            <h3 class="title">Mahendra Singh</h3>
-                            <span class="sub-title">Hospitality Trainer</span>
-                            <p>Pellentesque cumtes nemper non nul lstrices in risus eget est ipsum interdum ullarper justo tempus non ac nullam. </p>
-                        </div>
-                    </div>
-                </div>
 
+            <?php
+            $ret = mysqli_query($conn , "SELECT * FROM trainer where showH='Yes' LIMIT 4");
+            if(mysqli_num_rows($ret) > 0) {
+              while ($row=mysqli_fetch_array($ret)){
+            ?>
                 <div class="col-lg-6 col-md-6 mb-30">
                     <div class="team-item d-flex flex-wrap">
                         <div class="team-thumb">
-                            <img src="assets/images/team/avnishpanday.jpg" alt="Avnish Panday">
+                            <img src="https://app.iiahmaviationacademy.com/assets/images/trainer/<?=$row['trainimg']?>" alt="<?=$row['trainimg']?> | image">
                         </div>
                         <div class="team-content">
-                            <h3 class="title">Avnish Pandey</h3>
-                            <span class="sub-title">Communication & Soft skills Trainer</span>
-                            <p>Pellentesque cumtes nemper non nul lstrices in risus eget est ipsum interdum ullarper justo tempus non ac nullam. </p>
+                            <h3 class="title"><?=$row['fname']?></h3>
+                            <span class="sub-title"><?=$row['tfield']?></span>
+                            <p><?=$row['bio']?> </p>
                         </div>
                     </div>
                 </div>
+               <?php }} ?>
+          
 
-                <div class="col-lg-6 col-md-6 mb-30">
-                    <div class="team-item d-flex flex-wrap">
-                        <div class="team-thumb">
-                            <img src="assets/images/team/yashsharma.jpg" alt="Yash Sharma">
-                        </div>
-                        <div class="team-content">
-                            <h3 class="title">Yash Sharma</h3>
-                            <span class="sub-title">Avation Trainer</span>
-                            <p>Pellentesque cumtes nemper non nul lstrices in risus eget est ipsum interdum ullarper justo tempus non ac nullam. </p>
-                        </div>
-                    </div>
-                </div>
+           
+
+         
               
             </div>

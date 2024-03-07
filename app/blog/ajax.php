@@ -10,11 +10,13 @@ $target_file = md5("Image".basename($file)).".png";
 $title = $_POST['title']; 
 $blog = $_POST['blog'];
 $posted_by = $_POST['posted_by'];
+$metaD = $_POST['metaD'];
+$metaT = $_POST['metaT'];
 
 $output = "";
 
 
-$query = "INSERT INTO `blog`( `img`, `title`, `blog`, `poated_by`) VALUES ('$target_file','$title','$blog','$posted_by')";
+$query = "INSERT INTO `blog`( `img`, `title`, `blog`, `poated_by`, `metaT`,`metaD`) VALUES ('$target_file','$title','$blog' ,'$posted_by','$metaT','$metaD')";
 $res  = mysqli_query($connect,$query);
 
 if($res){

@@ -33,6 +33,7 @@ if (!isset($_SESSION["username"])) {
       <th scope="col">#</th>
       <th scope="col">Title</th>
       <th scope="col">image</th>
+      <th scope="col">Edit</th>
       <th scope="col">Delete</th>
     </tr>
   </thead>
@@ -46,9 +47,10 @@ if (!isset($_SESSION["username"])) {
     <tr>
       <th scope="row"><?=$i?></th>
       <td><?=$row['title']?></td>
+  
       <td><img src="<?='blogimg/'.$row['img']?>" alt="Blog Image" width="90px" height="50px"></td>
    
-
+      <td><a href="<?='../dashboard.php?page-name=BlogEdit&id='.$row['id']?>" class="btn btn-warning">EDIT</a></td>
       <td>  Delete </td>
     </tr>
 
