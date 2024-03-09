@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 require_once 'vendor/autoload.php'; 
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 session_start();
@@ -52,18 +52,18 @@ if(isset($_POST['importSubmit'])){
                 } 
             } 
              
-            $qstring = '?status=succ'; 
+            $_SESSION['qstring'] = 'succ'; 
         }else{ 
-            $qstring = '?status=err'; 
+            $_SESSION['qstring'] = 'err'; 
         } 
     }else{ 
-        $qstring = '?status=invalid_file'; 
+        $_SESSION['qstring'] = 'invalid_file'; 
     } 
 
 
  
 // Redirect to the listing page 
-header("Location: ../uploadStudent.php".$qstring); 
+header("Location: ../uploadStudent.php"); 
     }
 }
 else{

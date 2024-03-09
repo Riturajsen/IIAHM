@@ -14,11 +14,11 @@ if (mysqli_num_rows($fetchAuth) > 0){
 
  
     // Get status message 
-    if(!empty($_GET['status'])){ 
-        switch($_GET['status']){ 
+    if(!empty($_SESSION['qstring'])){ 
+        switch($_SESSION['qstring']){ 
             case 'succ': 
                 $statusType = 'alert-success'; 
-                $statusMsg = 'Member data has been imported successfully.'; 
+                $statusMsg = 'Student data has been imported successfully.'; 
                 break; 
             case 'err': 
                 $statusType = 'alert-danger'; 
@@ -32,6 +32,7 @@ if (mysqli_num_rows($fetchAuth) > 0){
                 $statusType = ''; 
                 $statusMsg = ''; 
         } 
+        $_SESSION['qstring'] = " ";
     } 
 ?>
 <!DOCTYPE html>
