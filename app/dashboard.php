@@ -202,6 +202,9 @@ if (!isset($_SESSION["username"])) {
                     </div>
                     <div class="col-md-6 col-4 align-self-center">
                         <div class="text-end upgrade-btn">
+                        <form method="POST" action="../erp/index.php" class="sidebar-link waves-effect waves-dark sidebar-link"
+                                 aria-expanded="false">
+                                <span class="hide-menu"><input type="hidden" name="secure_id" value="<?=$_SESSION['secure_id']?>" id=""></span><input type="submit" class="btn btn-warning" value="Go to ERP"></form>
                             <a href="../logout.php"
                                 class="btn btn-danger d-none d-md-inline-block text-white" >Logout</a>
                         </div>

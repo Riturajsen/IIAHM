@@ -3,8 +3,14 @@ session_start();
 $secure_id = $_SESSION['secure_id'];
 
 include "../core/main.php";
+$today_date = date('Y-m-d');
 
+$today_entry = mysqli_query($con , "SELECT * FROM studentdetails where addedOn='$today_date'");
+$aaj_ki_entry = mysqli_num_rows($today_entry);
+$total_unsign_data = mysqli_query($con , "SELECT * FROM studentdetails where allotedTo IS NULL OR allotedTo = ' '");
+$fetch_num_unAsign = mysqli_num_rows($total_unsign_data);
 $fetchAuth = mysqli_query($conn, "SELECT * FROM users where `secure_id`='$secure_id'");
+
 if (mysqli_num_rows($fetchAuth) > 0){
     $returnAuth = mysqli_fetch_assoc($fetchAuth);
 
@@ -27,19 +33,19 @@ if (mysqli_num_rows($fetchAuth) > 0){
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Primary Card</div>
+                                    <div class="card-body">Today's Data</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <a class="text-white stretched-link" href="#"><?=$aaj_ki_entry?></a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Warning Card</div>
+                                    <div class="card-body text-danger">Total UnAssign Data</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                        <a class="text-danger stretched-link" href="#"><?=$fetch_num_unAsign?></a>
+                                        <div class="small text-danger"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
@@ -82,7 +88,7 @@ if (mysqli_num_rows($fetchAuth) > 0){
                                 </div>
                             </div>
                         </div>
-                        <div class="card mb-4">
+                        <!-- <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
                                 DataTable Example
@@ -569,12 +575,71 @@ if (mysqli_num_rows($fetchAuth) > 0){
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </main>
              <!-- footer start-->
              <?php include ('helper/footer.php'); ?>
-            <!-- footer End -->
+            <?php $aj_tarikh = date('d'); ?>
+             <!-- Students Chart -->
+             <script>
+    // Set new default font family and font color to mimic Bootstrap's default styling
+Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+Chart.defaults.global.defaultFontColor = '#292b2c';
+
+// Area Chart Example
+var ctx = document.getElementById("myAreaChart");
+var myLineChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: [ "<?=date('M '). $aj_tarikh - 5?>", "<?=date('M '). $aj_tarikh - 4?>", "<?=date('M '). $aj_tarikh - 3?>", "<?=date('M '). $aj_tarikh - 2?>", "<?=date('M '). $aj_tarikh - 1?>", "<?=date('M ').$aj_tarikh?>"],
+    datasets: [{
+      label: "DATA",
+      lineTension: 0.3,
+      backgroundColor: "rgba(2,117,216,0.2)",
+      borderColor: "rgba(2,117,216,1)",
+      pointRadius: 5,
+      pointBackgroundColor: "rgba(2,117,216,1)",
+      pointBorderColor: "rgba(255,255,255,0.8)",
+      pointHoverRadius: 5,
+      pointHoverBackgroundColor: "rgba(2,117,216,1)",
+      pointHitRadius: 50,
+      pointBorderWidth: 2,
+      data: [200, 300 , 321 ,251 ,400 ,512  ],
+    }],
+  },
+  options: {
+    scales: {
+      xAxes: [{
+        time: {
+          unit: 'date'
+        },
+        gridLines: {
+          display: false
+        },
+        ticks: {
+          maxTicksLimit: 7
+        }
+      }],
+      yAxes: [{
+        ticks: {
+          min: 0,
+          max: 800,
+          maxTicksLimit: 5
+        },
+        gridLines: {
+          color: "rgba(0, 0, 0, .125)",
+        }
+      }],
+    },
+    legend: {
+      display: false
+    }
+  }
+});
+
+</script>
+             <!-- footer End -->
             </body>
 </html>
 

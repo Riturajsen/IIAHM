@@ -8,13 +8,11 @@
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="dashboard.php" aria-expanded="false"><i class="mdi me-2 mdi-gauge"></i><span
                                     class="hide-menu">Dashboard</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="dashboard.php?page-name=View_Emp" aria-expanded="false">
-                                <i class="mdi me-2 mdi-account-check"></i><span class="hide-menu">View Students</span></a>
+                        <li class="sidebar-item"> <form method="POST" action="../erp/index.php" class="sidebar-link waves-effect waves-dark sidebar-link"
+                                 aria-expanded="false">
+                                <i class="mdi me-2 mdi-account-check"></i><span class="hide-menu"><input type="hidden" name="secure_id" value="<?=$_SESSION['secure_id']?>" id=""></span><input type="submit" class="btn" value="Go to ERP"></form>
                         </li>
-                        <?php if($rights == 2 || $rights == 3){ echo '<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="dashboard.php?page-name=Upload_Emp" aria-expanded="false"><i class="mdi me-2 mdi-table"></i><span
-                                    class="hide-menu">Upload Students</span></a></li>';} ?>
+              
                                                <?php if($rights == 1 || $rights == 2 || $rights == 3){ echo '<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="dashboard.php?page-name=form" aria-expanded="false"><i class="mdi me-2 mdi-forum"></i><span
                                     class="hide-menu">Form Entries</span></a></li>';} ?>
