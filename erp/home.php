@@ -2,6 +2,27 @@
 session_start();
 $secure_id = $_SESSION['secure_id'];
 
+if(!empty($_SESSION['qstring'])){ 
+    switch($_SESSION['qstring']){ 
+        case 'succ': 
+            $statusType = 'alert-success'; 
+            $statusMsg = 'Student data has been imported successfully.'; 
+            break; 
+        case 'err': 
+            $statusType = 'alert-danger'; 
+            $statusMsg = 'Something went wrong, please try again.'; 
+            break; 
+        case 'invalid_file': 
+            $statusType = 'alert-danger'; 
+            $statusMsg = 'Please upload a valid Excel file.'; 
+            break; 
+        default: 
+            $statusType = ''; 
+            $statusMsg = ''; 
+    } 
+    $_SESSION['qstring'] = " ";
+} 
+
 include "../core/main.php";
 $today_date = date('Y-m-d');
 
@@ -25,6 +46,11 @@ if (mysqli_num_rows($fetchAuth) > 0){
 <?php include ('helper/header.php'); ?>
 
 <!-- header End -->
+<?php if(!empty($statusMsg)){ ?>
+<div class="col-xs-12 p-3">
+    <div class="alert <?php echo $statusType; ?>"><?php echo $statusMsg; ?></div>
+</div>
+<?php } ?>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">

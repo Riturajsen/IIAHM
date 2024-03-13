@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 include "../../core/main.php";
 
 $TeleId = $_POST['TeleId'];
@@ -23,6 +23,7 @@ $allotedid = $_POST['allotedid'];
 foreach($allotedid as $alloted){
     $con->query("UPDATE studentdetails SET allotedTo = '".$TeleId."' WHERE id = '".$alloted."'"); 
 }
-
+  
+$_SESSION['qstring'] = 'succ'; 
 header('location: ../allot.php');
 ?>
