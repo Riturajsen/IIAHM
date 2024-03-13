@@ -58,6 +58,7 @@ include ("../../core/main.php");
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
+                            <?php if($returnAuth['rights'] == 2 || $returnAuth['rights'] == 3  ) { ?>
                             <div class="sb-sidenav-menu-heading">Bulk Action</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -74,6 +75,7 @@ include ("../../core/main.php");
                                 <div class="sb-nav-link-icon"><i class="fas fa-phone"></i></div>
                              Auto Assign Calls
                             </a>
+                            <?php } ?>
                             <div class="sb-sidenav-menu-heading">Telecaller</div>
                             <!-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
