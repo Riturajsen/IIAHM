@@ -108,7 +108,7 @@ function formToggle(ID){
                 <td><?php echo $row['contactno']; ?></td>
                 <td><?php echo $row['filesource']; ?></td>
         <?php } }else{ ?>
-            <tr><td colspan="4">No member(s) found...</td></tr>
+            <tr><td colspan="4">No record(s) found...</td></tr>
         <?php } ?>
         </tbody>
     </table>

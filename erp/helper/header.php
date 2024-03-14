@@ -73,7 +73,11 @@ include ("../../core/main.php");
                             </div>
                             <a class="nav-link collapsed" href="allot.php" data-bs-toggle="" data-bs-target="" aria-expanded="" aria-controls="">
                                 <div class="sb-nav-link-icon"><i class="fas fa-phone"></i></div>
-                             Auto Assign Calls
+                              Assign Calls
+                            </a>
+                            <a class="nav-link" href="teleCallerReport.php">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
+                                Telecaller Report
                             </a>
                             <?php } ?>
                             <div class="sb-sidenav-menu-heading">Telecaller</div>
