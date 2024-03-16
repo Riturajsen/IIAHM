@@ -1,4 +1,6 @@
 
+
+
 <?php
 
 session_start();
@@ -31,15 +33,14 @@ if(!empty($_SESSION['qstring'])){
 $fetchAuth = mysqli_query($conn, "SELECT * FROM users where `secure_id`='$secure_id'");
 if (mysqli_num_rows($fetchAuth) > 0){
     $returnAuth = mysqli_fetch_assoc($fetchAuth);
-
-  if ($returnAuth == 1 || $returnAuth == 2 || $returnAuth == 3){
+    $page = $_GET['page'];
     $fetch_tele = mysqli_query($conn, "SELECT * FROM users where rights=4");
     $tele_num = mysqli_num_rows($fetch_tele);
    
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <!-- header start -->
 <?php include ('helper/header.php'); ?>
 
@@ -55,48 +56,24 @@ if (mysqli_num_rows($fetchAuth) > 0){
 <div class="">
 <div class="row p-3">
     <!-- Import link -->
-    <select name="course" class="form-control bg-dark text-white" id="course">
-     
-    <?php
-  if(mysqli_num_rows($fetch_tele) > 0) {
-    ?>   <option value="">Select A Caller</option>
-    <?php
-    
-    while ($row=mysqli_fetch_array($fetch_tele)){
-    ?>
-<option value="<?=$row['id']?>"><?=$row['username']?></option>
-
-
-<?php } } else{ echo " <option value=''>No Caller Added</option>";} ?>
-    </select>
-    <!-- Excel file upload form -->
- <div id="myTable"></div>
-    <!-- Data list table --> 
-     
-
-</div>
-
-    </table>
+   <?php     if($page == 'teleTotalData') { include "telecaller/index.php"; };?> 
   </div>
-    
+        
+
+
+
 
 </div>
-
              <!-- footer start-->
              <?php include ('helper/footer.php'); ?>
-             </div>
-        </div>
             <!-- footer End -->
-            <script type="text/javascript">
-$("#course").change(function(){
-    var course = $(this).val();
-    $.post('helper/getTeleRep.php', {course: course}, function(response){
-        // your drop down box is in response
-        $("#myTable").html(response);
-    });
-});
+     <script type="text/javascript">
+       var getId = document.getElementById('teleCaller');
+       getId.addEventListener
 
-</script>
+       getId.addEventListener("click",(event) => {
+        document.getElementById('TeleId').value = getId.value; });
+     </script>
    
             </body>
 </html>
@@ -104,9 +81,7 @@ $("#course").change(function(){
 
 
 <?php 
-  } echo  " you don't have enough rights for the page to view <a href='home.php'>Go Home</a> ";
-}else {
+} else {
     header('location: ../');
 }
 ?>                
-
