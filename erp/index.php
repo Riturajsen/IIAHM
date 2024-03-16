@@ -10,7 +10,6 @@ if (mysqli_num_rows($fetchAuth) > 0){
 
     $_SESSION['uid'] = $returnAuth['secure_id'];
     header('location: home.php');
-// echo "Welcome to erP ".$returnAuth['fname'];
 
 }else{
     echo "<h1>Wrong Gateway or secure Id miss-match</h1>";

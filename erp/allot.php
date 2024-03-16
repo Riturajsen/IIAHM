@@ -75,8 +75,9 @@ if (mysqli_num_rows($fetchAuth) > 0){
     <!-- Excel file upload form -->
  
     <!-- Data list table --> 
-     
-
+     <div class="inline m-3">
+<button class="btn btn-primary">Select first 25</button>
+<button class="btn btn-primary">Select first 50</button></div>
 </div>
 <form action="helper/fetchDataTable.php" method="post">
 <input type="hidden" name="TeleId" id="TeleId">
