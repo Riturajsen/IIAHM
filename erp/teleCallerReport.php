@@ -32,7 +32,7 @@ $fetchAuth = mysqli_query($conn, "SELECT * FROM users where `secure_id`='$secure
 if (mysqli_num_rows($fetchAuth) > 0){
     $returnAuth = mysqli_fetch_assoc($fetchAuth);
 
-  if ($returnAuth == 1 || $returnAuth == 2 || $returnAuth == 3){
+  if ($returnAuth['rights'] == 1 || $returnAuth['rights']  == 2 || $returnAuth['rights']  == 3){
     $fetch_tele = mysqli_query($conn, "SELECT * FROM users where rights=4");
     $tele_num = mysqli_num_rows($fetch_tele);
    

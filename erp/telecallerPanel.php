@@ -36,6 +36,9 @@ if (mysqli_num_rows($fetchAuth) > 0){
     $page = $_GET['page'];
     $fetch_tele = mysqli_query($conn, "SELECT * FROM users where rights=4");
     $tele_num = mysqli_num_rows($fetch_tele);
+    $allotedId = $returnAuth['id'];
+    $globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where allotedTo=$allotedId");
+
    
 ?>
 <!DOCTYPE html>
@@ -57,6 +60,7 @@ if (mysqli_num_rows($fetchAuth) > 0){
 <div class="row p-3">
     <!-- Import link -->
    <?php     if($page == 'teleTotalData') { include "telecaller/index.php"; };?> 
+   <?php     if($page == 'callStart') { include "telecaller/callStart.php"; };?> 
   </div>
         
 

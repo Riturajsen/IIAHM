@@ -85,6 +85,11 @@ include ("../../core/main.php");
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                                 View Total Data
                             </a>
+                            <a class="nav-link" href="telecallerPanel.php?page=callStart">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
+                                Start calling ?
+                            </a>
+
                             <!-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Pages
