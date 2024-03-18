@@ -73,7 +73,7 @@ if (mysqli_num_rows($fetchAuth) > 0){
             <!-- footer End -->
      <script type="text/javascript">
        var getId = document.getElementById('teleCaller');
-       getId.addEventListener
+    //    getId.addEventListener
 
        getId.addEventListener("click",(event) => {
         document.getElementById('TeleId').value = getId.value; });

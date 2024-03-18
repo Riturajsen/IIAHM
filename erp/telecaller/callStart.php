@@ -25,8 +25,8 @@ $globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where allot
         <th><?=$i?></th>
         <td><?=$row['fname']?></td>
         <td><?=$row['category']?></td>
-        <td><a href="javascript:void(0);" data-href="getContent.php?id=<?=$row['id']?>" class="openPopup"><i class="fa-solid fa-eye"></i></a></td>
-        <td><a href=""><i class="fa-solid fa-phone"></i></a></td>
+        <td><a href="javascript:void(0);" data-href="telecaller/getContent.php?id=<?=$row['id']?>" id="openPopup"><i class="fa-solid fa-eye"></i></a></td>
+        <td><a href="telecaller/callAction.php?id=<?=$row['id'];?>&name=<?=$_SESSION['username'];?>"><i class="fa-solid fa-phone"></i></a></td>
 
  </tr>
 
