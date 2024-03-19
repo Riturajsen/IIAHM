@@ -4,6 +4,7 @@ $globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where allot
 
 ?>
 
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <div class="container p-3">
@@ -20,8 +21,8 @@ $globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where allot
 </thead>
 <tbody>
 
-    <?php $i=1;  while ($row=mysqli_fetch_array($globalTeledata)){ ?>
- <tr>
+    <?php $i= 1;  while ($row=mysqli_fetch_array($globalTeledata)){ ?>
+ <tr <?php if ($row['called'] == 1 ){ echo "class='bg-dark text-white' id='white'";} ?>>
         <th><?=$i?></th>
         <td><?=$row['fname']?></td>
         <td><?=$row['category']?></td>
