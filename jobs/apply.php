@@ -16,13 +16,25 @@
       <h4 class=" text-success"><?=$_GET['msg']?></h4>
         <div class="text-center">
     <form method="post" enctype="multipart/form-data" action="upload.php">
-    <div class="form-input py-2">
+    <div class="form-input ">
         <div class="form-group">
           <input type="text" class="form-control" name="name"
                  placeholder="Enter your name" required>
                  
-        </div>   <input type="hidden" name="utm_data" value="<?=$_GET['utm_target']?>">
-        </div>   <input type="hidden" name="utm_source" value="<?=$_GET['utm_source']?>">
+        </div> 
+        </div>  
+        <?php
+        if(strlen($_GET['utm_target']) == 0 ){
+        ?>
+        <div class="form-group">
+          <input type="text" class="form-control" name="utm_target"
+                 placeholder="Enter Position You Are Appling For" required>
+                 
+        </div>  
+        <?php } else { ?>
+        <input type="hidden" name="utm_data" value="<?=$_GET['utm_target']?>"> <?php } ?>
+
+          <input type="hidden" name="utm_source" value="<?=$_GET['utm_source']?>">
         <div class="form-group">
           <input type="text" name="Pnumber" pattern="[6-9]{1}[0-9]{9}"  class="form-control" name="Pnumber"
                  placeholder="Enter your Contact" required>

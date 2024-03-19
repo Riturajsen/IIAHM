@@ -32,7 +32,7 @@ $globalTeledatalimitUnTouched = mysqli_query($conn , "SELECT * from studentdetai
                                                 
                                                 ?>   
                                                 <ul>
-                                                    <li><?=$row['id']. " . ".$row['fname'];?></li>
+                                                    <li><?=$row['fname'];?></li>
                                                     
                                                 </ul>
                                                 

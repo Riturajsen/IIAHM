@@ -9,7 +9,7 @@ include "../core/main.php";
  
         if (isset($_FILES['pdf_file']['name']))
         {
-          $file_name = $_FILES['pdf_file']['name'];
+          $file_name = $_FILES['pdf_file']['name'].md5(date($Pnumber));
           $file_tmp = $_FILES['pdf_file']['tmp_name'];
  
           move_uploaded_file($file_tmp,"./pdf/".$file_name);
