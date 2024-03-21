@@ -28,7 +28,7 @@ include("../core/main.php");
         </tr>
       </thead>
       <tbody>
-        <?php
+        <?php 
         $query = "SELECT * from studentdetails ";
         $result = mysqli_query($con, $query);
         while($row = mysqli_fetch_array($result)){

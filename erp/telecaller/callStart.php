@@ -26,7 +26,7 @@ $globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where allot
         <th><?=$i?></th>
         <td><?=$row['fname']?></td>
         <td><?=$row['category']?></td>
-        <td><a href="javascript:void(0);" data-href="telecaller/getContent.php?id=<?=$row['id']?>" id="openPopup"><i class="fa-solid fa-eye"></i></a></td>
+        <td><td><button data-id="<?=$row['id']?>" class='btn btn-warning btn-popup'><i class="fa-solid fa-eye"></i></button></td></td>
         <td><a href="telecaller/callAction.php?id=<?=$row['id'];?>&name=<?=$_SESSION['username'];?>"><i class="fa-solid fa-phone"></i></a></td>
 
  </tr>
@@ -36,32 +36,39 @@ $globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where allot
 </table>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
+<div class="modal fade" id="stuModal" role="dialog">
+      <div class="modal-dialog">
+ 
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title"></h4>
-            </div>
-            <div class="modal-body">
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+          <div class="modal-header">
+            <h4 class="modal-title">Student Details</h4>
+            <button type="button" class="close" data-dismiss="modal">×</button>
+          </div>
+          <div class="modal-body">
+ 
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
         </div>
-      
+      </div>
     </div>
-</div>
-<script>
-$(document).ready(function(){
-    $('#openPopup').on('click',function(){
-        var dataURL = $(this).attr('data-href');
-        $('.modal-body').load(dataURL,function(){
-            $('#myModal').modal({show:true});
+<script type="text/javascript">
+    $(document).ready(function () {
+ 
+      $('.btn-popup').click(function () {
+        var stdId = $(this).data('id');
+        $.ajax({
+          url: 'get_data.php',
+          type: 'post',
+          data: { stdId: stdId },
+          success: function (response) {
+            $('.modal-body').html(response);
+            $('#stuModal').modal('show');
+          }
         });
-    }); 
-});
-</script>
+      });
+ 
+    });
+  </script>
