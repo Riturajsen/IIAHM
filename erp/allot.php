@@ -40,7 +40,7 @@ if (mysqli_num_rows($fetchAuth) > 0){
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- header start -->
 <?php include ('helper/header.php'); ?>
 
@@ -73,7 +73,16 @@ if (mysqli_num_rows($fetchAuth) > 0){
 <?php } } else{ echo " <option value=''>No Caller Added</option>";} ?>
     </select></form>
     <!-- Excel file upload form -->
- 
+    <div class="row p-3">
+    <!-- Import link -->
+    
+    <div class="col-6 col-md-3"><input type="text" class="form-control" id="live_search" autocomplete="off" placeholder="Search for any Location or College"></div>
+    <!-- Excel file upload form -->
+ <div id="myTable"></div>
+    <!-- Data list table --> 
+     
+
+</div>
     <!-- Data list table --> 
      <div class="inline m-3">
 <button class="btn btn-primary">Select first 25</button>
@@ -127,6 +136,37 @@ if (mysqli_num_rows($fetchAuth) > 0){
        getId.addEventListener("click",(event) => {
         document.getElementById('TeleId').value = getId.value; });
      </script>
+         <script type="text/javascript">
+$("#course").change(function(){
+    var course = $(this).val();
+    $.post('helper/getLocation.php', {course: course}, function(response){
+        // your drop down box is in response
+        $("#myTable").html(response);
+    });
+});
+
+        $(document).ready(function(){
+            $("#live_search").keyup(function(){
+                var input = $(this).val();
+                // alert(input);
+                if(input != ""){
+                    $.ajax({
+                        url:"helper/getLocation.php",
+                        method: "POST",
+                        data:{input:input},
+                        success:function(data){
+                            $("#searchresult").html(data);
+                            $("#searchresult").css("display","block");
+
+
+                        }
+                    });
+                }else{
+                    $("#searchresult").css("display","none");
+                }
+            });
+        });
+    </script>
    
             </body>
 </html>
