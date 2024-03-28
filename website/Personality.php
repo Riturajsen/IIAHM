@@ -1,3 +1,10 @@
+<?php
+include "db/connect.php";
+$queryWebSet = "SELECT * From websitesetting where id=1";
+$retWeb = mysqli_query($conn , $queryWebSet);
+$resWeb = mysqli_fetch_assoc($retWeb);
+//$resWeb['']
+?>
 <!DOCTYPE html>
 <html lang="en">
 

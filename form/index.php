@@ -1,9 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <?php
+session_start();
 error_reporting(false);
 include ('../core/main.php');
 $utm_source = $_GET['utm_source'];
 $utm_target = $_GET['utm_target'];
-
+$captcha = rand(10000,99999);
+$_SESSION['captcha'] = $captcha;
 ?>
 
 
@@ -57,7 +64,7 @@ $utm_target = $_GET['utm_target'];
             <input type="text" name="Pnumber" pattern="[6-9]{1}[0-9]{9}" id="contact" class="form-control" placeholder="Contact Number" required >
             <input type="text" name="education"  id="education" class="form-control" placeholder="Qualification" required>
             <input type="text" name="city"  id="city" class="form-control" placeholder="Enter Your Location "required >
-      
+           
            
            <?php
            
@@ -71,6 +78,11 @@ $utm_target = $_GET['utm_target'];
             <option value="personality" <?php if($utm_source == "personality"){ echo "selected";} ?> >Personality Development</option>
             </select>
             <?php }?>
+            <hr>
+            <label for="captcha">Captcha : </label>
+            <span class="bg-dark text-warning m-3 p-1"> <?=$captcha?></span>
+            <input type="text" name="captcha" pattern="[0-9]{5}" id="captcha" class="form-control" placeholder=" "required  maxlength="5">
+      
             <input type="submit" value="SUBMIT" id="submit" class="btn mt-3 form-control btn-success"  name="Submit">
         </form>
       <div class="text-center">
@@ -84,7 +96,6 @@ $utm_target = $_GET['utm_target'];
                 e.preventDefault();
                 // alert("Image Uploaded")
                     var form_data = new FormData(this);
-
                 $.ajax({
                     url:"ajax.php",
                     method: "POST",
@@ -100,6 +111,7 @@ $utm_target = $_GET['utm_target'];
                     }
             
                 });
+
             });
         });
     </script>

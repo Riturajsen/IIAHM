@@ -22,12 +22,12 @@ $globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where allot
 <tbody>
 
     <?php $i= 1;  while ($row=mysqli_fetch_array($globalTeledata)){ ?>
- <tr <?php if ($row['called'] == 1 ){ echo "class='bg-dark text-white' id='white'";} ?>>
+ <tr <?php if ($row['called'] == 1 ){ echo "class='bg-success text-white' id='white'";} ?>>
         <th><?=$i?></th>
         <td><?=$row['fname']?></td>
         <td><?=$row['category']?></td>
-        <td><td><button data-id="<?=$row['id']?>" class='btn btn-warning btn-popup'><i class="fa-solid fa-eye"></i></button></td></td>
-        <td><a href="telecaller/callAction.php?id=<?=$row['id'];?>&name=<?=$_SESSION['username'];?>"><i class="fa-solid fa-phone"></i></a></td>
+        <td><button data-id="<?=$row['id']?>" id="" class='btn btn-warning btn-popup'><i class="fa-solid fa-eye"></i></button></td>
+        <td class=""><a href="telecaller/callAction.php?id=<?=$row['id'];?>&name=<?=$_SESSION['username'];?>"><i class="fa-solid fa-phone text-dark"></i></a></td>
 
  </tr>
 

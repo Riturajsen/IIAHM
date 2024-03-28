@@ -1,8 +1,14 @@
 <?php
 error_reporting(false);
 include "../core/main.php";
+session_start();
+$captcha = $_SESSION['captcha'];
 
 
+
+$captchaT = $_POST['captcha'];
+
+if($captcha == $captchaT){
 $fname = $_POST['fname'];
 $utm_source = $_POST['utm_source']; 
 $utm_target = $_POST['utm_target'];
@@ -24,7 +30,8 @@ $query = "INSERT INTO `form`(`fname`, `utm_source`, `utm_target`, `email`, `Pnum
 $res  = mysqli_query($connect,$query);
 
 if($res){
-
+  
+$_SESSION['captcha']= "";
     $output = '<div class="alert alert-success" role="alert">
     Form Submitted
   </div>
@@ -35,6 +42,12 @@ if($res){
   </div>
   ';
 }
+} }
+else{
+  $output = '<div class="alert alert-danger" role="alert">
+ Expired or Mis-matched captcha!! Please Refresh The Page 
+</div>
+';
 }
 $resp = array(
     'output' => $output

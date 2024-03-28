@@ -1,7 +1,10 @@
 <?php
 $fname = $_POST['fname'];
 $Pnumber = $_POST['Pnumber'];
+session_start();
+$captcha = $_SESSION['captcha'];
 
+$captchaT = $_POST['captcha'];
 
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -20,7 +23,7 @@ $mailMsg = $_POST['msg'];
  
 
 
-
+if($captcha == $captchaT){
 $mail = new PHPMailer();
 $mail ->isSMTP();
 $mail ->SMTPDebug = $is_debug;
@@ -80,7 +83,7 @@ img{
   .message-body{
       width: 90%;
       padding: 10px;
-      margin-left: 25px;
+      margin-left: auto;
       text-align: center;
   }.msg-field{
     text-transform: capitalize;
@@ -119,12 +122,14 @@ error_reporting($err_rp);
 if(!$mail ->Send())
 {
     $msg = "Opss!!! Something Went Wrong";
+    $_SESSION['captcha'] = " ";
     header("Location: contact.php?rmsg=$rmsg");
     exit();
 }
 else{
    
     $rmsg = "Mail Sent";
+    $_SESSION['captcha'] = " ";
     header("Location: contact.php?rmsg=$rmsg");
     exit();
 }
@@ -135,5 +140,10 @@ else{
         font-size: 32px;
     }
 </style>
+<?php } else { 
+  $rmsg = "The Captcha That you entered is wrong";
+  $_SESSION['captcha'] = " ";
+  header("Location: contact.php?rmsg=$rmsg");
+  exit();
+}?>
 
-?>

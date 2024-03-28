@@ -1,3 +1,14 @@
+<?php
+include ('../core/main.php');
+session_start();
+include "db/connect.php";
+$queryWebSet = "SELECT * From websitesetting where id=1";
+$retWeb = mysqli_query($conn , $queryWebSet);
+$resWeb = mysqli_fetch_assoc($retWeb);
+//$resWeb['']
+$captcha = rand(10000,99999);
+$_SESSION['captcha'] = $captcha;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,8 +92,14 @@
                                     <div class="form-group">
                                         <textarea placeholder="Message" id="message" name="msg" cols="30" rows="2"></textarea>
                                     </div>
+                                    
                                     <div class="form-group">
-                                        <input type="submit" class="cmn-btn.active" value="submit now">
+                                    <!-- <label for="captcha text-white">Captcha : </label> -->
+                                     <h3 class="bg-dark text-warning m-3 p-1"> <?=$captcha?></h3>
+                                     <input type="text" name="captcha" pattern="[0-9]{5}" id="captcha" class="form-control" placeholder=" Enter the Captcha" required  maxlength="5">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" class="cmn-btn active" value="submit now">
 
                                     </div>
                                 </form>

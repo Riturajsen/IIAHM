@@ -1,13 +1,14 @@
 <?php
+session_start();
 include "../../core/main.php";
 if(isset($_POST['stdId'])){
- $id = $_POST['stdId'];
+ $id = $_SERVER['stdId'];
  
- $sql = "SELECT * from studentdetails where id=".$id;
+ $sql = "SELECT * from studentdetails where id=`$id`";
  $result = mysqli_query($con,$sql);
  
  $response = "<table border='0' width='100%'>";
- while( $row = mysqli_fetch_array($result) ){
+ while( $row = mysqli_fetch_assoc($result) ){
  $id = $row['id'];
  $name = $row['fname'];
  $email = $row['filesource'];
