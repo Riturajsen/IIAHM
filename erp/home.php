@@ -130,7 +130,7 @@ if (mysqli_num_rows($fetchAuth) > 0){
                                 <div class="card bg-primary text-white mb-4">
                                     <div class="card-body">Today's Assign Contacts</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="text-white stretched-link" href="#"><?=$numTeleData?></a>
+                                        <a class="text-white stretched-link" href="telecallerPanel.php?page=callStart"><?=$numTeleData?></a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -140,6 +140,9 @@ if (mysqli_num_rows($fetchAuth) > 0){
                             <?php
                             $queryFollowUp = mysqli_query($con , "SELECT * FROM studentdetails where allotedTo='$userId' AND followup='$today_date'");
                             $fetch_num_followUp = mysqli_num_rows($queryFollowUp);
+
+                            $queryComin = mysqli_query($con , "SELECT * FROM studentdetails where allotedTo='$userId' AND comingOn='$today_date'");
+                            $fetch_num_coming = mysqli_num_rows($queryComin);
                             ?>
                              <div class="col-xl-3 col-md-6">
                                 <div class="card bg-warning text-danger mb-4">
@@ -150,9 +153,23 @@ if (mysqli_num_rows($fetchAuth) > 0){
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- todays comin or visiting -->
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-success text-white mb-4">
+                                    <div class="card-body">Today's Visiting</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="text-white stretched-link" href="telecaller/coming.php?userId=<?=$userId?>"><?=$fetch_num_coming?></a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
 </div>
                     <?php
-                        }?>
+                        }
+                        
+                        ?>
+                        
                     </div>
                 </main>
              <!-- footer start-->

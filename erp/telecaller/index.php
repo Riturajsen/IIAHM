@@ -32,14 +32,14 @@ $globalTeledatalimitUnTouched = mysqli_query($conn , "SELECT * from studentdetai
                                                 
                                                 ?>   
                                                 <ul>
-                                                    <li><?=$row['fname'];?></li>
+                                                    <li><?php if( strlen($row['fname']) ==0 ){ echo "No Name"; }else{ echo $row['fname']; }?></li>
                                                     
                                                 </ul>
                                                 
                                                 <?php } ?>
                                     </div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="text-white stretched-link" href="#"><?=mysqli_num_rows($globalTeledata)?></a>
+                                        <a class="text-white stretched-link" href="?page=callStart"><?=mysqli_num_rows($globalTeledata)?></a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>

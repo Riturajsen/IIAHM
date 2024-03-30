@@ -73,20 +73,22 @@ if (mysqli_num_rows($fetchAuth) > 0){
 <?php } } else{ echo " <option value=''>No Caller Added</option>";} ?>
     </select></form>
     <!-- Excel file upload form -->
-    <div class="row p-3">
+    <div class="row p-1">
     <!-- Import link -->
     
-    <div class="col-6 col-md-3"><input type="text" class="form-control" id="live_search" autocomplete="off" placeholder="Search for any Location or College"></div>
+    <!-- <div class="col-6 col-md-3"><input type="text" class="form-control" id="live_search" autocomplete="off" placeholder="Search for any Location or College"></div> -->
     <!-- Excel file upload form -->
- <div id="myTable"></div>
+ <!-- <div id="myTable"></div> -->
     <!-- Data list table --> 
      
 
 </div>
     <!-- Data list table --> 
      <div class="inline m-3">
-<button class="btn btn-primary">Select first 25</button>
-<button class="btn btn-primary">Select first 50</button></div>
+    <a href="javascript:void(0)" class="btn btn-warning"  id="btn-sel">Select first 50</a>
+   
+
+</div>
 </div>
 <form action="helper/fetchDataTable.php" method="post">
 <input type="hidden" name="TeleId" id="TeleId">
@@ -166,6 +168,18 @@ $("#course").change(function(){
                 }
             });
         });
+    </script>
+    <script>
+$(document).ready(function() {
+   var $cbs = $('input:checkbox[name="allotedid[]"]'),
+       $links = $("#btn-sel"); // you probably don't want _all_ links,
+                        // so add a class or something.
+   $links.click(function() {
+      var start = $links.index(this) * 50,
+          end = start + 50;
+      $cbs.slice(start,end).prop("checked",true);
+   });
+});
     </script>
    
             </body>

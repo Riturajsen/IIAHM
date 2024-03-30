@@ -14,6 +14,7 @@ if(isset($_POST['stdId'])){
  $email = $row['filesource'];
 $contact = $row['institute'];
  $country = $row['status'];
+ $lastCall = $row['modified'];
  
  $response .= "<tr>";
  $response .= "<td>Name : </td><td>".$name."</td>";
@@ -30,6 +31,19 @@ $contact = $row['institute'];
  $response .= "<tr>";
  $response .= "<td>Status : </td><td>".$country."</td>";
  $response .= "</tr>";
+
+ $response .= "<tr>";
+ $response .= "<td>Last Called at : </td><td>".$lastCall."</td>";
+ $response .= "</tr>";
+
+ $response .= "<tr>";
+ $response .= "<td> Next Follow Up : </td><td>".$row['followup']."</td>";
+ $response .= "</tr>";
+
+ $response .= "<tr>";
+ $response .= "<a href='telecaller/callAction.php?id=".$id."&name=".$_SESSION['username']."' class='btn btn-success'>Call ".$name."</a>";
+ $response .= "</tr>";
+
  }
  $response .= "</table>";
  

@@ -10,7 +10,8 @@ if(isset($_POST['update'])){
 $status = $_POST['status']; 
 $followUp = $_POST['followUp']; 
 $fname = $_POST['fname'];
-$query = mysqli_query($conn ,"UPDATE studentdetails SET fname = '".$fname."' , status = '".$status."' , followup = '".$followUp."' where id='$id'");
+$comingOn = $_POST['comingOn'];
+$query = mysqli_query($conn ,"UPDATE studentdetails SET fname = '".$fname."' , status = '".$status."' , followup = '".$followUp."', comingOn = '".$comingOn."' where id='$id'");
 if($query){
   echo "<script>alert('Data Updated')</script>";
 }
@@ -59,6 +60,11 @@ if($query){
                 <th> Follow Up </th>
                
                 <td><input type="date" name="followUp" id="" class="form-control" value="<?=$ret['followup']?>" ></td>
+                </tr>
+                <tr >
+                <th class=" text-success"> Coming On </th>
+               
+                <td><input type="date" name="comingOn" id="" class="form-control bg-success text-white " value="<?=$ret['comingOn']?>" ></td>
                 </tr>
                 <tr>
                  <td colspan="2"> <input type="submit" value="Update Status" class="form-control btn btn-primary" name="update"></td>

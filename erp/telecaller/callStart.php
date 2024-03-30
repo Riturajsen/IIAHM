@@ -24,7 +24,7 @@ $globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where allot
     <?php $i= 1;  while ($row=mysqli_fetch_array($globalTeledata)){ ?>
  <tr <?php if ($row['called'] == 1 ){ echo "class='bg-success text-white' id='white'";} ?>>
         <th><?=$i?></th>
-        <td><?=$row['fname']?></td>
+        <td><?php if( strlen($row['fname']) ==0 ){ echo "No Name"; }else{ echo $row['fname']; }?></td>
         <td><?=$row['category']?></td>
         <td><button data-id="<?=$row['id']?>" id="" class='btn btn-warning btn-popup'><i class="fa-solid fa-eye"></i></button></td>
         <td class=""><a href="telecaller/callAction.php?id=<?=$row['id'];?>&name=<?=$_SESSION['username'];?>"><i class="fa-solid fa-phone text-dark"></i></a></td>
@@ -69,6 +69,7 @@ $globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where allot
         ...
       </div>
       <div class="modal-footer">
+       
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
       </div>
