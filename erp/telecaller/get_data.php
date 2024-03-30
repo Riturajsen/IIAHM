@@ -2,9 +2,9 @@
 session_start();
 include "../../core/main.php";
 if(isset($_POST['stdId'])){
- $id = $_SERVER['stdId'];
+ $id = $_POST['stdId'];
  
- $sql = "SELECT * from studentdetails where id=`$id`";
+ $sql = "SELECT * from studentdetails where id=".$id;
  $result = mysqli_query($con,$sql);
  
  $response = "<table border='0' width='100%'>";
@@ -12,7 +12,7 @@ if(isset($_POST['stdId'])){
  $id = $row['id'];
  $name = $row['fname'];
  $email = $row['filesource'];
-$contact = $row['contactno'];
+$contact = $row['institute'];
  $country = $row['status'];
  
  $response .= "<tr>";
@@ -20,11 +20,11 @@ $contact = $row['contactno'];
  $response .= "</tr>";
  
  $response .= "<tr>";
- $response .= "<td>Source : </td><td>".$email."</td>";
+ $response .= "<td>Location : </td><td>".$email."</td>";
  $response .= "</tr>";
  
  $response .= "<tr>";
- $response .= "<td>Contact : </td><td>".$contact."</td>";
+ $response .= "<td>Institute : </td><td>".$contact."</td>";
  $response .= "</tr>";
  
  $response .= "<tr>";

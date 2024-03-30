@@ -36,11 +36,12 @@ $globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where allot
 </table>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="stuModal" role="dialog">
-      <div class="modal-dialog">
+ <!-- Modal -->
+    <!-- <div class="modal fade" id="stuModal" role="dialog">
+      <div class="modal-dialog"> -->
  
         <!-- Modal content-->
-        <div class="modal-content">
+        <!-- <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title">Student Details</h4>
             <button type="button" class="close" data-dismiss="modal">×</button>
@@ -53,14 +54,36 @@ $globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where allot
           </div>
         </div>
       </div>
+    </div> -->
+
+
+    <!-- new Modal -->
+    <div class="modal fade" id="stuModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Details of <?=$name?></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+      </div>
     </div>
+  </div>
+</div>
+
+    <!-- new modal End -->
 <script type="text/javascript">
     $(document).ready(function () {
  
-      $('.btn-popup').click(function () {
-        var stdId = $(this).data('id');
+      $('.btn-popup').on('click', function() {
+        var stdId = $(this).data("id");
         $.ajax({
-          url: 'get_data.php',
+          url: 'telecaller/get_data.php',
           type: 'post',
           data: { stdId: stdId },
           success: function (response) {

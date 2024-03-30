@@ -45,9 +45,12 @@ if($query){
                 </tr>
                 <tr>
                 <th> Source </th>
-                <td><?=$ret['filesource'];?></td>
+                <td><span class="form-control"><?=$ret['filesource'];?></span></td>
                 </tr>
-                
+                <tr>
+                <th> Last called </th>
+                <td><span class="form-control"><?php if($ret['modified'] == NULL){echo "Not Called Yet";}else{echo $ret['modified'];} ?></span></td>
+                </tr>
                 <tr>
                 <th> Status </th>
                 <td><input type="text" name="status" class="form-control" value="<?=$ret['status']?>"></td>

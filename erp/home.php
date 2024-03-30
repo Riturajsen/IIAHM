@@ -119,6 +119,8 @@ if (mysqli_num_rows($fetchAuth) > 0){
                         </div>
                         <?php } elseif($returnAuth['rights'] == 4){
                           ?>
+                          <!-- telecaller dashboard -->
+                          
                           <h1 class="mt-4">TeleCaller Dashboard</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">TeleCaller Dashboard</li>
@@ -133,7 +135,22 @@ if (mysqli_num_rows($fetchAuth) > 0){
                                     </div>
                                 </div>
                             </div>
+                            
+                            <!-- todays follow up -->
+                            <?php
+                            $queryFollowUp = mysqli_query($con , "SELECT * FROM studentdetails where allotedTo='$userId' AND followup='$today_date'");
+                            $fetch_num_followUp = mysqli_num_rows($queryFollowUp);
+                            ?>
+                             <div class="col-xl-3 col-md-6">
+                                <div class="card bg-warning text-danger mb-4">
+                                    <div class="card-body">Today's Follow Up calls</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="text-danger stretched-link" href="telecaller/followup.php?userId=<?=$userId?>"><?=$fetch_num_followUp?></a>
+                                        <div class="small text-danger"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
                             </div>
+</div>
                     <?php
                         }?>
                     </div>

@@ -36,7 +36,12 @@ if(isset($_POST['importSubmit'])){
             foreach($worksheet_arr as $row){ 
                 $fullname = $row[0]; 
                 $phone = $row[1]; 
-                $source = $row[2]; 
+                $source = $row[2];
+                $category = $row[3];
+                $institute = $row[4]; 
+                $parentscontactno = $row[5];
+                $classname = $row[6];
+                $locationn ="Bhopal";
  
                 // Check whether member already exists in the database with the same email 
                 $prevQuery = "SELECT id FROM studentdetails WHERE contactno = '".$phone."'"; 
@@ -44,11 +49,11 @@ if(isset($_POST['importSubmit'])){
                  
                 if($prevResult->num_rows > 0){ 
                     // Update member data in the database 
-                    $con->query("UPDATE studentdetails SET fname = '".$fullname."',contactno='".$phone."', filesource = '".$source."', modified = NOW() WHERE contactno = '".$phone."'"); 
+                    $con->query("UPDATE studentdetails SET fname = '".$fullname."',contactno='".$phone."', filesource = '".$source."', category = '".$category."', institute = '".$institute."', parentscontactno = '".$parentscontactno."', classname = '".$classname."', locationn = '".$locationn."', modified = NOW() WHERE contactno = '".$phone."'"); 
                 }else{ 
                     // Insert member data in the database 
                     // $import = mysqli_query($con , "")
-                    $con->query("INSERT INTO studentdetails (fname, contactno, filesource) VALUES ( '$fullname','$phone','$source')"); 
+                    $con->query("INSERT INTO studentdetails (fname, contactno, filesource , category, institute, parentscontactno, classname , locationn) VALUES ( '$fullname','$phone','$source','$category','$institute','$parentscontactno','$classname','$locationn')"); 
                 } 
             } 
              
