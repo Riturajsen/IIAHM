@@ -79,7 +79,7 @@ include ("../../core/main.php");
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                                 Telecaller Report
                             </a>
-                            <?php } ?>
+                            <?php } elseif($returnAuth['rights'] == 4  ){ ?>
                             <div class="sb-sidenav-menu-heading">Telecaller</div>
                             <a class="nav-link" href="telecallerPanel.php?page=teleTotalData">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
@@ -89,7 +89,19 @@ include ("../../core/main.php");
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                                 Start calling ?
                             </a>
+                            <?php } if($returnAuth['rights'] == 5){?>
+                                <a class="nav-link" href="frontdeskPanel.php?page=teleTotalData">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
+                             Today's Walk-in
+                            </a>
+                            <a class="nav-link" href="frontdeskPanel.php?page=callStart">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
+                                Create A new Walk-In
+                            </a>
 
+
+
+                                <?php } ?>
                             <!-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Pages

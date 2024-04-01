@@ -13,11 +13,12 @@ while ($row_get=mysqli_fetch_array($ret_get)){
 $fname = $row_get['fname'];
 $Pnumber = $row_get['contactno'];
 $allotedTo = $row_get['allotedTo'];
+$comingOn = $row_get['comingOn'];
 
 $query_insert = mysqli_query($con , "SELECT * from frontdesk  where Pnumber='$Pnumber'");
 if(mysqli_num_rows($query_insert) == 0 )
 {
- mysqli_query($con ,"INSERT  INTO frontdesk (fname, Pnumber , TeleCaller) VALUES ( '$fname' , '$Pnumber' , '$allotedTo')"); 
+ mysqli_query($con ,"INSERT  INTO frontdesk (fname, Pnumber , TeleCaller, comingOn ) VALUES ( '$fname' , '$Pnumber' , '$allotedTo', '$comingOn')"); 
 
 }
 else {

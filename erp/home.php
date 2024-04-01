@@ -164,12 +164,32 @@ if (mysqli_num_rows($fetchAuth) > 0){
                                     </div>
                                 </div>
                             </div>
-</div>
+
                     <?php
-                        }
-                        
+                        } elseif($returnAuth['rights'] == 5){
+                     ?>
+                           <h1 class="mt-4">FrontOffice Dashboard</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">FrontOffice Dashboard</li>
+                        </ol>
+                        <div class="col-xl-3 col-md-6">
+                                <div class="card bg-success text-white mb-4">
+                                    <div class="card-body">Today's Visiting</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="text-white stretched-link" href="telecaller/coming.php?userId=<?=$userId?>"><?=$fetch_num_coming?></a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        <?php
+                        } 
                         ?>
                         
+
+
+                        </div>
                     </div>
                 </main>
              <!-- footer start-->

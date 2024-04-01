@@ -54,6 +54,8 @@ if (!isset($_SESSION["username"])) {
                                                 <option value="1">Editor</option>
                                                 <option value="2">Admin</option>
                                                 <option value="4">Telecaller</option>
+                                                <option value="5">Front Office</option>
+                                                <option value="6">Counsellor</option>
                                             </select>
                                                 
                                         </div>

@@ -19,6 +19,10 @@ if (!isset($_SESSION["username"])) {
   $get_user = mysqli_fetch_array($User_response);
   $rights = $get_user['rights'];
 
+  if($rights == 4 || $rights == 5 || $rights == 6){
+    header('Location: ../erp/index.php?secure_id='.$secure_id);
+  }
+
 //   getting users
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-$secure_id = $_POST['secure_id'];
+$secure_id = $_REQUEST['secure_id'];
 
 include "../core/main.php";
 
