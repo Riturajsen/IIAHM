@@ -45,18 +45,14 @@ if (mysqli_num_rows($fetchAuth) > 0){
 
 <!-- header End -->
             <div id="layoutSidenav_content">
-            <?php if(!empty($statusMsg)){ ?>
-<div class="col-xs-12 p-3">
-    <div class="alert <?php echo $statusType; ?>"><?php echo $statusMsg; ?></div>
-</div>
-<?php } ?>
+        
             <!-- Display status message -->
 
 <div class="">
 <div class="row p-3">
     <!-- Import link -->
 
-<?=  $page ?>
+            <?php if ($page === "teleTotalData"){ include "frontdesk/index.php";}?>
 
   </div>
         
@@ -68,13 +64,7 @@ if (mysqli_num_rows($fetchAuth) > 0){
              <!-- footer start-->
              <?php include ('helper/footer.php'); ?>
             <!-- footer End -->
-     <script type="text/javascript">
-       var getId = document.getElementById('teleCaller');
-    //    getId.addEventListener
-
-       getId.addEventListener("click",(event) => {
-        document.getElementById('TeleId').value = getId.value; });
-     </script>
+     
    
             </body>
 </html>

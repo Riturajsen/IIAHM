@@ -22,7 +22,7 @@ if(mysqli_num_rows($query_insert) == 0 )
 
 }
 else {
-    return "DONE";
+    http_response_code(200);
 }
 }
 
@@ -35,7 +35,3 @@ else {
     <title>CronJob Page</title>
     <link rel="shortcut icon" href="../form/images/logo.jpg" type="image/x-icon">
 </head>
-<body>
-    
-</body>
-</html>
