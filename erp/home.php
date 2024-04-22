@@ -167,31 +167,37 @@ if (mysqli_num_rows($fetchAuth) > 0){
 
                     <?php
                         } elseif($returnAuth['rights'] == 5){
+                            $frontComing = mysqli_query($con , "SELECT * FROM frontdesk where comingOn='$today_date'");
+                            $frontComingret = mysqli_num_rows($frontComing);
                      ?>
                            <h1 class="mt-4">FrontOffice Dashboard</h1>
                         <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active text-danger"><?="Visit today [".date('d / m /Y')."]"?></li>
+                        <li class="breadcrumb-item active text-danger"><?="Visit today [".date('d / m /Y')."] > "?></li>
+                        <li>  Number Of visits : <?= $frontComingret ?></li>
                         </ol>
-                        <div class="col-xl-5 d-inline-flex ">
+                        <div class="row">
+                      
                         <?php 
-                        $frontComing = mysqli_query($con , "SELECT * FROM frontdesk where comingOn='$today_date'");
-                           $frontComingret = mysqli_num_rows($frontComing);
+                       
                            if($frontComingret > 0  ) {
                            $i=1;
                           while ($rowC=mysqli_fetch_array($frontComing)){ 
                         ?>
-                       
-                                <div class="card bg-warning text-primary p-3 m-1">
-                                    <div class="card-body"><?=$rowC['fname']?></div>
+                         <div class="col-md-3 ">
+                                <div class="card  bg-warning text-primary p-3 m-1">
+                                    <div class="card-body"><?php if(strlen($rowC['fname']) == 0) { echo "No Name" ;} else { echo $rowC['fname'];} ?></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="text-primary stretched-link" href="frontdesk/addDetail.php?id=<?=$rowC['id']?>">Add More Details</a>
                                     </div>
                                 </div>
-                            
+                                </div> 
 
 
                         <?php
-                          } } else { echo "<h3>No One Coming Now</h3>" ;} ?> </div> <?php
+                          } } else { echo "<h3>No One Coming Now</h3>" ;} ?> 
+                       
+                        </div>
+                        <?php
                         } 
                         ?>
                         

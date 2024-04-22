@@ -22,7 +22,7 @@ if(mysqli_num_rows($query_insert) == 0 )
 
 }
 else {
-    http_response_code(200);
+    mysqli_query($con ,"UPDATE frontdesk SET  comingOn='$comingOn' where Pnumber='$Pnumber'"); 
 }
 }
 
