@@ -49,7 +49,8 @@
 <br>
     <a href="jobs/" class="btn-success btn">Jobs</a><br>
     <a href="form/" class="btn-success btn">form</a><br>
-    <a href="website/" class="btn-success btn">Website</a>
+    <a href="website/" class="btn-success btn">Website</a><br>
+    <a href="Admission/" class="btn-success btn">Admission</a>
     <hr>
     <div class="text-center">IIAHM © <?=date('Y')?>. All Rights Reserved </div>
 
