@@ -41,7 +41,7 @@ if(isset($_POST['importSubmit'])){
                 $institute = $row[4]; 
                 $parentscontactno = $row[5];
                 $classname = $row[6];
-                $locationn ="Bhopal";
+                $locationn = $row[7];
  
                 // Check whether member already exists in the database with the same email 
                 $prevQuery = "SELECT id FROM studentdetails WHERE contactno = '".$phone."'"; 
