@@ -18,7 +18,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">    <head>
-        <link href="style.css" type="text/css" rel="stylesheet"/>
+        <!-- <link href="style.css" type="text/css" rel="stylesheet"/> -->
         <title>IIAHM</title>
     </head>
     <body>
@@ -30,7 +30,7 @@
 
             <!-- <div id="col"> -->
                 <div class="search-box col">
-                    Select filesource<br>
+                    Select filesource<br>      <input type="text" name="" id="">
                     <select class="form-select form-control" id="filesource" name="filesource[]" multiple="multiple">
                             <?php
                             if (!empty($filters['filesource'])) {
@@ -44,7 +44,7 @@
                     <br>
                 </div>
                 <div class="search-box col">
-                    Select Location<br>
+                    Select Location<br>     <input type="text" name="" id="">
                     <select class="form-select form-control" id="locationn" name="locationn[]" multiple="multiple">
                             <?php
                             if (!empty($filters['locationn'])) {
@@ -59,6 +59,7 @@
                 </div>
                 <div class="search-box col">
                     Select Category<br>
+                    <input type="text" name="" id="">
                     <select class="form-select form-control" id="category" name="category[]" multiple="multiple">
                             <?php
                             if (!empty($filters['category'])) {
@@ -72,8 +73,11 @@
                     <br>
                 </div>
                 <div class="search-box col">
-                    Select Institute<br>
+                Select Institute<br>
+                <input type="text" name="" id="">
                     <select class="form-select form-control" id="institute" name="institute[]" multiple="multiple">
+                     
+                  
                             <?php
                             if (!empty($filters['institute'])) {
                                 foreach ($filters['institute'] as $key => $value) {
@@ -86,7 +90,7 @@
                     <br>
                 </div>
                 <div class="search-box col">
-                    Select Class<br>
+                    Select Class<br>     <input type="text" name="" id="">
                     <select class="form-select form-control" id="classname" name="classname[]" multiple="multiple">
                             <?php
                             if (!empty($filters['classname'])) {
@@ -112,7 +116,7 @@
             $request_filters = array_intersect_key($_POST, array_flip(['filesource','institute','locationn','category','classname']));
             if(count($request_filters)) {
                 ?>
-                <table cellpadding="10" cellspacing="1" class="table table-striped table-hover">
+                <table  class="table table-striped table-hover">
                 <thead>
                 <tr>
                     <th>
@@ -125,7 +129,7 @@
                         <strong>filesource</strong>
                     </th>
                     <th>
-                        <strong>Key</strong>
+                        <strong>Location</strong>
                     </th>
                     <th>
                         <strong>category</strong>
@@ -193,7 +197,7 @@
                         ?>
                         <tbody>
                             <tr>
-                                <td colspan="10">No results!</td>
+                                <td colspan="7" class="text-center"><h3>No results!</h3></td>
                             </tr>
                         </tbody>
                         <?php
