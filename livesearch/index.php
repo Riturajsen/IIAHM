@@ -6,10 +6,10 @@
     $filters = [];
 
     $filters['filesource'] = array_column($db_handle->runQuery("SELECT DISTINCT filesource FROM studentdetails  ORDER BY filesource ASC"), 'filesource');
-    $filters['locationn'] = array_column($db_handle->runQuery("SELECT DISTINCT locationn FROM studentdetails  ORDER BY locationn ASC"), 'locationn');
-    $filters['category'] = array_column($db_handle->runQuery("SELECT DISTINCT category FROM studentdetails  ORDER BY category ASC"), 'category');
-    $filters['institute'] = array_column($db_handle->runQuery("SELECT DISTINCT institute FROM studentdetails  ORDER BY institute ASC"), 'institute');
-    $filters['classname'] = array_column($db_handle->runQuery("SELECT DISTINCT classname FROM studentdetails  ORDER BY classname ASC"), 'classname');
+    $filters['locationn']  = array_column($db_handle->runQuery("SELECT DISTINCT locationn FROM studentdetails  ORDER BY locationn ASC"), 'locationn');
+    $filters['category']   = array_column($db_handle->runQuery("SELECT DISTINCT category FROM studentdetails  ORDER BY category ASC"), 'category');
+    $filters['institute']  = array_column($db_handle->runQuery("SELECT DISTINCT institute FROM studentdetails  ORDER BY institute ASC"), 'institute');
+    $filters['classname']  = array_column($db_handle->runQuery("SELECT DISTINCT classname FROM studentdetails  ORDER BY classname ASC"), 'classname');
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +17,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">    <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> <head>
         <!-- <link href="style.css" type="text/css" rel="stylesheet"/> -->
         <title>IIAHM</title>
     </head>
@@ -29,8 +29,8 @@
 		<div class="row">
 
             <!-- <div id="col"> -->
-                <div class="search-box col">
-                    Select filesource<br>      <input type="text" name="" id="">
+                <div class="search-box col mt-5">
+                    
                     <select class="form-select form-control" id="filesource" name="filesource[]" multiple="multiple">
                             <?php
                             if (!empty($filters['filesource'])) {
@@ -44,7 +44,7 @@
                     <br>
                 </div>
                 <div class="search-box col">
-                    Select Location<br>     <input type="text" name="" id="">
+                    Select Location<br>     <input type="text" name="" id="SLocation">
                     <select class="form-select form-control" id="locationn" name="locationn[]" multiple="multiple">
                             <?php
                             if (!empty($filters['locationn'])) {
@@ -109,6 +109,7 @@
             <!-- </div> -->
 		</div>
         </form>
+
 
         <?php
         if (!empty($_POST) && count($_POST)) {

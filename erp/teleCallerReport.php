@@ -32,7 +32,7 @@ $fetchAuth = mysqli_query($conn, "SELECT * FROM users where `secure_id`='$secure
 if (mysqli_num_rows($fetchAuth) > 0){
     $returnAuth = mysqli_fetch_assoc($fetchAuth);
 
-  if ($returnAuth['rights'] == 1 || $returnAuth['rights']  == 2 || $returnAuth['rights']  == 3){
+  if ( $returnAuth['rights']  == 2 || $returnAuth['rights']  == 3){
     $fetch_tele = mysqli_query($conn, "SELECT * FROM users where rights=4");
     $tele_num = mysqli_num_rows($fetch_tele);
    
@@ -104,7 +104,7 @@ $("#course").change(function(){
 
 
 <?php 
-  } echo  " you don't have enough rights for the page to view <a href='home.php'>Go Home</a> ";
+  } else{echo  " you don't have enough rights for the page to view <a href='home.php'>Go Home</a> ";}
 }else {
     header('location: ../');
 }

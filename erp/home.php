@@ -37,7 +37,8 @@ if (mysqli_num_rows($fetchAuth) > 0){
     $userId = $returnAuth['id'];
     $telecallUpdater = mysqli_query($con , "SELECT * FROM studentdetails where allotedTo='$userId'");
     $numTeleData = mysqli_num_rows($telecallUpdater);
-   
+   $numtodayadded = mysqli_query($con , "SELECT * FROM studentdetails where allotedTo='$userId' and addedOn='$today_date'");
+   $resaddeddate = mysqli_num_rows($numtodayadded)
 
 ?>
 <!DOCTYPE html>
@@ -130,7 +131,7 @@ if (mysqli_num_rows($fetchAuth) > 0){
                                 <div class="card bg-primary text-white mb-4">
                                     <div class="card-body">Today's Assign Contacts</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="text-white stretched-link" href="telecallerPanel.php?page=callStart"><?=$numTeleData?></a>
+                                        <a class="text-white stretched-link" href="telecallerPanel.php?page=callStart"><?=$resaddeddate ?></a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
