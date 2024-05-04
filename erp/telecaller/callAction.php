@@ -40,6 +40,10 @@ if($query){
           </div>
           <div class="card-body">
             <table class="table table-hover">
+            <tr>
+                <th> Call  </th>
+                <td><form action="calling.php" method="post"><input type="hidden" name="number" value="<?=$ret['contactno'];?>"><input type="hidden" name="ChildId" value="<?=$ret['id']?>"><input type="submit" value="Call This Number" class="btn btn-warning float-start"></form></td>
+                </tr>
                 <tr><form action="" method="post">
                 <th> Name </th>
                 <td><input type="text" name="fname" class="form-control" value="<?=$ret['fname']?>"></td>
@@ -54,7 +58,27 @@ if($query){
                 </tr>
                 <tr>
                 <th> Status </th>
-                <td><input type="text" name="status" class="form-control" value="<?=$ret['status']?>"></td>
+                <td>
+                  <select name="status" id="" class="form-control">
+                    <option value="">Select An option</option>
+                    <option value="interested">Interested</option>
+                    <option value="negetive">Negative</option>
+                    <option value="pending">Pending</option>
+                    <option value="admission">Admission</option>
+                    <option value="visited">visited</option>
+                    <option value="pos_turned_neg">Pos Turned Negative</option>
+                    <option value="follow_up">Follow Up</option>
+                    <option value="closed">Closed</option>
+                  </select>
+                  <!-- <input type="text" name="status" class="form-control" value="<?=$ret['status']?>">  -->
+                </td>
+                </tr>
+                <tr>
+                  
+                    <th>Coments</th>
+                  <td>
+                    <input type="text" name="comment" class="form-control">
+                  </td>
                 </tr>
                 <tr>
                 <th> Follow Up </th>
@@ -65,6 +89,11 @@ if($query){
                 <th class=" text-success"> Coming On </th>
                
                 <td><input type="date" name="comingOn" id="" class="form-control bg-success text-white " value="<?=$ret['comingOn']?>" ></td>
+                </tr>
+                <tr >
+                <th class=" text-success">WhatsApp</th>
+               
+                <td><a class="btn btn-success text-white " href='https://api.whatsapp.com/send?phone=91<?=$ret['contactno']?>' target="_blank" >Send Message</a></td>
                 </tr>
                 <tr>
                  <td colspan="2"> <input type="submit" value="Update Status" class="form-control btn btn-primary" name="update"></td>

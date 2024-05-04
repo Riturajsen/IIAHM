@@ -73,3 +73,5 @@ else{
     echo "You Have No rights to be on this page";
 }
 }  ?>
+
+        

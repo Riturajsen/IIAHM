@@ -14,8 +14,8 @@ if (mysqli_num_rows($fetchAuth) > 0) {
 
    
 
-$globalTeledatalimit = mysqli_query($conn , "SELECT * from studentdetails where allotedTo='$allotedId' LIMIT 10");
-$globalTeledatalimitUnTouched = mysqli_query($conn , "SELECT * from studentdetails where allotedTo='$allotedId' AND called=0");
+$globalTeledatalimit          =  mysqli_query($conn , "SELECT * from studentdetails where allotedTo='$allotedId' LIMIT 10");
+$globalTeledatalimitUnTouched =  mysqli_query($conn , "SELECT * from studentdetails where allotedTo='$allotedId' AND called=0");
 
 ?>
 

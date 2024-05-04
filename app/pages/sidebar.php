@@ -1,7 +1,12 @@
 <!-- // Rights
 // 0 = User
 // 1 = Editor
-// 2 = Admin -->
+// 2 = Admin 
+   3 = Super Admin  
+   4 = telecaller
+   5 = FrontDesk
+   6 = Counselor
+-->
 
 <ul id="sidebarnav">
                         <!-- User Profile-->

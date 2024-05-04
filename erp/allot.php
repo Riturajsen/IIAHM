@@ -47,22 +47,22 @@ if (mysqli_num_rows($fetchAuth) > 0){
 <!-- header End -->
             <div id="layoutSidenav_content">
             <?php if(!empty($statusMsg)){ ?>
-<div class="col-xs-12 p-3">
+<div class="col-lg-12 p-3">
     <div class="alert <?php echo $statusType; ?>"><?php echo $statusMsg; ?></div>
 </div>
 <?php } ?>
             <!-- Display status message -->
 
-<div class="">
+<div class="col-md-12">
 <div class="row p-3">
     <!-- Import link -->
-    <form id="myForm" action="" method="post">
-    <select name="teleCaller" class="form-control bg-dark text-white" id="teleCaller">
+    <form id="myForm" class="" action="" method="post">
+    <select name="teleCaller" class="form-control bg-dark text-white " id="teleCaller" required="true">
      
     <?php
   $ret = mysqli_query($conn , "SELECT * FROM  users where rights=4");
   if(mysqli_num_rows($ret) > 0) {
-    ?>   <option value="">Select A Caller</option>
+    ?>   <option>Select A Caller</option>
     <?php
        $i =1;
     while ($row=mysqli_fetch_array($ret)){
@@ -83,17 +83,54 @@ if (mysqli_num_rows($fetchAuth) > 0){
      
 
 </div>
-    <!-- Data list table --> 
-     <div class="inline m-3">
-    <a href="javascript:void(0)" class="btn btn-warning"  id="btn-sel">Select first 50</a>
-   
+</div>
+<hr>
+<div class="p-3">Filters : 
+<select name="location" id="location" > 
+<option value="">Select a Location</option>
+<option value="">1</option>
+<option value="">2</option>
+<option value="">3</option>
+</select>
+<select name="category" id="category"> 
+<option value="">Select a Category</option>
+<option value="">1</option>
+<option value="">2</option>
+<option value="">3</option>
+</select>
+<select name="institute" id="institute"> 
+<option value="">Select a Institute</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select>
+<select name="source" id="source"> 
+<option value="">Select a Source</option>
+<option value="Udaan">Udaan</option>
+<option value="Seminar">Seminar</option>
+<option value="other">other</option>
+</select>
+<select name="course" id="course"> 
+<option value="">Select a course</option>
+<option value="Udaan">Post-Graduation</option>
+<option value="Udaan">Graduation</option>
+<option value="Seminar">12th</option>
+<option value="other">11th</option>
+</select>
+</div>
+
+<div class="m-3" id="output">
 
 </div>
-</div>
+<hr>
+
 <form action="helper/fetchDataTable.php" method="post">
 <input type="hidden" name="TeleId" id="TeleId">
+<hr>
+<a href="javascript:void(0)" class="btn btn-warning ml-3"  id="btn-sel">Select first 50</a>
+<hr>
 <table class="table table-hover">
-                                    <thead>
+        <thead>              
             <tr>
                 <th>#</th>
                 <th>Full Name</th>
@@ -116,8 +153,9 @@ if (mysqli_num_rows($fetchAuth) > 0){
         <?php } }else{ ?>
             <tr><td colspan="4">No member(s) found...</td></tr>
         <?php } ?>
+        
         </tbody>
-        <input type="submit" class="form-control bg-dark text-white"  value="Assign">
+        <input type="submit" class="form-control bg-warning "  value="Assign">
         <hr>
         </form>
     </table>
@@ -132,11 +170,20 @@ if (mysqli_num_rows($fetchAuth) > 0){
              <?php include ('helper/footer.php'); ?>
             <!-- footer End -->
      <script type="text/javascript">
-       var getId = document.getElementById('teleCaller');
-       
 
+       var getId = document.getElementById('teleCaller');
        getId.addEventListener("click",(event) => {
-        document.getElementById('TeleId').value = getId.value; });
+       document.getElementById('TeleId').value = getId.value; });
+
+        var getSrc = document.getElementById('source');
+        getSrc.addEventListener("click",(event) => {
+        document.getElementById('output').innerHTML = getSrc.value; });
+
+        var getIns = document.getElementById('institute');
+        getIns.addEventListener("click",(event) => {
+        document.getElementById('output').innerHTML = getIns.appendChild; });
+        
+        var getCou = document.getElementById('')
      </script>
          <script type="text/javascript">
 $("#course").change(function(){

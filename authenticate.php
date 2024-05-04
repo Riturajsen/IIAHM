@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   if (mysqli_num_rows($result) == 1) {
     
-    $secure_query = "UPDATE `users` SET `secure_id`='$secure_id' WHERE `username`='$username'";
+    $secure_query = "UPDATE `users` SET `secure_id`='$secure_id',`isActive`=1 WHERE `username`='$username'";
     $sec_res = mysqli_query($conn,$secure_query);
 
     $_SESSION["secure_id"] = $secure_id;

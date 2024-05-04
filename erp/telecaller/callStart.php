@@ -14,7 +14,7 @@ $globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where allot
 <thead>
     <tr>
     <th>S.No</th>
-    <th>Name</th>
+    <th>Number</th>
     <th>Category</th>
     <th>Status</th>
     <th>Call</th></tr>
@@ -22,7 +22,7 @@ $globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where allot
 <tbody>
 
     <?php $i= 1;  while ($row=mysqli_fetch_array($globalTeledata)){ ?>
- <tr <?php if ($row['called'] == 1 ){ echo "class='bg-success text-white' id='white'";} ?>>
+ <tr <?php if ($row['called'] == 1 ){ echo "class='bg-secondary text-white' id='white'";} ?>>
         <th><?=$i?></th>
         <td><?php if( strlen($row['fname']) ==0 ){ echo "No Name"; }else{ echo $row['fname']; }?></td>
         <td><?=$row['category']?></td>
