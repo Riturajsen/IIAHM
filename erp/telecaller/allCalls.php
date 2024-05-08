@@ -1,7 +1,6 @@
 <?php 
 
-$globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where called='0' AND allotedTo=$allotedId");
-
+$globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where allotedTo=$allotedId");
 
 ?>
 
@@ -15,16 +14,16 @@ $globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where calle
 
 <thead>
     <tr>
-    <th> S.No     </th>
-    <th> Number   </th>
-    <th> Category </th>
-    <th> Status   </th>
-    <th> Call     </th></tr>
+    <th>S.No</th>
+    <th>Number</th>
+    <th>Category</th>
+    <th>Status</th>
+    <th>Call</th></tr>
 </thead>
 <tbody>
 
-    <?php $i=1; while ($row=mysqli_fetch_array($globalTeledata)){ ?>
- <tr <?php if($row['called'] == 1 ){ echo "class='' id='white'";} ?>>
+    <?php $i= 1;  while ($row=mysqli_fetch_array($globalTeledata)){ ?>
+ <tr <?php if ($row['called'] == 1 ){ echo "class='' id='white'";} ?>>
         <th><?=$i?></th>
         <td><?php 
         if( strlen($row['fname']) ==0 ){ echo "No Name"; }else{ echo $row['fname']; }
@@ -59,6 +58,8 @@ $globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where calle
         </div>
       </div>
     </div> -->
+
+
     <!-- new Modal -->
     <div class="modal fade" id="stuModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">

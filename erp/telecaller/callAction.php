@@ -13,7 +13,10 @@ $fname = $_POST['fname'];
 $comingOn = $_POST['comingOn'];
 $query = mysqli_query($conn ,"UPDATE studentdetails SET fname = '".$fname."' , status = '".$status."' , followup = '".$followUp."', comingOn = '".$comingOn."' where id='$id'");
 if($query){
-  echo "<script>alert('Data Updated')</script>";
+  // echo "<script>alert('Data Updated')</script>";
+  header('Location: ../telecallerPanel.php?page=callStart');
+  exit();
+  
 }
 }
 
