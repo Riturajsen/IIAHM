@@ -5,7 +5,6 @@ $globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where calle
 
 ?>
 
-
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <div class="container p-3">
@@ -15,11 +14,11 @@ $globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where calle
 
 <thead>
     <tr>
-    <th> S.No     </th>
-    <th> Number   </th>
-    <th> Category </th>
-    <th> Status   </th>
-    <th> Call     </th></tr>
+    <th>  S.No     </th>
+    <th>  Number   </th>
+    <th>  Category </th>
+    <th>  Status   </th>
+    <th>  Call     </th></tr>
 </thead>
 <tbody>
 

@@ -138,7 +138,8 @@ if (mysqli_num_rows($fetchAuth) > 0){
                 <br>
             </div>
             <div class="search-box col">
-                Select Location<br>     <input type="text" name="" id="SLocation">
+                Select Location<br>    
+                 <!-- <input type="text" name="" id="SLocation"> -->
                 <select class="form-select form-control" id="locationn" name="locationn[]" multiple="multiple">
                         <?php
                         if (!empty($filters['locationn'])) {
@@ -153,7 +154,7 @@ if (mysqli_num_rows($fetchAuth) > 0){
             </div>
             <div class="search-box col">
                 Select Category<br>
-                <input type="text" name="" id="">
+                <!-- <input type="text" name="" id=""> -->
                 <select class="form-select form-control" id="category" name="category[]" multiple="multiple">
                         <?php
                         if (!empty($filters['category'])) {
@@ -168,7 +169,7 @@ if (mysqli_num_rows($fetchAuth) > 0){
             </div>
             <div class="search-box col">
             Select Institute<br>
-            <input type="text" name="" id="">
+            <!-- <input type="text" name="" id=""> -->
                 <select class="form-select form-control" id="institute" name="institute[]" multiple="multiple">
                  
               
@@ -184,7 +185,8 @@ if (mysqli_num_rows($fetchAuth) > 0){
                 <br>
             </div>
             <div class="search-box col">
-                Select Class<br>     <input type="text" name="" id="">
+                Select Class<br>     
+                <!-- <input type="text" name="" id=""> -->
                 <select class="form-select form-control" id="classname" name="classname[]" multiple="multiple">
                         <?php
                         if (!empty($filters['classname'])) {
