@@ -3,12 +3,12 @@ include "../../core/main.php";
 if(isset($_POST['input'])){
 
     $input = $_POST['input'];
-    $query = "SELECT * from studentdetails where contactno LIKE '%{$input}%' LIMIT 3";
+    $query = "SELECT * from studentdetails where contactno LIKE '%{$input}%' or fname LIKE '%{$input}%' or institute LIKE '%{$input}%' LIMIT 6";
     $result = mysqli_query($con , $query);
 
     if(mysqli_num_rows($result) > 0){ ?>
 
-                <table class="table table-success table-hover table-borderd table-striped mt-4">
+                <table class="table table-warning table-hover table-borderd table-striped mt-4">
                   <thead>
                     
 <thead>
@@ -35,7 +35,15 @@ if(isset($_POST['input'])){
                                     
                                     ?></td>
                                     <td><?php  echo $row['status'];?></td>
-                                    <td><?php  echo "XXXXXX".$row['contactno'][7].$row['contactno'][8].$row['contactno'][9];?></td>
+                                    <td><?php
+                                    if(strlen($row['contactno']) <= 9){
+                                        echo "No Number Added";
+                                    }else{
+
+                                      echo "XXXXXX".$row['contactno'][7].$row['contactno'][8].$row['contactno'][9];
+                                    }
+                                      
+                                      ?></td>
                                     <td><?php  echo $row['institute'];?></td>
                             </tr>
                              <?php 

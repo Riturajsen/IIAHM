@@ -23,7 +23,35 @@ $globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where allot
 <tbody>
 
     <?php $i= 1;  while ($row=mysqli_fetch_array($globalTeledata)){ ?>
- <tr <?php if ($row['called'] == 1 ){ echo "class='' id='white'";} ?>>
+ <tr <?php if ($row['called'] == 1 ){ 
+  if($row['status'] == 'interested'){
+    echo "class='bg-success text-white'";
+  }
+  elseif($row['status'] == 'negetive'){
+    echo "class='bg-danger text-white'";
+  }
+  elseif($row['status'] == 'pending'){
+    echo "class='bg-warning text-white'";
+  }
+  elseif($row['status'] == 'admission'){
+    echo "class='bg-warning text-white'";
+  }
+  elseif($row['status'] == 'visited'){
+    echo "class='bg-primary text-white'";
+  }
+  elseif($row['status'] == 'pos_turned_neg'){
+    echo "class='bg-danger text-white'";
+  }
+  elseif($row['status'] == 'follow_up'){
+    echo "class='bg- text-white'";
+  }
+  elseif($row['status'] == 'closed'){
+    echo "class='bg-danger text-white'";
+  }
+  // echo "class='' id='white'";
+
+
+} ?>>
         <th><?=$i?></th>
         <td><?php 
         if( strlen($row['fname']) ==0 ){ echo "No Name"; }else{ echo $row['fname']; }

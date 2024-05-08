@@ -128,11 +128,11 @@ if (mysqli_num_rows($fetchAuth) > 0){
                         </ol>
                             <div class="row">
                             <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
+                                <div class="card bg-warning text-dark mb-4">
                                     <div class="card-body">Today's Assign Contacts</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="text-white stretched-link" href="telecallerPanel.php?page=callStart"><?=$resaddeddate ?></a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                        <a class="text-dark stretched-link" href="telecallerPanel.php?page=callStart"><?=$resaddeddate ?></a>
+                                        <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
@@ -144,27 +144,44 @@ if (mysqli_num_rows($fetchAuth) > 0){
 
                             $queryComin = mysqli_query($con , "SELECT * FROM studentdetails where allotedTo='$userId' AND comingOn='$today_date'");
                             $fetch_num_coming = mysqli_num_rows($queryComin);
+
+                            $querynumcalled = mysqli_query($con , "SELECT * FROM studentdetails where allotedTo='$userId' AND called='1'");
+                            $fetch_num_called = mysqli_num_rows($querynumcalled);
                             ?>
                              <div class="col-xl-3 col-md-6">
-                                <div class="card bg-warning text-danger mb-4">
+                                <div class="card bg-warning text-dark mb-4">
                                     <div class="card-body">Today's Follow Up calls</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="text-danger stretched-link" href="telecaller/followup.php?userId=<?=$userId?>"><?=$fetch_num_followUp?></a>
-                                        <div class="small text-danger"><i class="fas fa-angle-right"></i></div>
+                                        <a class="text-dark stretched-link" href="telecaller/followup.php?userId=<?=$userId?>"><?=$fetch_num_followUp?></a>
+                                        <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- todays comin or visiting -->
                             <div class="col-xl-3 col-md-6">
-                                <div class="card bg-success text-white mb-4">
+                                <div class="card bg-warning text-dark mb-4">
                                     <div class="card-body">Today's Visiting</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="text-white stretched-link" href="telecaller/coming.php?userId=<?=$userId?>"><?=$fetch_num_coming?></a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                        <a class="text-dark stretched-link" href="telecaller/coming.php?userId=<?=$userId?>"><?=$fetch_num_coming?></a>
+                                        <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-warning text-dark mb-4">
+                                    <div class="card-body">Total Called Data </div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="text-dark stretched-link" href=""><?=$fetch_num_called?></a>
+                                        <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
 
                     <?php
                         } elseif($returnAuth['rights'] == 5){
@@ -176,6 +193,8 @@ if (mysqli_num_rows($fetchAuth) > 0){
                         <li class="breadcrumb-item active text-danger"><?="Visit today [".date('d / m /Y')."] > "?></li>
                         <li>  Number Of visits : <?= $frontComingret ?></li>
                         </ol>
+
+
                         <div class="row">
                       
                         <?php 

@@ -49,7 +49,7 @@ if($query){
                 </tr>
                 <tr><form action="" method="post">
                 <th> Name </th>
-                <td><input type="text" name="fname" class="form-control" value="<?=$ret['fname']?>"></td>
+                <td><input type="text" name="fname" class="form-control" value="<?=$ret['fname']?>" required="true"></td>
                 </tr>
                 <tr>
                 <th> Source </th>
@@ -62,7 +62,7 @@ if($query){
                 <tr>
                 <th> Status </th>
                 <td>
-                  <select name="status" id="" class="form-control">
+                  <select name="status" id="" class="form-control" required="true">
                     <option value="">Select An option</option>
                     <option value="interested">Interested</option>
                     <option value="negetive">Negative</option>
