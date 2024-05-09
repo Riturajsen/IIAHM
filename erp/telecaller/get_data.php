@@ -7,13 +7,15 @@ if(isset($_POST['stdId'])){
  $sql = "SELECT * from studentdetails where id=".$id;
  $result = mysqli_query($con,$sql);
  
- $response = "<table border='0' width='100%'>";
+ $response = "<table border='' width='100%'>";
  while( $row = mysqli_fetch_assoc($result) ){
+
  $id = $row['id'];
  $name = $row['fname'];
  $email = $row['filesource'];
-$contact = $row['institute'];
+ $contact = $row['institute'];
  $country = $row['status'];
+ $lastUpdate = $row['comment'];
  $lastCall = $row['modified'];
  
  $response .= "<tr>";
@@ -34,6 +36,10 @@ $contact = $row['institute'];
 
  $response .= "<tr>";
  $response .= "<td>Last Called at : </td><td>".$lastCall."</td>";
+ $response .= "</tr>";
+
+ $response .= "<tr>";
+ $response .= "<td>Last Call Update: </td><td>".$lastUpdate."</td>";
  $response .= "</tr>";
 
  $response .= "<tr>";

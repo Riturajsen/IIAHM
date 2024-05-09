@@ -8,10 +8,12 @@ $ret = mysqli_fetch_assoc($res);
 
 if(isset($_POST['update'])){
 $status = $_POST['status']; 
-$followUp = $_POST['followUp']; 
+$followUp = $_POST['followUp'];
+$comment = $_POST['comment']; 
 $fname = $_POST['fname'];
 $comingOn = $_POST['comingOn'];
-$query = mysqli_query($conn ,"UPDATE studentdetails SET fname = '".$fname."' , status = '".$status."' , followup = '".$followUp."', comingOn = '".$comingOn."' where id='$id'");
+
+$query = mysqli_query($conn ,"UPDATE studentdetails SET fname = '".$fname."' , status = '".$status."' , followup = '".$followUp."',comment ='".$comment."', comingOn = '".$comingOn."' where id='$id'");
 if($query){
   // echo "<script>alert('Data Updated')</script>";
   header('Location: ../telecallerPanel.php?page=callStart');
@@ -80,7 +82,7 @@ if($query){
                   
                     <th>Coments</th>
                   <td>
-                    <input type="text" name="comment" class="form-control">
+                    <textarea name="comment" class="form-control"><?php echo date('d/M/Y =>')."\n".$ret['comment']?></textarea>
                   </td>
                 </tr>
                 <tr>

@@ -79,9 +79,10 @@ if (mysqli_num_rows($fetchAuth) > 0){
 <!-- header End -->
             <div id="layoutSidenav_content">
             <?php if(!empty($statusMsg)){ ?>
-<div class="col-lg-12 p-3">
-    <div class="alert <?php echo $statusType; ?>"><?php echo $statusMsg; ?></div>
+<div class="col-lg-12">
+    <div class="alert <?php  echo $statusType; ?>"><?php echo $statusMsg; ?></div>
 </div>
+<!-- <script>alert()</script> -->
 <?php } ?>
             <!-- Display status message -->
 
@@ -123,8 +124,8 @@ if (mysqli_num_rows($fetchAuth) > 0){
     <div class="row">
 
         <!-- <div id="col"> -->
-            <div class="search-box col mt-5">
-                
+            <div class="search-box col ">
+            Select Source<br>   
                 <select class="form-select form-control" id="filesource" name="filesource[]" multiple="multiple">
                         <?php
                         if (!empty($filters['filesource'])) {
@@ -201,16 +202,16 @@ if (mysqli_num_rows($fetchAuth) > 0){
             </div>
      
         
-            <button id="Filter" type="submit">Search</button>
+            <button id="Filter" type="submit" class="btn btn-warning ">Search</button>
         <!-- </div> -->
     </div>
     </form>
 </div>
 
-<div class="m-3" id="output">
+<div class="m-1" id="output">
 
 </div>
-<hr>
+
 
 <form action="helper/fetchDataTable.php" method="post">
 <input type="hidden" name="TeleId" id="TeleId">
@@ -219,14 +220,20 @@ if (mysqli_num_rows($fetchAuth) > 0){
 <hr>
 <table class="table table-hover">
         <thead>              
+            
+        <tr><td colspan="8"> <input type="submit" class="form-control bg-dark text-white"  value="Assign"></td></tr>
             <tr>
                 <th>#</th>
                 <th>Full Name</th>
-                <th>Phone</th>
+                <th>Source</th>
+                <th>Location</th>
+                <th>Category</th>
+                <th>Institute</th>
                 <th>Allot</th>
             </tr>
+            
         </thead>
-        <tbody>
+    
         <?php 
         // Get member rows 
         if (!empty($_POST) && count($_POST)) {
@@ -273,9 +280,7 @@ if (mysqli_num_rows($fetchAuth) > 0){
                                 <td>
                                     <div class="col"><?php echo $row['institute']; ?></div>
                                 </td>
-                                <td>
-                                    <div class="col"><?php echo $row['classname']; ?></div>
-                                </td>
+                               
                               
             
                 <td><input type="checkbox" name="allotedid[]" value="<?=$row['id']?>" ></td>
@@ -292,18 +297,20 @@ if (mysqli_num_rows($fetchAuth) > 0){
                             <tr>
                                 <td colspan="7" class="text-center"><h3>No results!</h3></td>
                             </tr>
-                        </tbody>
+                    
                         <?php
                     }
                 }
             }
         }
                 ?>
+                    </tbody>
+                    </form>
             
 
 </div>
              <!-- footer start-->
-             <?php include ('helper/footer.php'); ?>
+         
             <!-- footer End -->
      <script type="text/javascript">
 

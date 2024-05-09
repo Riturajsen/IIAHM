@@ -1,4 +1,5 @@
 <?php
+error_reporting(false);
 session_start();
 $secure_id = $_SESSION['secure_id'];
 
@@ -30,16 +31,21 @@ $today_entry = mysqli_query($con , "SELECT * FROM studentdetails where addedOn='
 $aaj_ki_entry = mysqli_num_rows($today_entry);
 $total_unsign_data = mysqli_query($con , "SELECT * FROM studentdetails where allotedTo IS NULL OR allotedTo = ' '");
 $fetch_num_unAsign = mysqli_num_rows($total_unsign_data);
+
 $fetchAuth = mysqli_query($conn, "SELECT * FROM users where `secure_id`='$secure_id'");
 
 if (mysqli_num_rows($fetchAuth) > 0){
     $returnAuth = mysqli_fetch_assoc($fetchAuth);
     $userId = $returnAuth['id'];
     $telecallUpdater = mysqli_query($con , "SELECT * FROM studentdetails where allotedTo='$userId'");
+    $todayTeleRep = mysqli_fetch_assoc($telecallUpdater);
+    $date_now = explode(' ',$todayTeleRep['modified']);
+    $dateGet =  $date_now[0].' '.$date_now[1].' '.$date_now[2];
     $numTeleData = mysqli_num_rows($telecallUpdater);
-   $numtodayadded = mysqli_query($con , "SELECT * FROM studentdetails where allotedTo='$userId' and addedOn='$today_date'");
-   $resaddeddate = mysqli_num_rows($numtodayadded)
-
+    $numtodayadded = mysqli_query($con , "SELECT * FROM studentdetails where allotedTo='$userId' and addedOn='$today_date'");
+    $resaddeddate = mysqli_num_rows($numtodayadded);
+    $numtodaycalled = mysqli_query($con , "SELECT * FROM studentdetails where allotedTo='$userId' and modified LIKE '%{$dateGet}%'");
+    $respTodayCalled = mysqli_num_rows($numtodaycalled);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -178,8 +184,23 @@ if (mysqli_num_rows($fetchAuth) > 0){
                                     </div>
                                 </div>
                             </div>
-
-
+                                <?php
+                               
+                               
+                       
+                                
+                                
+                             
+                                ?>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-warning text-dark mb-4">
+                                    <div class="card-body">Today Called Data </div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="text-dark stretched-link" href=""><?=$respTodayCalled?></a>
+                                        <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
 
 
 
