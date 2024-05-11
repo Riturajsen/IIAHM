@@ -62,6 +62,9 @@ if (mysqli_num_rows($fetchAuth) > 0){
    <?php     if($page == 'teleTotalData')   { include "telecaller/index.php"; };?> 
    <?php     if($page == 'callStart')       { include "telecaller/callStart.php"; };?> 
    <?php     if($page == 'allCalls')        { include "telecaller/allCalls.php"; };?> 
+   <?php     if($page == 'whatsappSet')     { include "whatsapp/index.php"; };?> 
+
+   
   </div>
         
 

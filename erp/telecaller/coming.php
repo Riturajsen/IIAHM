@@ -36,7 +36,7 @@ $ret = mysqli_fetch_assoc($queryFollowUp);
        <tr>
         <th>#</th>
         <th>Name</th>
-        <th>Location</th>
+        <!-- <th>Location</th> -->
         <th>institute</th>
         <th>Last Call</th>
         <th>Action</th>
@@ -51,7 +51,7 @@ $ret = mysqli_fetch_assoc($queryFollowUp);
        <tr>
             <td><?=$i?></td>
             <td><?=$row['fname'];?></td>
-            <td><?=$row['locationn'];?></td>
+            <!-- <td><?=$row['locationn'];?></td> -->
             <td><?=$row['institute'];?></td>
             <td><?=$row['modified'];?></td>
             <td><a href="callAction.php?id=<?=$row['id']?>&name=<?=$username?>" class="btn btn-warning"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-outbound-fill" viewBox="0 0 16 16">

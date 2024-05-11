@@ -92,6 +92,14 @@ include ("../../core/main.php");
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-file"></i></div>
                                 All Data
                             </a>
+                            <a class="nav-link" href="telecallerPanel.php?page=whatsappSet">
+                                <div class="sb-nav-link-icon"><i class="fab fa-whatsapp"></i></div>
+                               WhatsApp Setting
+                            </a>
+
+
+
+                            <!-- front office -->
                             <?php } if($returnAuth['rights'] == 5){?>
                                 <a class="nav-link" href="frontdeskPanel.php?page=teleTotalData">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>

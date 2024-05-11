@@ -27,6 +27,7 @@ if(!empty($_SESSION['qstring'])){
 include "../core/main.php";
 $today_date = date('Y-m-d');
 
+
 $today_entry = mysqli_query($con , "SELECT * FROM studentdetails where addedOn='$today_date'");
 $aaj_ki_entry = mysqli_num_rows($today_entry);
 $total_unsign_data = mysqli_query($con , "SELECT * FROM studentdetails where allotedTo IS NULL OR allotedTo = ' '");
@@ -39,8 +40,9 @@ if (mysqli_num_rows($fetchAuth) > 0){
     $userId = $returnAuth['id'];
     $telecallUpdater = mysqli_query($con , "SELECT * FROM studentdetails where allotedTo='$userId'");
     $todayTeleRep = mysqli_fetch_assoc($telecallUpdater);
-    $date_now = explode(' ',$todayTeleRep['modified']);
-    $dateGet =  $date_now[0].' '.$date_now[1].' '.$date_now[2];
+    // $date_now = explode(' ',$todayTeleRep['modified']);
+    // $dateGet =  $date_now[0].' '.$date_now[1].' '.$date_now[2];
+    $dateGet = date('d M Y');
     $numTeleData = mysqli_num_rows($telecallUpdater);
     $numtodayadded = mysqli_query($con , "SELECT * FROM studentdetails where allotedTo='$userId' and addedOn='$today_date'");
     $resaddeddate = mysqli_num_rows($numtodayadded);

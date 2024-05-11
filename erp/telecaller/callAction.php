@@ -9,11 +9,12 @@ $ret = mysqli_fetch_assoc($res);
 if(isset($_POST['update'])){
 $status = $_POST['status']; 
 $followUp = $_POST['followUp'];
-$comment = $_POST['comment']; 
+$comment = date('d/M/Y =>').$_POST['comment']."\n"; 
 $fname = $_POST['fname'];
 $comingOn = $_POST['comingOn'];
+$parentscontactno = $_POST['parentscontactno'];
 
-$query = mysqli_query($conn ,"UPDATE studentdetails SET fname = '".$fname."' , status = '".$status."' , followup = '".$followUp."',comment ='".$comment."', comingOn = '".$comingOn."' where id='$id'");
+$query = mysqli_query($conn ,"UPDATE studentdetails SET fname = '".$fname."' ,parentscontactno = '".$parentscontactno."', status = '".$status."' , followup = '".$followUp."',comment ='".$comment."', comingOn = '".$comingOn."' where id='$id'");
 if($query){
   // echo "<script>alert('Data Updated')</script>";
   header('Location: ../telecallerPanel.php?page=callStart');
@@ -47,11 +48,19 @@ if($query){
             <table class="table table-hover">
             <tr>
                 <th> Call  </th>
-                <td><form action="calling.php" method="post"><input type="hidden" name="number" value="<?=$ret['contactno'];?>"><input type="hidden" name="ChildId" value="<?=$ret['id']?>"><input type="submit" value="Call This Number" class="btn btn-warning float-start"></form></td>
+                <td><form action="calling.php" method="post"><input type="hidden" name="number" value="<?=$ret['contactno'];?>"><input type="hidden" name="ChildId" value="<?=$ret['id']?>"><input type="submit" value="Call This Number" class="btn btn-warning float-start"></form>
+                
+                <form action="calling.php" method="post"><input type="hidden" name="number" value="<?=$ret['parentscontactno'];?>"><input type="hidden" name="ChildId" value="<?=$ret['id']?>"><input type="submit" value="Call On Parents Number" class="btn btn-primary"></form>
+                </td>
                 </tr>
                 <tr><form action="" method="post">
                 <th> Name </th>
-                <td><input type="text" name="fname" class="form-control" value="<?=$ret['fname']?>" required="true"></td>
+                <td ><input type="text" name="fname" class="form-control" value="<?=$ret['fname']?>" required="true"></td>
+                </tr>
+                <tr>
+                  <th>Parents Contact</th>
+                <td><input type="num" name="parentscontactno" class="form-control" value="<?=$ret['parentscontactno']?>" maxlength="10"></td>
+
                 </tr>
                 <tr>
                 <th> Source </th>
@@ -60,6 +69,7 @@ if($query){
                 <tr>
                 <th> Last called </th>
                 <td><span class="form-control"><?php if($ret['modified'] == NULL){echo "Not Called Yet";}else{echo $ret['modified'];} ?></span></td>
+
                 </tr>
                 <tr>
                 <th> Status </th>
@@ -82,11 +92,18 @@ if($query){
                   
                     <th>Coments</th>
                   <td>
-                    <textarea name="comment" class="form-control"><?php echo date('d/M/Y =>')."\n".$ret['comment']?></textarea>
+                    <?php 
+                     $lastUpdate = explode(PHP_EOL,$ret['comment']) ; 
+                     foreach($lastUpdate as $commentOld)
+                    {
+                      echo "<span class='bg-warning'>" .$commentOld." </span>  |  ";
+                    }
+                    ?>
+                    <textarea name="comment" class="form-control"></textarea>
                   </td>
                 </tr>
                 <tr>
-                <th> Follow Up </th>
+                <th>Next Follow Up </th>
                
                 <td><input type="date" name="followUp" id="" class="form-control" value="<?=$ret['followup']?>" ></td>
                 </tr>
