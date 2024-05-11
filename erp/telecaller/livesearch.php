@@ -17,13 +17,16 @@ if(isset($_POST['input'])){
     <th>Name</th>
     <th>Status</th>
     <th>Number</th>
-    <th>College</th></tr>
+    <th>College</th>
+    <th>Call</th>
+
+</tr>
 </thead>
                     <tbody>
                         <?php $cnt=1;
                             while ($row = mysqli_fetch_assoc($result)){
                              ?>
-                              <tr>
+                             <a href="">  <tr>
                                     <td><?php echo $cnt; ?></td>
                                     <td><?php  
                                     if($row['fname'] != ""){
@@ -45,7 +48,10 @@ if(isset($_POST['input'])){
                                       
                                       ?></td>
                                     <td><?php  echo $row['institute'];?></td>
-                            </tr>
+                                    
+                                    <td><a href="telecaller/callAction.php?id=<?=$row['id'];?>&name=<?=$_SESSION['username'];?>"><i class="fa-solid fa-phone text-dark"></i></a></td>
+                            </tr> 
+                            
                              <?php 
                              $cnt=$cnt+1;
                             }
