@@ -145,10 +145,9 @@ if($query){
            function changeStatus() {
                   let statusT = status.value;
                  if(statusT == 'interested'){
-                  document.getElementById("comingOn").attributes["required"] = ""; 
-                  
+                  document.getElementById("comingOn").required = true;
                  }else{
-                  console.log('false');
+                  document.getElementById("comingOn").required = false;
                   
                  }
             }
