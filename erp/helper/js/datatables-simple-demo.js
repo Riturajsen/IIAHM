@@ -5,5 +5,14 @@ window.addEventListener('DOMContentLoaded', event => {
     const datatablesSimple = document.getElementById('datatablesSimple');
     if (datatablesSimple) {
         new simpleDatatables.DataTable(datatablesSimple);
+      
+        
     }
+
+    const allData = document.getElementById('allData');
+    if (allData) {
+        new simpleDatatables.DataTable(allData);
+        searchable: false
+    }
+    
 });

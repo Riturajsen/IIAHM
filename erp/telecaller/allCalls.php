@@ -10,12 +10,12 @@ $globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where allot
 <div class="container p-3">
  <input type="text" id="live_search" placeholder="Search A Number" class="form-control bg-light">
    <div id="searchresult"></div>
-<table class="table table-hover">
+<table class="table table-hover sortable" id="allData">
 
 <thead>
     <tr>
     <th>S.No</th>
-    <th>Number</th>
+    <th>Name</th>
     <th>Category</th>
     <th>Quick View</th>
     <th>Call</th></tr>

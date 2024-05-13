@@ -22,7 +22,6 @@ if($query){
   
 }
 }
-
 ?>
 
 <!doctype html>
@@ -32,6 +31,7 @@ if($query){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CallAction | <?=$_SESSION['username'];?> | <?=$ret['fname']?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   </head>
   <body>
     <div class="row">
@@ -74,7 +74,7 @@ if($query){
                 <tr>
                 <th> Status </th>
                 <td>
-                  <select name="status" id="" class="form-control" required="true">
+                  <select name="status" id="status" class="form-control" required="true">
                     <option value="">Select An option</option>
                     <option value="interested">Interested</option>
                     <option value="negetive">Negative</option>
@@ -105,12 +105,12 @@ if($query){
                 <tr>
                 <th>Next Follow Up </th>
                
-                <td><input type="date" name="followUp" id="" class="form-control" value="<?=$ret['followup']?>" ></td>
+                <td><input type="date" name="followUp" id="followUp" class="form-control" value="<?=$ret['followup']?>" ></td>
                 </tr>
                 <tr >
                 <th class=" text-success"> Coming On </th>
                
-                <td><input type="date" name="comingOn" id="" class="form-control bg-success text-white " value="<?=$ret['comingOn']?>" ></td>
+                <td><input type="date" name="comingOn" id="comingOn" class="form-control bg-success text-white " value="<?=$ret['comingOn']?>" ></td>
                 </tr>
                 <tr >
                 <th class=" text-success">WhatsApp</th>
@@ -139,6 +139,37 @@ if($query){
             </div>
  </div>
     </div>
+    <script>
+      const status = document.getElementById('status');
+      status.addEventListener('click', changeStatus);
+           function changeStatus() {
+                  let statusT = status.value;
+                 if(statusT == 'interested'){
+                  document.getElementById("comingOn").attributes["required"] = ""; 
+                  
+                 }else{
+                  console.log('false');
+                  
+                 }
+            }
+      
+</script>
+
+      <script type="text/javascript">
+$(function(){
+    var dtToday = new Date();
+ 
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+     day = '0' + day.toString();
+    var maxDate = year + '-' + month + '-' + day;
+    $('#followUp').attr('min', maxDate);
+});
+</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>
