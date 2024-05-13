@@ -7,13 +7,16 @@ if(isset($_POST['stdId'])){
  $sql = "SELECT * from studentdetails where id=".$id;
  $result = mysqli_query($con,$sql);
  
- $response = "<table border='0' width='100%'>";
+ $response = "<table class= 'table' border='0' width='100%'>";
  while( $row = mysqli_fetch_assoc($result) ){
+
  $id = $row['id'];
  $name = $row['fname'];
  $email = $row['filesource'];
-$contact = $row['institute'];
- $country = $row['status'];
+ $contact = $row['institute'];
+ $status = $row['status'];
+ $lastUpdate = explode(PHP_EOL,$row['comment']) ;  // $row['comment'];
+
  $lastCall = $row['modified'];
  
  $response .= "<tr>";
@@ -23,18 +26,33 @@ $contact = $row['institute'];
  $response .= "<tr>";
  $response .= "<td>Location : </td><td>".$email."</td>";
  $response .= "</tr>";
+
+ $response .= "<tr>";
+ $response .= "<td>Called : </td><td>".count($lastUpdate)." Times </td>";
+ $response .= "</tr>";
  
  $response .= "<tr>";
  $response .= "<td>Institute : </td><td>".$contact."</td>";
  $response .= "</tr>";
  
  $response .= "<tr>";
- $response .= "<td>Status : </td><td>".$country."</td>";
+ $response .= "<td>Status : </td><td>".$status."</td>";
  $response .= "</tr>";
 
  $response .= "<tr>";
  $response .= "<td>Last Called at : </td><td>".$lastCall."</td>";
  $response .= "</tr>";
+
+ $response .= "<tr>";
+ $response .= "<td>Last Call Update: </td>"; 
+ $response .= "<td>"; 
+ 
+ foreach($lastUpdate as $alloted)
+ {
+    $response .= " ".$alloted."<br>"; 
+ }
+
+ $response .= "</td></tr>";
 
  $response .= "<tr>";
  $response .= "<td> Next Follow Up : </td><td>".$row['followup']."</td>";

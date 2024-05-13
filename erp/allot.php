@@ -6,6 +6,38 @@ $secure_id = $_SESSION['secure_id'];
 
 include "../core/main.php";
 
+
+class DBController {
+    private $host = "localhost";
+    private $user = "root";
+    private $password = "";
+    private $database = "iiahm";
+    public $conn;
+    function __construct() {
+        $this->conn = $this->connectDB();
+    }
+    function connectDB() {
+        $conn = mysqli_connect($this->host,$this->user,$this->password,$this->database);
+         return $conn;
+        }
+    function runQuery($query) {
+        $result = $this->conn->query($query);
+        $resultset = [];
+        while($row=$result->fetch_assoc()) {
+            $resultset[] = $row;
+        }
+        return $resultset;
+    }
+}
+$db_handle = new DBController();
+$filters = [];
+
+$filters['filesource'] = array_column($db_handle->runQuery("SELECT DISTINCT filesource FROM studentdetails  ORDER BY filesource ASC"), 'filesource');
+$filters['locationn']  = array_column($db_handle->runQuery("SELECT DISTINCT locationn FROM studentdetails  ORDER BY locationn ASC"), 'locationn');
+$filters['category']   = array_column($db_handle->runQuery("SELECT DISTINCT category FROM studentdetails  ORDER BY category ASC"), 'category');
+$filters['institute']  = array_column($db_handle->runQuery("SELECT DISTINCT institute FROM studentdetails  ORDER BY institute ASC"), 'institute');
+$filters['classname']  = array_column($db_handle->runQuery("SELECT DISTINCT classname FROM studentdetails  ORDER BY classname ASC"), 'classname');
+
 if(!empty($_SESSION['qstring'])){ 
     switch($_SESSION['qstring']){ 
         case 'succ': 
@@ -47,9 +79,10 @@ if (mysqli_num_rows($fetchAuth) > 0){
 <!-- header End -->
             <div id="layoutSidenav_content">
             <?php if(!empty($statusMsg)){ ?>
-<div class="col-lg-12 p-3">
-    <div class="alert <?php echo $statusType; ?>"><?php echo $statusMsg; ?></div>
+<div class="col-lg-12">
+    <div class="alert <?php  echo $statusType; ?>"><?php echo $statusMsg; ?></div>
 </div>
+<!-- <script>alert()</script> -->
 <?php } ?>
             <!-- Display status message -->
 
@@ -86,43 +119,99 @@ if (mysqli_num_rows($fetchAuth) > 0){
 </div>
 <hr>
 <div class="p-3">Filters : 
-<select name="location" id="location" > 
-<option value="">Select a Location</option>
-<option value="">1</option>
-<option value="">2</option>
-<option value="">3</option>
-</select>
-<select name="category" id="category"> 
-<option value="">Select a Category</option>
-<option value="">1</option>
-<option value="">2</option>
-<option value="">3</option>
-</select>
-<select name="institute" id="institute"> 
-<option value="">Select a Institute</option>
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-</select>
-<select name="source" id="source"> 
-<option value="">Select a Source</option>
-<option value="Udaan">Udaan</option>
-<option value="Seminar">Seminar</option>
-<option value="other">other</option>
-</select>
-<select name="course" id="course"> 
-<option value="">Select a course</option>
-<option value="Udaan">Post-Graduation</option>
-<option value="Udaan">Graduation</option>
-<option value="Seminar">12th</option>
-<option value="other">11th</option>
-</select>
+<form method="POST" name="filesource">
+	
+    <div class="row">
+
+        <!-- <div id="col"> -->
+            <div class="search-box col ">
+            Select Source<br>   
+                <select class="form-select form-control" id="filesource" name="filesource[]" multiple="multiple">
+                        <?php
+                        if (!empty($filters['filesource'])) {
+                            foreach ($filters['filesource'] as $key => $value) {
+                                echo '<option value="' . $value . '">' . $value . '</option>';
+                            }
+                        }
+                        ?>
+                </select>
+                <br>
+                <br>
+            </div>
+            <div class="search-box col">
+                Select Location<br>    
+                 <!-- <input type="text" name="" id="SLocation"> -->
+                <select class="form-select form-control" id="locationn" name="locationn[]" multiple="multiple">
+                        <?php
+                        if (!empty($filters['locationn'])) {
+                            foreach ($filters['locationn'] as $key => $value) {
+                                echo '<option value="' . $value . '">' . $value . '</option>';
+                            }
+                        }
+                        ?>
+                </select>
+                <br>
+                <br>
+            </div>
+            <div class="search-box col">
+                Select Category<br>
+                <!-- <input type="text" name="" id=""> -->
+                <select class="form-select form-control" id="category" name="category[]" multiple="multiple">
+                        <?php
+                        if (!empty($filters['category'])) {
+                            foreach ($filters['category'] as $key => $value) {
+                                echo '<option value="' . $value . '">' . $value . '</option>';
+                            }
+                        }
+                        ?>
+                </select>
+                <br>
+                <br>
+            </div>
+            <div class="search-box col">
+            Select Institute<br>
+            <!-- <input type="text" name="" id=""> -->
+                <select class="form-select form-control" id="institute" name="institute[]" multiple="multiple">
+                 
+              
+                        <?php
+                        if (!empty($filters['institute'])) {
+                            foreach ($filters['institute'] as $key => $value) {
+                                echo '<option value="' . $value . '">' . $value . '</option>';
+                            }
+                        }
+                        ?>
+                </select>
+                <br>
+                <br>
+            </div>
+            <div class="search-box col">
+                Select Class<br>     
+                <!-- <input type="text" name="" id=""> -->
+                <select class="form-select form-control" id="classname" name="classname[]" multiple="multiple">
+                        <?php
+                        if (!empty($filters['classname'])) {
+                            foreach ($filters['classname'] as $key => $value) {
+                                echo '<option value="' . $value . '">' . $value . '</option>';
+                            }
+                        }
+                        ?>
+                </select>
+                <br>
+                <br>
+            </div>
+     
+        
+            <button id="Filter" type="submit" class="btn btn-warning ">Search</button>
+        <!-- </div> -->
+    </div>
+    </form>
 </div>
 
-<div class="m-3" id="output">
+<div class="m-1" id="output">
 
 </div>
-<hr>
+
 
 <form action="helper/fetchDataTable.php" method="post">
 <input type="hidden" name="TeleId" id="TeleId">
@@ -131,43 +220,97 @@ if (mysqli_num_rows($fetchAuth) > 0){
 <hr>
 <table class="table table-hover">
         <thead>              
+            
+        <tr><td colspan="8"> <input type="submit" class="form-control bg-dark text-white"  value="Assign"></td></tr>
             <tr>
                 <th>#</th>
                 <th>Full Name</th>
-                <th>Phone</th>
+                <th>Source</th>
+                <th>Location</th>
+                <th>Category</th>
+                <th>Institute</th>
                 <th>Allot</th>
             </tr>
+            
         </thead>
-        <tbody>
+    
         <?php 
         // Get member rows 
-        $result = $con->query("SELECT * FROM studentdetails where allotedTo IS NULL OR allotedTo = ' ' ORDER BY id DESC "); 
-        if($result->num_rows > 0){ $i=0; 
-            while($row = $result->fetch_assoc()){ $i++; 
+        if (!empty($_POST) && count($_POST)) {
+            //filter the array $_POST with the keys representing your filters & fields in your DB that you trust
+            $request_filters = array_intersect_key($_POST, array_flip(['filesource','institute','locationn','category','classname']));
+            if(count($request_filters)) {
         ?>
-            <tr>
-                <td><?php echo $i; ?></td>
-                <td><?php echo $row['fname']; ?></td>
-                <td><?php echo $row['contactno']; ?></td>
+                <?php
+                //then build up your prepare query statement
+                $params = [];
+                $query = "SELECT * from studentdetails WHERE ";
+                $extra_query = [];
+                foreach ($request_filters as $field => $values) {
+                    $extra_query[] = "{$field} IN (?" . str_repeat(', ?', count($values) - 1) . ")";
+                    $params = array_merge($params, $values);
+                }
+                $query .= implode(' AND ',$extra_query);
+                $stmt = $db_handle->conn->prepare($query);
+                $stmt->bind_param(str_repeat('s',count($params)), ...$params);
+                if($stmt->execute()){
+                    $stmt_result = $stmt->get_result();
+                    if($stmt_result && $stmt_result->num_rows){
+                        ?>
+                        <tbody>
+                        <?php $i = 1;
+                        while($row = $stmt_result->fetch_assoc()){
+                            ?>
+                            <tr>
+                                <td>
+                                    <div class="col"><?php echo $i ?></div>
+                                </td>
+                                <td>
+                                    <div class="col"><?php echo $row['fname']; ?></div>
+                                </td>
+                                <td>
+                                    <div class="col"><?php echo $row['filesource']; ?></div>
+                                </td>
+                                <td>
+                                    <div class="col"><?php echo $row['locationn']; ?></div>
+                                </td>
+                                <td>
+                                    <div class="col"><?php echo $row['category']; ?></div>
+                                </td>
+                                <td>
+                                    <div class="col"><?php echo $row['institute']; ?></div>
+                                </td>
+                               
+                              
+            
                 <td><input type="checkbox" name="allotedid[]" value="<?=$row['id']?>" ></td>
-        <?php } }else{ ?>
-            <tr><td colspan="4">No member(s) found...</td></tr>
-        <?php } ?>
-        
-        </tbody>
-        <input type="submit" class="form-control bg-warning "  value="Assign">
-        <hr>
-        </form>
-    </table>
-  </div>
-        
-
-
-
+                            </tr>
+                            <?php
+							$i++;
+                        }
+                        ?>
+                        </tbody>
+                        <?php
+                    } else {
+                        ?>
+                        <tbody>
+                            <tr>
+                                <td colspan="7" class="text-center"><h3>No results!</h3></td>
+                            </tr>
+                    
+                        <?php
+                    }
+                }
+            }
+        }
+                ?>
+                    </tbody>
+                    </form>
+            
 
 </div>
              <!-- footer start-->
-             <?php include ('helper/footer.php'); ?>
+         
             <!-- footer End -->
      <script type="text/javascript">
 
