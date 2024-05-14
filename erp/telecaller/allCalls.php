@@ -10,7 +10,7 @@ $globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where allot
 <div class="container p-3">
  <input type="text" id="live_search" placeholder="Search A Number" class="form-control bg-light">
    <div id="searchresult"></div>
-<table class="table table-hover sortable" id="allData">
+<table class="table table-hover sortable" id="">
 
 <thead>
     <tr>
@@ -59,7 +59,7 @@ $globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where allot
         <td><?=$row['category']?></td>
  
         <td><button data-id="<?=$row['id']?>" id="" class='btn btn-warning btn-popup'><i class="fa-solid fa-eye"></i></button></td>
-        <td class=""><a href="telecaller/callAction.php?id=<?=$row['id'];?>&name=<?=$_SESSION['username'];?>"><i class="fa-solid fa-phone text-dark"></i></a></td>
+        <td class=""><a href="telecaller/callAction.php?id=<?=$row['id'];?>&name=<?=$_SESSION['username'];?>&teleId=<?=$returnAuth['id']?>"><i class="fa-solid fa-phone text-dark"></i></a></td>
 
  </tr>
 

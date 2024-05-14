@@ -70,10 +70,10 @@ include ("../../core/main.php");
                                     <a class="nav-link" href="uploadStudent.php">Students</a>
                                 </nav>
                             </div>
-                            <a class="nav-link collapsed" href="allot.php" data-bs-toggle="" data-bs-target="" aria-expanded="" aria-controls="">
+                            <!-- <a class="nav-link collapsed" href="allot.php" data-bs-toggle="" data-bs-target="" aria-expanded="" aria-controls="">
                                 <div class="sb-nav-link-icon"><i class="fas fa-phone"></i></div>
                               Assign Calls
-                            </a>
+                            </a> -->
                             <a class="nav-link" href="teleCallerReport.php">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                                 Telecaller Report
@@ -85,12 +85,16 @@ include ("../../core/main.php");
                                 View Total Data
                             </a>
                             <a class="nav-link" href="telecallerPanel.php?page=callStart">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-phone"></i></div>
                                 Start calling ?
                             </a>
                             <a class="nav-link" href="telecallerPanel.php?page=allCalls">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-file"></i></div>
                                 All Data
+                            </a>
+                            <a class="nav-link" href="telecaller/addNewLead.php?id=<?=$returnAuth['id']?>">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-user-plus"></i></div>
+                                Add Lead
                             </a>
                             <a class="nav-link" href="telecallerPanel.php?page=whatsappSet">
                                 <div class="sb-nav-link-icon"><i class="fab fa-whatsapp"></i></div>

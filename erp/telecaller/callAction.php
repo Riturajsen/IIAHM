@@ -1,20 +1,27 @@
 <?php
 session_start();
 $id = $_GET['id'];
+$teleId = $_GET['teleId'];
 $username = $_SESSION['username'];
 include "../../core/main.php";
+
+
 $res = mysqli_query($conn , "SELECT * from studentdetails where id='$id'");
 $ret = mysqli_fetch_assoc($res);
+
+
+if($ret['allotedTo'] == $teleId){
 
 if(isset($_POST['update'])){
 $status = $_POST['status']; 
 $followUp = $_POST['followUp'];
 $comment = date('d/M/Y =>').$_POST['comment']."\n"; 
 $fname = $_POST['fname'];
+$comingT = $_POST['comingT'];
 $comingOn = $_POST['comingOn'];
 $parentscontactno = $_POST['parentscontactno'];
 
-$query = mysqli_query($conn ,"UPDATE studentdetails SET fname = '".$fname."' ,parentscontactno = '".$parentscontactno."', status = '".$status."' , followup = '".$followUp."',comment ='".$comment."', comingOn = '".$comingOn."' where id='$id'");
+$query = mysqli_query($conn ,"UPDATE studentdetails SET fname = '".$fname."' ,cometime = '".$comingT."' ,parentscontactno = '".$parentscontactno."', status = '".$status."' , followup = '".$followUp."',comment ='".$comment."', comingOn = '".$comingOn."' where id='$id'");
 if($query){
   // echo "<script>alert('Data Updated')</script>";
   header('Location: ../telecallerPanel.php?page=callStart');
@@ -48,7 +55,12 @@ if($query){
             <table class="table table-hover">
             <tr>
                 <th> Call  </th>
-                <td><form action="calling.php" method="post"><input type="hidden" name="number" value="<?=$ret['contactno'];?>"><input type="hidden" name="ChildId" value="<?=$ret['id']?>"><input type="submit" value="Call This Number" class="btn btn-warning float-start"></form>
+                <td><form action="calling.php" method="post">
+                  <input type="hidden" name="number" value="<?=$ret['contactno'];?>">
+                  <input type="hidden" name="TimeCalled" value="<?=$ret['TimeCalled']?>">
+                  <input type="hidden" name="ChildId" value="<?=$ret['id']?>">
+                  <input type="submit" value="Call This Number" class="btn btn-warning float-start">
+                </form>
                 
                 <form action="calling.php" method="post"><input type="hidden" name="number" value="<?=$ret['parentscontactno'];?>"><input type="hidden" name="ChildId" value="<?=$ret['id']?>"><input type="submit" value="Call On Parents Number" class="btn btn-primary"></form>
                 </td>
@@ -59,7 +71,7 @@ if($query){
                 </tr>
                 <tr>
                   <th>Parents Contact</th>
-                <td><input type="num" name="parentscontactno" class="form-control" value="<?=$ret['parentscontactno']?>" maxlength="10"></td>
+                <td><input type="tel" name="parentscontactno" class="form-control" value="<?=$ret['parentscontactno']?>"  maxlength="10"></td>
 
                 </tr>
                 <tr>
@@ -109,9 +121,11 @@ if($query){
                 </tr>
                 <tr >
                 <th class=" text-success"> Coming On </th>
-               
-                <td><input type="date" name="comingOn" id="comingOn" class="form-control bg-success text-white " value="<?=$ret['comingOn']?>" ></td>
+                <td><input type="date" name="comingOn" id="comingOn" class="form-control border-success text-success " value="<?=$ret['comingOn']?>" >
+                    <span id="cometime"></span>
+              </td>
                 </tr>
+
                 <tr >
                 <th class=" text-success">WhatsApp</th>
                
@@ -141,14 +155,16 @@ if($query){
     </div>
     <script>
       const status = document.getElementById('status');
-      status.addEventListener('click', changeStatus);
+      status.addEventListener('change', changeStatus);
            function changeStatus() {
                   let statusT = status.value;
                  if(statusT == 'interested'){
                   document.getElementById("comingOn").required = true;
+                  document.getElementById("cometime").innerHTML = "<input type='time' name='comingT' class='form-control mt-1' required='' >";
+                  
                  }else{
                   document.getElementById("comingOn").required = false;
-                  
+                  document.getElementById("cometime").innerHTML = "";
                  }
             }
       
@@ -169,7 +185,28 @@ $(function(){
     $('#followUp').attr('min', maxDate);
 });
 </script>
+
+<script type="text/javascript">
+$(function(){
+    var dtToday = new Date();
+ 
+    var month = dtToday.getMonth()+ 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+     day = '0' + day.toString();
+    var maxDate = year + '-' + month + '-' + day;
+    $('#comingOn').attr('min', maxDate);
+});
+</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>
 
+<?php }else{
+
+} ?>
+<h2>This Data is Not Assigned To You</h2>
+<a href="../telecallerPanel.php?page=callStart" class="btn btn-danger m-3 ">Go Back</a>

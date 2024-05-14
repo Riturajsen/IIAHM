@@ -4,6 +4,7 @@
 <?php
 
 session_start();
+error_reporting(false);
 $secure_id = $_SESSION['secure_id'];
 
 include "../core/main.php";
@@ -60,13 +61,14 @@ if (mysqli_num_rows($fetchAuth) > 0){
 <div class="row p-3">
     <!-- Import link -->
    <?php     if($page == 'teleTotalData')   { include "telecaller/index.php"; };?> 
+   <?php     if($page == '')                { include "telecaller/allCalls.php"; };?> 
    <?php     if($page == 'callStart')       { include "telecaller/callStart.php"; };?> 
    <?php     if($page == 'allCalls')        { include "telecaller/allCalls.php"; };?> 
    <?php     if($page == 'whatsappSet')     { include "whatsapp/index.php"; };?> 
 
    
   </div>
-        
+  
 
 
 

@@ -15,6 +15,7 @@ if(isset($_POST['stdId'])){
  $email = $row['filesource'];
  $contact = $row['institute'];
  $status = $row['status'];
+ $TimeCalled = $row['TimeCalled'];
  $lastUpdate = explode(PHP_EOL,$row['comment']) ;  // $row['comment'];
 
  $lastCall = $row['modified'];
@@ -28,7 +29,7 @@ if(isset($_POST['stdId'])){
  $response .= "</tr>";
 
  $response .= "<tr>";
- $response .= "<td>Called : </td><td>".count($lastUpdate)." Times </td>";
+ $response .= "<td>Called : </td><td>". $TimeCalled ." Times </td>";
  $response .= "</tr>";
  
  $response .= "<tr>";
