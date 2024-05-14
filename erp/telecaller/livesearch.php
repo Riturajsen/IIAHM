@@ -1,11 +1,16 @@
 <?php
+session_start();
 include "../../core/main.php";
-if(isset($_POST['input'])){
+$username = $_SESSION['username'];
 
+$res = mysqli_query($con , "SELECT * from users where username='$username'");
+$ret = mysqli_fetch_assoc($res);
+
+if(isset($_POST['input'])){
     $input = $_POST['input'];
     $query = "SELECT * from studentdetails where contactno LIKE '%{$input}%' or fname LIKE '%{$input}%' or institute LIKE '%{$input}%' LIMIT 6";
     $result = mysqli_query($con , $query);
-
+   
     if(mysqli_num_rows($result) > 0){ ?>
 
                 <table class="table table-warning table-hover table-borderd table-striped mt-4">
@@ -49,7 +54,7 @@ if(isset($_POST['input'])){
                                       ?></td>
                                     <td><?php  echo $row['institute'];?></td>
                                     
-                                    <td><a href="telecaller/callAction.php?id=<?=$row['id'];?>&name=<?=$_SESSION['username'];?>"><i class="fa-solid fa-phone text-dark"></i></a></td>
+                                    <td><a href="telecaller/callAction.php?id=<?=$row['id'];?>&name=<?=$_SESSION['username'];?>&teleId=<?=$ret['id']?>"><i class="fa-solid fa-phone text-dark"></i></a></td>
                             </tr> 
                             
                              <?php 
