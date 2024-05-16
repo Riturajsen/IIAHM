@@ -60,7 +60,7 @@ if(isset($_POST['stdId'])){
  $response .= "</tr>";
 
  $response .= "<tr>";
- $response .= "<a href='telecaller/callAction.php?id=".$id."&name=".$_SESSION['username']."' class='btn btn-success'>Call ".$name."</a>";
+ $response .= "<a href='telecaller/callAction.php?id=".$id."&name=".$_SESSION['username']."&teleId=".$row['allotedTo']." ' class='btn btn-success'>Call ".$name."</a>";
  $response .= "</tr>";
 
  }
