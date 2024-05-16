@@ -13,7 +13,7 @@ if(!empty($_SESSION['qstring'])){
     switch($_SESSION['qstring']){ 
         case 'succ': 
             $statusType = 'alert-success'; 
-            $statusMsg = 'Student data has been alloted successfully.'; 
+            $statusMsg = 'Student data has been Updated successfully.'; 
             break; 
         case 'err': 
             $statusType = 'alert-danger'; 
@@ -50,15 +50,16 @@ if (mysqli_num_rows($fetchAuth) > 0){
 
 <!-- header End -->
             <div id="layoutSidenav_content">
-            <?php if(!empty($statusMsg)){ ?>
-<div class="col-xs-12 p-3">
-    <div class="alert <?php echo $statusType; ?>"><?php echo $statusMsg; ?></div>
-</div>
-<?php } ?>
+          
             <!-- Display status message -->
 
 <div class="">
 <div class="row p-3">
+<?php if(!empty($statusMsg)){ ?>
+<div class="col-md-12">
+    <div class="alert <?php echo $statusType; ?>"><?php echo $statusMsg; ?></div>
+</div>
+<?php } ?>
     <!-- Import link -->
    <?php     if($page == 'teleTotalData')   { include "telecaller/index.php"; };?> 
    <?php     if($page == '')                { include "telecaller/allCalls.php"; };?> 

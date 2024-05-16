@@ -32,8 +32,8 @@ $globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where calle
         
 
         <td><button data-id="<?=$row['id']?>" id="" class='btn btn-warning btn-popup'><i class="fa-solid fa-eye"></i></button></td>
-        <td class=""><a href="telecaller/callAction.php?id=<?=$row['id'];?>&name=<?=$_SESSION['username'];?>"><i class="fa-solid fa-phone text-dark"></i></a></td>
-
+        <td class=""><a href="telecaller/callAction.php?id=<?=$row['id'];?>&name=<?=$_SESSION['username'];?>&teleId=<?=$allotedId?>"><i class="fa-solid fa-phone text-dark"></i></a></td>
+       
  </tr>
 
  <?php $i++ ;} ?>
