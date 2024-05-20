@@ -82,7 +82,7 @@ if (mysqli_num_rows($fetchAuth) > 0){
                                 <div class="card bg-warning text-white mb-4">
                                     <div class="card-body text-danger">Total UnAssign Data</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="text-danger stretched-link" href="#"><?=$fetch_num_unAsign?></a>
+                                        <a class="text-danger stretched-link" href="allot.php"><?=$fetch_num_unAsign?></a>
                                         <div class="small text-danger"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>

@@ -43,7 +43,7 @@ $globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where allot
     echo "class='bg-danger text-white'";
   }
   elseif($row['status'] == 'follow_up'){
-    echo "class='bg- text-white'";
+    echo "class=''";
   }
   elseif($row['status'] == 'closed'){
     echo "class='bg-danger text-white'";

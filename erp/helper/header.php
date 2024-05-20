@@ -38,7 +38,7 @@ include ("../../core/main.php");
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a href="" class="dropdown-item"> <?=$returnAuth['fname'];?></a></li>
+                        <li><a href="profile.php" class="dropdown-item"> <?=$returnAuth['fname'];?></a></li>
                         <!-- <li><a class="dropdown-item" href="#!">Settings</a></li> -->
                         <!-- <li><a class="dropdown-item" href="#!">Activity Log</a></li> -->
                         <li><hr class="dropdown-divider" /></li>
@@ -70,11 +70,11 @@ include ("../../core/main.php");
                                     <a class="nav-link" href="uploadStudent.php">Students</a>
                                 </nav>
                             </div>
-                            <!-- <a class="nav-link collapsed" href="allot.php" data-bs-toggle="" data-bs-target="" aria-expanded="" aria-controls="">
+                            <a class="nav-link collapsed" href="allot.php" data-bs-toggle="" data-bs-target="" aria-expanded="" aria-controls="">
                                 <div class="sb-nav-link-icon"><i class="fas fa-phone"></i></div>
                               Assign Calls
-                            </a> -->
-                            <a class="nav-link" href="teleCallerReport.php">
+                            </a>
+                            <a class="nav-link" href="telecallerRep.php">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                                 Telecaller Report
                             </a>
