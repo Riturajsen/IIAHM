@@ -45,58 +45,44 @@ if (mysqli_num_rows($fetchAuth) > 0){
 
 <!-- header End -->
             <div id="layoutSidenav_content">
-            <?php if(!empty($statusMsg)){ ?>
-<div class="col-xs-12 p-3">
-    <div class="alert <?php echo $statusType; ?>"><?php echo $statusMsg; ?></div>
-</div>
-<?php } ?>
-            <!-- Display status message -->
-
-<div class="">
-<div class="row p-3">
-    <!-- Import link -->
-    <select name="course" class="form-control bg-dark text-white" id="course">
-     
-    <?php
-  if(mysqli_num_rows($fetch_tele) > 0) {
-    ?>   <option value="">Select A Caller</option>
-    <?php
-    
-    while ($row=mysqli_fetch_array($fetch_tele)){
-    ?>
-<option value="<?=$row['id']?>"><?=$row['username']?></option>
-
-
-<?php } } else{ echo " <option value=''>No Caller Added</option>";} ?>
-    </select>
-    <!-- Excel file upload form -->
- <div id="myTable"></div>
-    <!-- Data list table --> 
-     
-
-</div>
-
-    </table>
-  </div>
+                
+                    <?php if(!empty($statusMsg)){ ?>
+                    <div class="col-md-12">
+                        <div class="alert <?php echo $statusType; ?>"><?php echo $statusMsg; ?></div>
+                    </div>
+                    <?php } ?>
+                <div class="container mt-3">
+                <form action="helper/dateFilterExport.php" method="post">
+                <select name="teleId" class="form-control bg-dark text-white" id="teleId">
+                        
+                        <?php
+                    if(mysqli_num_rows($fetch_tele) > 0) {
+                        ?>   <option value="">Select A Caller</option>
+                        <?php
+                        
+                        while ($row=mysqli_fetch_array($fetch_tele)){
+                        ?>
+                    <option value="<?=$row['id']?>"><?=$row['username']?></option>
+                    
+                    
+                    <?php } } else{ echo " <option value=''>No Caller Added</option>";} ?>
+                        </select>
+                    Start Date : <input type="date" name="start_date" class="form-control" required="true"><br>
+                    End Date :   <input type="date" name="end_date" class="form-control" required="true"><br>
+                    <input type="submit" class="btn btn-warning form-control" value="Export to Excel">
+                </form>
+                
+                
+                </div>
     
 
 </div>
 
              <!-- footer start-->
              <?php include ('helper/footer.php'); ?>
-             </div>
-        </div>
+           
             <!-- footer End -->
-            <script type="text/javascript">
-$("#course").change(function(){
-    var course = $(this).val();
-    $.post('helper/getTeleRep.php', {course: course}, function(response){
-        // your drop down box is in response
-        $("#myTable").html(response);
-    });
-});
-
-</script>
+    
    
             </body>
 </html>

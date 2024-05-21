@@ -1,0 +1,34 @@
+        <?php if(!empty($statusMsg)){ ?>
+<div class="col-xs-12 p-3">
+    <div class="alert <?php echo $statusType; ?>"><?php echo $statusMsg; ?></div>
+</div>
+<?php } ?>
+            <!-- Display status message -->
+
+<div class="">
+<div class="row p-3">
+    <!-- Import link -->
+    <select name="course" class="form-control bg-dark text-white" id="course">
+     
+    <?php
+  if(mysqli_num_rows($fetch_tele) > 0) {
+    ?>   <option value="">Select A Caller</option>
+    <?php
+    
+    while ($row=mysqli_fetch_array($fetch_tele)){
+    ?>
+<option value="<?=$row['id']?>"><?=$row['username']?></option>
+
+
+<?php } } else{ echo " <option value=''>No Caller Added</option>";} ?>
+    </select>
+    <!-- Excel file upload form -->
+ <!-- <div id="myTable"></div> -->
+    <!-- Data list table --> 
+     
+
+</div>
+
+    <!-- </table> -->
+  </div>
+    

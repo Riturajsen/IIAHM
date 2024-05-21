@@ -41,6 +41,7 @@
       <div class="form-group">
         <label for="password">Password:</label>
         <input type="password" class="form-control" id="password" name="password" required>
+        <a href="void:" id="togglePassword">Show Password</a>
       </div>
       <button type="submit" class="btn btn-primary form-control">Login</button>
 
@@ -58,5 +59,14 @@
     </div>
     </div>
   </div>
+  <script>
+        document.getElementById('togglePassword').addEventListener('click', function () {
+    const passwordField = document.getElementById('password');
+    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordField.setAttribute('type', type);
+
+    this.textContent = type === 'password' ? 'Show' : 'Hide';
+});
+    </script>
 </body>
 </html>
