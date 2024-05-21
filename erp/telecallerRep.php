@@ -66,6 +66,12 @@ if ($fetchAuth->num_rows > 0) {
 
         
         });
+
+        var getId = document.getElementById('teleId');
+        getId.addEventListener("click", (event) => {
+            document.getElementById(' ').value = getId.value;
+        });
+
     </script>
 </head>
 <body>
@@ -98,7 +104,7 @@ if ($fetchAuth->num_rows > 0) {
                 <form action="helper/dateFilterExport.php" method="POST">
                 <input type="hidden" id="start_date" name="start_date">
                 <input type="hidden" id="end_date" name="end_date">
-                <input type="hidden" id="teleId" name="teleId">
+                <input type="hidden" id="teleIdE" name="teleIdE">
                 <input type="submit" class="btn btn-warning form-control" id="" value="Export To Excel">
             </div>
                 </form>
