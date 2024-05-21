@@ -55,13 +55,14 @@ if (mysqli_num_rows($fetchAuth) > 0){
 <?php include ('helper/header.php'); ?>
 
 <!-- header End -->
-<?php if(!empty($statusMsg)){ ?>
+
+            <div id="layoutSidenav_content">
+                <main>
+                <?php if(!empty($statusMsg)){ ?>
 <div class="col-xs-12 p-3">
     <div class="alert <?php echo $statusType; ?>"><?php echo $statusMsg; ?></div>
 </div>
 <?php } ?>
-            <div id="layoutSidenav_content">
-                <main>
                     <div class="container-fluid px-4">
                         <?php if($returnAuth['rights'] == 1 || $returnAuth['rights'] == 2 || $returnAuth['rights'] == 3) {?>
                         <h1 class="mt-4">Dashboard</h1>
@@ -87,7 +88,7 @@ if (mysqli_num_rows($fetchAuth) > 0){
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-md-6">
+                            <!-- <div class="col-xl-3 col-md-6">
                                 <div class="card bg-success text-white mb-4">
                                     <div class="card-body">Success Card</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
@@ -104,9 +105,9 @@ if (mysqli_num_rows($fetchAuth) > 0){
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-xl-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
@@ -125,7 +126,7 @@ if (mysqli_num_rows($fetchAuth) > 0){
                                     <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <?php } elseif($returnAuth['rights'] == 4){
                           ?>
                           <!-- telecaller dashboard -->

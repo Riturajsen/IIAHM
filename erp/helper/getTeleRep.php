@@ -1,49 +1,36 @@
 <?php
-
 include "../../core/main.php";
 
-    $course = $_POST['course'];
+// Check if course is provided
+if(isset($_POST['course'])) {
+    $course = trim($_POST['course']);
 
-    if($course == " " || $course == NULL){
+    if(!empty($course)) {
+        // Prepare and execute SQL query
+        $query = "SELECT * FROM studentdetails WHERE allotedTo=?";
+        $stmt = $con->prepare($query);
+        $stmt->bind_param("s", $course);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-
-
-    }else{
-    $telecallUpdater = mysqli_query($con , "SELECT * FROM studentdetails where allotedTo='$course'");
-    $numTeleData = mysqli_num_rows($telecallUpdater);
-
-    // Fetch data from db related to $course
-
-   
+        // Check if any data is fetched
+        if($result->num_rows > 0) {
+            echo '<table class="table table-hover">';
+            echo '<thead><tr><th>Name</th><th>Contact</th><th>Call Update</th><th>Followup</th><th>EDIT</th></tr></thead>';
+            echo '<tbody>';
+            while ($row = $result->fetch_assoc()) {
+                echo '<tr>';
+                echo '<td>' . htmlspecialchars($row['fname']) . '</td>';
+                echo '<td><a href="tel:' . htmlspecialchars($row['contactno']) . '">' . htmlspecialchars($row['contactno']) . '</a></td>';
+                echo '<td>' . htmlspecialchars($row['status']) . '</td>';
+                echo '<td>' . htmlspecialchars($row['followup']) . '</td>';
+                echo '<td>Edit</td>';
+                echo '</tr>';
+            }
+            echo '</tbody></table>';
+        } else {
+            echo '<p>NO CALL ASSIGN</p>';
+        }
+    }
+}
 ?>
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <td>
-                Name
-            </td>
-            <th>Contact</th>
-            <th>Call Update</th>
-            <th>Followup</th>
-            <th>EDIT</th>
-        </tr>
-        </thead>
-        <tbody>
-       <?php
-        if($numTeleData > 0) {
-            while ($row=mysqli_fetch_array($telecallUpdater)){
-       ?>
-        <tr>
-            <td><?=$row['fname'];?></td>
-            <td><a href="tel:<?=$row['contactno'];?>"><?=$row['contactno'];?></a></td>
-            <td><?=$row['status'];?></td>
-            <td><?=$row['followup'];?></td>
-            <td>Edit</td>
-        </tr>
-
-
-
-<?php } }else{ echo "<td>NO CALL ASSIGN</td>"; } ?>
-    </tbody>
-</table>
-<?php } ?>

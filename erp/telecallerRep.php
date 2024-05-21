@@ -1,14 +1,13 @@
 <?php
 session_start();
-$secure_id = $_SESSION['secure_id'];
-
 include "../core/main.php";
 
+// Check if there's a status message to display
 if (!empty($_SESSION['qstring'])) {
     switch ($_SESSION['qstring']) {
         case 'succ':
             $statusType = 'alert-success';
-            $statusMsg = 'Student data has been alloted successfully.';
+            $statusMsg = 'Student data has been allotted successfully.';
             break;
         case 'err':
             $statusType = 'alert-danger';
@@ -22,18 +21,23 @@ if (!empty($_SESSION['qstring'])) {
             $statusType = '';
             $statusMsg = '';
     }
-    $_SESSION['qstring'] = " ";
+    // Clear the status message after displaying it
+    $_SESSION['qstring'] = "";
 }
 
+// Fetch user details based on session secure_id
 $stmt = $conn->prepare("SELECT * FROM users WHERE secure_id = ?");
-$stmt->bind_param("s", $secure_id);
+$stmt->bind_param("s", $_SESSION['secure_id']);
 $stmt->execute();
 $fetchAuth = $stmt->get_result();
 
+// Check if user is authenticated
 if ($fetchAuth->num_rows > 0) {
     $returnAuth = $fetchAuth->fetch_assoc();
 
+    // Check user rights
     if ($returnAuth['rights'] == 2 || $returnAuth['rights'] == 3) {
+        // Fetch telecallers
         $stmt = $conn->prepare("SELECT * FROM users WHERE rights = ?");
         $rights = 4;
         $stmt->bind_param("i", $rights);
@@ -60,29 +64,23 @@ if ($fetchAuth->num_rows > 0) {
                     data: formData,
                     success: function (response) {
                         $('#dataTable').html(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error:", error);
                     }
                 });
             });
-
-        
         });
-
-        var getId = document.getElementById('teleId');
-        getId.addEventListener("click", (event) => {
-            document.getElementById(' ').value = getId.value;
-        });
-
     </script>
 </head>
 <body>
 <div id="layoutSidenav_content">
-   
     <div class="p-3 mt-3">
-    <?php if (!empty($statusMsg)) { ?>
-        <div class="col-md-12">
-            <div class="alert <?php echo $statusType; ?>"><?php echo $statusMsg; ?></div>
-        </div>
-    <?php } ?>
+        <?php if (!empty($statusMsg)) { ?>
+            <div class="col-md-12">
+                <div class="alert <?php echo $statusType; ?>"><?php echo $statusMsg; ?></div>
+            </div>
+        <?php } ?>
         <form id="myForm">
             Start Date: <input type="date" name="start_date" class="form-control" required="true"><br>
             End Date: <input type="date" name="end_date" class="form-control" required="true"><br>
@@ -99,15 +97,16 @@ if ($fetchAuth->num_rows > 0) {
         </form>
         <div class="row p-3 m-3 text-center">
             <div class="col-md-6">
-                <a type="button" class="btn btn-success form-control" id="fetchDataBtn">Fetch Data</a></div>
+                <a type="button" class="btn btn-success form-control" id="fetchDataBtn">Fetch Data</a>
+            </div>
             <div class="col-md-6">
                 <form action="helper/dateFilterExport.php" method="POST">
-                <input type="hidden" id="start_date" name="start_date">
-                <input type="hidden" id="end_date" name="end_date">
-                <input type="hidden" id="teleIdE" name="teleIdE">
-                <input type="submit" class="btn btn-warning form-control" id="" value="Export To Excel">
-            </div>
+                    <input type="hidden" id="start_date" name="start_date">
+                    <input type="hidden" id="end_date" name="end_date">
+                    <input type="hidden" id="teleIdE" name="teleIdE">
+                    <input type="submit" class="btn btn-warning form-control" id="" value="Export To Excel">
                 </form>
+            </div>
         </div>
         <hr>
         <div id="dataTable" class="mt-3"></div>

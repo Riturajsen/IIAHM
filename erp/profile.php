@@ -1,11 +1,29 @@
 <?php
 session_start();
 $secure_id = $_SESSION['secure_id'];
+
+if (!isset($_SESSION["secure_id"])) {
+    header("Location: ../index.php");
+    exit();}else{
 include "../core/main.php";
 $query = mysqli_query($con , "SELECT * from users where secure_id = '$secure_id'");
 $ret = mysqli_fetch_assoc($query);
 ?>
 
+<?php
+
+// Set the session timeout period (in seconds)
+$inactive_timeout = 300; // 30 minutes
+
+// Check if the session is active
+if(isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $inactive_timeout)) {
+    // If session is inactive for longer than the timeout period, destroy the session
+  //  session_unset();     // unset $_SESSION variable for the run-time 
+    //session_destroy();   // destroy session data in storage
+}
+$_SESSION['last_activity'] = time();
+// echo  $_SESSION['last_activity'] > $inactive_timeout;
+?>
 
 
 <html lang="en">
@@ -14,6 +32,7 @@ $ret = mysqli_fetch_assoc($query);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile</title>
    <style>
+
     body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -43,7 +62,9 @@ h2 {
     padding: 10px;
     border-radius: 4px;
 }
-
+.inactive{
+    text-align: center;
+}
 form {
     display: flex;
     flex-direction: column;
@@ -86,14 +107,18 @@ form {
 .form-group button:hover {
     background-color: #0056b3;
 }
-
+.text-danger{
+    color: red;
+}
    </style>
 </head>
-<body>
+<body class="body">
+<div id="timer"></div>
     <div class="container">
-    <div class="close"><a href="home.php"><button>X</button></a></div>
+    <div class="close"><a href="home.php"><button>X</button></a>  </div>
         <h2>Edit Profile</h2>
-        <form action="save_profile.php" method="post">
+       
+        <form action="helper/save_profile.php" method="post">
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" value="<?=$ret['username']?>" readonly>
@@ -107,8 +132,8 @@ form {
                 <input type="email" id="email" name="email" required>
             </div>
             <div class="form-group">
-                <label for="password">New Password:</label>
-                <input type="password" id="password" name="pasword" required>
+                <label for="password">New Password: <small class="text-danger">leave Empty if unchanged</small></label>
+                <input type="password" id="password" name="pasword">
                 <a href="void:" id="togglePassword">Show Password</a>
                 
             </div>
@@ -118,14 +143,20 @@ form {
             </div>
         </form>
     </div>
+    <div class="container">
+    <div class="inactive">The page will expire in 3 Mins Of InActive</div>
+    </div>
     <script>
         document.getElementById('togglePassword').addEventListener('click', function () {
     const passwordField = document.getElementById('password');
     const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
     passwordField.setAttribute('type', type);
 
-    this.textContent = type === 'password' ? 'Show' : 'Hide';
+    this.textContent = type === 'password' ? 'Show Password' : 'Hide Password';
 });
     </script>
+
 </body>
 </html>
+
+<?php } ?>
