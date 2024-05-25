@@ -3,11 +3,11 @@ $fname = $_POST['fname'];
 $Pnumber = $_POST['Pnumber'];
 session_start();
 $captcha = $_SESSION['captcha'];
-
-$captchaT = $_POST['captcha'];
-
-
 use PHPMailer\PHPMailer\PHPMailer;
+$captchaT = $_POST['captcha'];
+if(empty($Pnumber) && empty($Pnumber)){
+
+
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 // require 'otp/index.php';
@@ -145,5 +145,12 @@ else{
   $_SESSION['captcha'] = " ";
   header("Location: contact.php?rmsg=$rmsg");
   exit();
-}?>
+} } 
+else{
+  $rmsg = "The Phone or the Name Can't Be Empty";
+  $_SESSION['captcha'] = " ";
+  header("Location: contact.php?rmsg=$rmsg");
+  exit();
+}
+?>
 

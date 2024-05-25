@@ -156,7 +156,7 @@ if($query){
           <form action="calling.php" method="post"><input type="hidden" name="number" value="<?=$ret['contactno'];?>"><input type="hidden" name="ChildId" value="<?=$ret['id']?>"><input type="submit" value="Call This Number" class="btn btn-warning m-3 float-start "></form></div>
           <div class="col-md-4"><a href="addNewLead.php?id=<?=$ret['allotedTo']?>" class="btn btn-success m-3 form-control text-center">Add New Lead</a></div>
           <div class="col-md-4">
-        <a href="../telecallerPanel.php?page=callStart" class="btn btn-danger m-3 float-end">Go Back</a>
+        <a href="javascript:void(0)" id="backButton" class="btn btn-danger m-3 float-end">Go Back</a>
         </div>
         </div>
         </div>
@@ -234,6 +234,15 @@ $(function(){
     var maxDate = year + '-' + month + '-' + day;
     $('#followUp').attr('min', maxDate);
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  var backButton = document.getElementById('backButton');
+
+  backButton.addEventListener('click', function() {
+    window.history.back();
+  });
+});
+
 </script>
 
 <script type="text/javascript">
