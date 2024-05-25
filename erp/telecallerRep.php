@@ -82,8 +82,8 @@ if ($fetchAuth->num_rows > 0) {
             </div>
         <?php } ?>
         <form id="myForm">
-            Start Date: <input type="date" name="start_date" class="form-control" required="true"><br>
-            End Date: <input type="date" name="end_date" class="form-control" required="true"><br>
+            Start Date: <input type="date" name="start_date" id="Mstart_date" class="form-control" required="true"><br>
+            End Date: <input type="date" name="end_date"  id="Mend_date" class="form-control" required="true"><br>
             <select name="teleId" class="form-control " id="teleId">
                 <?php if ($tele_num > 0) { ?>
                     <option value="">Select A Caller</option>
@@ -113,5 +113,9 @@ if ($fetchAuth->num_rows > 0) {
     </div>
     <?php include('helper/footer.php'); ?>
 </div>
+<script>
+    var start_date = document.getElementById('start_date').value() = document.getElementById('Mstart_date').value();
+    var end_date = document.getElementById('end_date').value() = document.getElementById('Mend_date').value();
+</script>
 </body>
 </html>

@@ -87,8 +87,8 @@ include ("../../core/main.php");
                             <?php } elseif($returnAuth['rights'] == 4  ){ ?>
                             <div class="sb-sidenav-menu-heading">Telecaller</div>
                             <a class="nav-link" href="telecallerPanel.php?page=teleTotalData">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
-                                View Total Data
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-eye"></i></div>
+                                Close View
                             </a>
                             <a class="nav-link" href="telecallerPanel.php?page=callStart">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-phone"></i></div>

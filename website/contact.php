@@ -66,10 +66,11 @@ $_SESSION['captcha'] = $captcha;
                                     <div class="form-group">
                                         <input type="text" id="name" required="true" name="fname" placeholder="Full-name">
                                     </div>
-                                    <div class="form-group">
-                                        <input type="tel" id="email" required="true" pattern="[6-9]{1}[0-9]{9}" name="Pnumber" placeholder="Enter Your Mobile Number" >
+                                    <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">+91</span>
+                                    <input type="tel" class="form-control" required="true" name="Pnumber" pattern="[6-9]{1}[0-9]{9}" name="Pnumber" placeholder="Enter Your Mobile Number">
                                     </div>
-                      
+                                    
                                                                               
                                     <!-- <div class="form-group mb-3" id="">
                                         <select class="form-select" id="">

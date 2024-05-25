@@ -43,7 +43,7 @@ $globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where allot
     echo "class='bg-danger text-white'";
   }
   elseif($row['status'] == 'follow_up'){
-    echo "class=''";
+    echo "class='bg-secondary text-white'";
   }
   elseif($row['status'] == 'closed'){
     echo "class='bg-danger text-white'";
@@ -67,26 +67,7 @@ $globalTeledata = mysqli_query($conn , "SELECT * from studentdetails where allot
 </tbody>
 </table>
 </div>
-<!-- Modal -->
- <!-- Modal -->
-    <!-- <div class="modal fade" id="stuModal" role="dialog">
-      <div class="modal-dialog"> -->
- 
-        <!-- Modal content-->
-        <!-- <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Student Details</h4>
-            <button type="button" class="close" data-dismiss="modal">×</button>
-          </div>
-          <div class="modal-body">
- 
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div> -->
+
 
 
     <!-- new Modal -->

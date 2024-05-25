@@ -24,14 +24,15 @@ $ret = mysqli_fetch_assoc($queryFollowUp);
     <div class="row">
 
 
- <div class="com-lg-6">
+ <div class="col-lg-6">
  <div class="container mt-5 p-3">
         
         <div class="card shadow-lg ">
           <div class="card-header bg-dark text-white">
             <h3>Hello TeleCaller these are the follow up calls <?=$today_date?> </h3>
           </div>
-          <div class="card-body">
+          <div class="card-body" style="overflow-y: auto;">
+
             <table class="table table-hover">
        <tr>
         <th>#</th>
@@ -60,7 +61,7 @@ $ret = mysqli_fetch_assoc($queryFollowUp);
        </tr>
                 <?php $i++; } } else{?>
                 <tr>
-                    <td colspan="4" class="text-center"><h3>No Data Found</h3></td>
+                    <td colspan="6" class="text-center"><h3>No Data Found</h3></td>
                 </tr>
                 <?php } ?>
             </table>
