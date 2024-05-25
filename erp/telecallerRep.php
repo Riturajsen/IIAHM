@@ -7,7 +7,7 @@ if (!empty($_SESSION['qstring'])) {
     switch ($_SESSION['qstring']) {
         case 'succ':
             $statusType = 'alert-success';
-            $statusMsg = 'Student data has been allotted successfully.';
+            $statusMsg = 'The data has been successfully exported.';
             break;
         case 'err':
             $statusType = 'alert-danger';
@@ -24,7 +24,6 @@ if (!empty($_SESSION['qstring'])) {
     // Clear the status message after displaying it
     $_SESSION['qstring'] = "";
 }
-
 // Fetch user details based on session secure_id
 $stmt = $conn->prepare("SELECT * FROM users WHERE secure_id = ?");
 $stmt->bind_param("s", $_SESSION['secure_id']);
@@ -47,7 +46,6 @@ if ($fetchAuth->num_rows > 0) {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,6 +62,41 @@ if ($fetchAuth->num_rows > 0) {
                     data: formData,
                     success: function (response) {
                         $('#dataTable').html(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error:", error);
+                    }
+                });
+            });
+
+            $('#ExportExcl').click(function () {
+                var formData = $('#myForm').serialize();
+
+                $.ajax({
+                    url: 'helper/dateFilterExport.php',
+                    type: 'POST',
+                    data: formData, // Sending form data to the server
+                    xhrFields: {
+                        responseType: 'blob' // Set the expected response type to 'blob' for binary data
+                    },
+                    success: function (response) {
+                        // Create a Blob object from the response
+                        var blob = new Blob([response], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+                        // Create a temporary URL for the Blob
+                        var url = window.URL.createObjectURL(blob);
+
+                        // Create an anchor element to trigger the download
+                        var a = document.createElement('a');
+                        a.href = url; ;
+                        a.download = 'exported_data.xlsx'; // Specify the filename for the downloaded file
+                        document.body.appendChild(a);
+
+                        // Trigger the click event on the anchor element to start the download
+                        a.click();
+
+                        // Clean up by revoking the temporary URL
+                        window.URL.revokeObjectURL(url);
                     },
                     error: function(xhr, status, error) {
                         console.error("Error:", error);
@@ -100,12 +133,7 @@ if ($fetchAuth->num_rows > 0) {
                 <a type="button" class="btn btn-success form-control" id="fetchDataBtn">Fetch Data</a>
             </div>
             <div class="col-md-6">
-                <form action="helper/dateFilterExport.php" method="POST">
-                    <input type="hidden" id="start_date" name="start_date">
-                    <input type="hidden" id="end_date" name="end_date">
-                    <input type="hidden" id="teleIdE" name="teleIdE">
-                    <input type="submit" class="btn btn-warning form-control" id="" value="Export To Excel">
-                </form>
+                <a type="button" class="btn btn-warning form-control" id="ExportExcl">Export Data</a>
             </div>
         </div>
         <hr>
@@ -114,8 +142,6 @@ if ($fetchAuth->num_rows > 0) {
     <?php include('helper/footer.php'); ?>
 </div>
 <script>
-    var start_date = document.getElementById('start_date').value() = document.getElementById('Mstart_date').value();
-    var end_date = document.getElementById('end_date').value() = document.getElementById('Mend_date').value();
 </script>
 </body>
 </html>

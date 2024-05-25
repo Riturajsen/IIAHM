@@ -1,3 +1,7 @@
+<?php
+
+$id = $returnAuth['id'] 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,6 +32,38 @@
     <div class="col-md-3">
                 <input type="date" id="dateFilter" class="form-control">
             </div>
+            <div class="col-md-3">
+                <select type="date" id="institute" class="form-select">
+                <?php
+                $queryins = "SELECT institute from studentdetails where allotedTo ='$id' GROUP BY institute";
+                $ret = mysqli_query($con , $queryins);
+                if (mysqli_num_rows($ret) > 0) {
+                  echo '<option>Select A Institute</option>';
+                  while ($row = mysqli_fetch_array($ret)) {
+                      echo '<option value="' . $row['institute'] . '">' . $row['institute'] . '</option>';
+                  }
+              } else {
+                  echo '<option value="">No Institute Added</option>';
+              }
+          ?>
+          </select>
+            </div>
+            <div class="col-md-3">
+                <select type="date" id="locationn" class="form-select">
+                <?php
+                $queryins = "SELECT locationn from studentdetails where allotedTo ='$id' GROUP BY locationn";
+                $ret = mysqli_query($con , $queryins);
+                if (mysqli_num_rows($ret) > 0) {
+                  echo '<option>Select A location</option>';
+                  while ($row = mysqli_fetch_array($ret)) {
+                      echo '<option value="' . $row['locationn'] . '">' . $row['locationn'] . '</option>';
+                  }
+              } else {
+                  echo '<option value="">No location Added</option>';
+              }
+          ?>
+          </select>
+            </div>
 
     <!-- Add similar dropdowns for 'location', 'institute', and 'addedOn' -->
   </div>
@@ -49,29 +85,14 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="stuModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Details</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <!-- Content will be loaded dynamically via AJAX -->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script>
    $(document).ready(function() {
   // Apply filters when status filter changes
-  $('#statusFilter, #dateFilter').change(function() {
+  $('#statusFilter, #dateFilter,#locationn,#institute').change(function() {
                 applyFilters();
             });
 
@@ -79,6 +100,8 @@
   function applyFilters() {
     var statusFilter = $('#statusFilter').val();
     var dateFilter = $('#dateFilter').val();
+    var locationn = $('#locationn').val();
+    var institute = $('#institute').val();
     var filterAdd = $('#hidden').addClass("Hide");
 
     // Get values of other filters similarly
@@ -89,7 +112,9 @@
       data: {
         status: statusFilter,
         allotedId : <?php echo $returnAuth['id'] ?>,
-        date: dateFilter
+        date: dateFilter,
+        locationn: locationn,
+        institute: institute
         // Add other filter values here
       },
       success: function(data) {

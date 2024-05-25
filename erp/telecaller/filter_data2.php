@@ -9,7 +9,9 @@ include "../../core/main.php";
 // Fetching POST data
 $status = $_POST['status'] ?? '';
 $dateFilter = $_POST['date'] ?? '';
-$allotedId = $_POST['allotedId']; // allotedId filter value
+$allotedId = $_POST['allotedId'];
+$locationn = $_POST['locationn']; // allotedId filter value
+$institute = $_POST['institute']; // allotedId filter value
 // Retrieve other filter values similarly
 
 // Construct SQL query based on filter values
@@ -23,6 +25,13 @@ if (!empty($dateFilter)) {
   $formattedDate = date('Y-m-d', strtotime($dateFilter));
   $sql .= " AND DATE(addedOn) = '$formattedDate'";
 }
+if (!empty($status)) {
+  $sql .= " AND locationn = '$locationn'";
+}
+if (!empty($status)) {
+  $sql .= " AND institute = '$institute'";
+}
+
 
 // Add similar clauses for other filters (location, institute)
 
