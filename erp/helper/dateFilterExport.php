@@ -18,8 +18,7 @@ $tele_name = mysqli_fetch_assoc($fetch_tele);
 // Fetch data from the database
 $sql = "SELECT * FROM studentdetails WHERE addedOn BETWEEN '$start_date' AND '$end_date' AND allotedTo='$teleId'";
 $result = $conn->query($sql);
-$numrow = mysqli_num_rows($result);
-if($numrow > 0){
+
 // Create a new Spreadsheet object
 $spreadsheet = new Spreadsheet();
 
@@ -51,14 +50,12 @@ while ($row_data = $result->fetch_assoc()) {
 }
 
 // Set header for the downloaded Excel file
-// header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-// header('Content-Disposition: attachment;filename="' . $tele_name['fname'] . '_Report_For_' . $start_date . '_TO_' . $end_date . '.xlsx"');
-// header('Cache-Control: max-age=0');
+header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+header('Content-Disposition: attachment;filename="' . $tele_name['fname'] . '_Report_For_' . $start_date . '_TO_' . $end_date . '.xlsx"');
+header('Cache-Control: max-age=0');
 
 // Save Excel file to php://output (output to browser)
-// $writer = new Xlsx($spreadsheet);
-// $writer->save('php://output');
-}else{
-    return "No Data Found";
-}
+$writer = new Xlsx($spreadsheet);
+$writer->save('php://output');
+
 ?>

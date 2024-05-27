@@ -83,6 +83,10 @@ include ("../../core/main.php");
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                                 Telecaller Report
                             </a>
+                            <a class="nav-link" href="dataLogs.php">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-book"></i></div>
+                                 Data Sheet
+                            </a>
                             
                             <?php } elseif($returnAuth['rights'] == 4  ){ ?>
                             <div class="sb-sidenav-menu-heading">Telecaller</div>

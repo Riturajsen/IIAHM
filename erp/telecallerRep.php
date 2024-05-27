@@ -82,14 +82,14 @@ if ($fetchAuth->num_rows > 0) {
                     success: function (response) {
                         // Create a Blob object from the response
                         var blob = new Blob([response], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-
+                        // console.log(response);
                         // Create a temporary URL for the Blob
                         var url = window.URL.createObjectURL(blob);
 
                         // Create an anchor element to trigger the download
                         var a = document.createElement('a');
                         a.href = url; ;
-                        a.download = 'exported_data.xlsx'; // Specify the filename for the downloaded file
+                        a.download = 'iiahm_exported_data.xlsx'; // Specify the filename for the downloaded file
                         document.body.appendChild(a);
 
                         // Trigger the click event on the anchor element to start the download

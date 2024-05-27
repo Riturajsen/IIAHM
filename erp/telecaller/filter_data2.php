@@ -7,11 +7,11 @@ include "../../core/main.php";
 // Retrieve filter values
 
 // Fetching POST data
-$status = $_POST['status'] ?? '';
-$dateFilter = $_POST['date'] ?? '';
-$allotedId = $_POST['allotedId'];
-$locationn = $_POST['locationn']; // allotedId filter value
-$institute = $_POST['institute']; // allotedId filter value
+$status     =  $_POST['status'] ?? '';
+$dateFilter =  $_POST['date'] ?? '';
+$allotedId  =  $_POST['allotedId'];
+$locationn  =  $_POST['locationn'] ?? ''; //  filter value
+$institute  =  $_POST['institute'] ?? ''; // allotedId filter value
 // Retrieve other filter values similarly
 
 // Construct SQL query based on filter values
@@ -25,10 +25,10 @@ if (!empty($dateFilter)) {
   $formattedDate = date('Y-m-d', strtotime($dateFilter));
   $sql .= " AND DATE(addedOn) = '$formattedDate'";
 }
-if (!empty($status)) {
+if (!empty($locationn)) {
   $sql .= " AND locationn = '$locationn'";
 }
-if (!empty($status)) {
+if (!empty($institute)) {
   $sql .= " AND institute = '$institute'";
 }
 
@@ -54,7 +54,7 @@ while ($row = mysqli_fetch_array($result)) {
 }
 }
 else{
-    $output .="<td colspan='5' class='text-center'><h4> No Data In Selected Filter</h4></td>";
+    $output .="<td colspan='5' class='text-center'><h4> No Data Found In Selected Filter</h4></td>";
 }
 
 

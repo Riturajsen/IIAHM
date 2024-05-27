@@ -33,7 +33,7 @@ $id = $returnAuth['id']
                 <input type="date" id="dateFilter" class="form-control">
             </div>
             <div class="col-md-3">
-                <select type="date" id="institute" class="form-select">
+                <select id="institute" class="form-select">
                 <?php
                 $queryins = "SELECT institute from studentdetails where allotedTo ='$id' GROUP BY institute";
                 $ret = mysqli_query($con , $queryins);
@@ -49,7 +49,7 @@ $id = $returnAuth['id']
           </select>
             </div>
             <div class="col-md-3">
-                <select type="date" id="locationn" class="form-select">
+                <select  id="locationn" class="form-select">
                 <?php
                 $queryins = "SELECT locationn from studentdetails where allotedTo ='$id' GROUP BY locationn";
                 $ret = mysqli_query($con , $queryins);
@@ -92,17 +92,27 @@ $id = $returnAuth['id']
 <script>
    $(document).ready(function() {
   // Apply filters when status filter changes
-  $('#statusFilter, #dateFilter,#locationn,#institute').change(function() {
+            $('#locationn').change(function() {
+                applyFilters();
+            });
+
+            $('#statusFilter').change(function() {
+                applyFilters();
+            });
+            $(' #dateFilter').change(function() {
+                applyFilters();
+            });
+            $(' #institute').change(function() {
                 applyFilters();
             });
 
   // Function to apply filters
   function applyFilters() {
     var statusFilter = $('#statusFilter').val();
-    var dateFilter = $('#dateFilter').val();
-    var locationn = $('#locationn').val();
-    var institute = $('#institute').val();
-    var filterAdd = $('#hidden').addClass("Hide");
+    var dateFilter   = $('#dateFilter').val();
+    var locationn    = $('#locationn').val();
+    var institute    = $('#institute').val();
+    var filterAdd    = $('#hidden').addClass("Hide");
 
     // Get values of other filters similarly
 
@@ -124,7 +134,7 @@ $id = $returnAuth['id']
   }
 
   // Initially load table data without any filters
-  // applyFilters();
+  applyFilters();
 
 
 });

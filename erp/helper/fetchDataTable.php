@@ -1,7 +1,7 @@
 <?php 
 session_start();
 include "../../core/main.php";
-
+$date = date('Y-m-d');
 $TeleId = $_POST['TeleId'];
 $allotedid = $_POST['allotedid'];
 
@@ -14,7 +14,7 @@ else{
 
     if(!empty($allotedid)){
 foreach($allotedid as $alloted){
-    $con->query("UPDATE studentdetails SET allotedTo = '".$TeleId."' WHERE id = '".$alloted."'"); 
+    $con->query("UPDATE studentdetails SET allotedTo = '".$TeleId."' , allotedDate = '".$date."' WHERE id = '".$alloted."'"); 
 }
 $_SESSION['qstring'] = 'succ'; 
 header('location: ../allot.php');   
