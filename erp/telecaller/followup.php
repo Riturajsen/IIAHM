@@ -7,9 +7,6 @@ $userId = $_REQUEST['userId'];
 $queryFollowUp = mysqli_query($con , "SELECT * FROM studentdetails where allotedTo='$userId' AND followup='$today_date'");
 $ret = mysqli_fetch_assoc($queryFollowUp);
 
-
-
-
 ?>
 
 <!doctype html>

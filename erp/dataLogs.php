@@ -1,74 +1,83 @@
 <?php
+error_reporting(false);
 session_start();
-$secure_id = $_SESSION['secure_id'];
-
 include "../core/main.php";
 
-if (!empty($_SESSION['qstring'])) {
-    switch ($_SESSION['qstring']) {
-        case 'succ':
-            $statusType = 'alert-success';
-            $statusMsg = 'Student data has been allotted successfully.';
-            break;
-        case 'err':
-            $statusType = 'alert-danger';
-            $statusMsg = 'Something went wrong, please try again.';
-            break;
-        case 'invalid_file':
-            $statusType = 'alert-danger';
-            $statusMsg = 'Some Undefined Server error Caught';
-            break;
-        default:
-            $statusType = '';
-            $statusMsg = '';
-    }
-    $_SESSION['qstring'] = " ";
+// Check if secure_id exists in the session
+if (!isset($_SESSION['secure_id'])) {
+    header('location: ../');
+    exit();
 }
 
-$fetchAuth = mysqli_query($conn, "SELECT * FROM users WHERE `secure_id`='$secure_id'");
-if (mysqli_num_rows($fetchAuth) > 0) {
-    $returnAuth = mysqli_fetch_assoc($fetchAuth);
-    $fetch_tele = mysqli_query($conn, "SELECT * FROM users WHERE rights=4");
-    $tele_num = mysqli_num_rows($fetch_tele);
+$secure_id = $_SESSION['secure_id'];
+
+// Function to get status message
+function getStatusMessage() {
+    if (!empty($_SESSION['qstring'])) {
+        $statusType = '';
+        $statusMsg = '';
+        switch ($_SESSION['qstring']) {
+            case 'succ':
+                $statusType = 'alert-success';
+                $statusMsg = 'Student data has been allotted successfully.';
+                break;
+            case 'err':
+                $statusType = 'alert-danger';
+                $statusMsg = 'Something went wrong, please try again.';
+                break;
+            case 'invalid_file':
+                $statusType = 'alert-danger';
+                $statusMsg = 'Some Undefined Server error Caught';
+                break;
+        }
+        $_SESSION['qstring'] = " ";
+        return '<div class="col-lg-12"><div class="alert ' . $statusType . '">' . $statusMsg . '</div></div>';
+    }
+    return '';
+}
+
+// Function to fetch authenticated user
+function fetchAuthenticatedUser($conn, $secure_id) {
+    $stmt = $conn->prepare("SELECT * FROM users WHERE secure_id = ?");
+    $stmt->bind_param("s", $secure_id);
+    $stmt->execute();
+    return $stmt->get_result()->fetch_assoc();
+}
+
+// Function to fetch telecallers
+function fetchTelecallers($conn) {
+    $stmt = $conn->prepare("SELECT * FROM users WHERE rights = 4");
+    $stmt->execute();
+    return $stmt->get_result();
+}
+
+
+$returnAuth = fetchAuthenticatedUser($conn, $secure_id);
+if ($returnAuth) {
+    $telecallers = fetchTelecallers($conn);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fetch Telecaller Data</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <?php include('helper/header.php'); ?>
 </head>
 <body>
-    <?php include('helper/header.php'); ?>
-
     <div id="layoutSidenav_content">
         <div class="col-md-12">
-            <?php if (!empty($statusMsg)) { ?>
-                <div class="col-lg-12">
-                    <div class="alert <?php echo $statusType; ?>"><?php echo $statusMsg; ?></div>
-                </div>
-            <?php } ?>
-
+            <?php echo getStatusMessage(); ?>
             <div class="row p-3">
                 <form id="myForm" action="" method="post">
-                    <select name="teleCaller" class="form-control bg-dark text-white" id="teleCaller" required="true">
-                        <?php
-                            $ret = mysqli_query($conn, "SELECT * FROM users WHERE rights=4");
-                            if (mysqli_num_rows($ret) > 0) {
-                                echo '<option>Select A Caller</option>';
-                                while ($row = mysqli_fetch_array($ret)) {
-                                    echo '<option value="' . $row['id'] . '">' . $row['username'] . '</option>';
-                                }
-                            } else {
-                                echo '<option value="">No Caller Added</option>';
-                            }
-                        ?>
-                    </select>
+                    
+                    <label for="startDate">Start Date:</label>
+                    <input type="date" name="startDate" class="form-control" id="startDate" required><br>
+                    <label for="endDate">End Date:</label>
+                    <input type="date" name="endDate" class="form-control" id="endDate" required><br>
+               
+              
                 </form>
-
                 <hr>
-
                 <div class="m-1" id="TeleId"></div>
             </div>
         </div>
@@ -76,12 +85,14 @@ if (mysqli_num_rows($fetchAuth) > 0) {
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#teleCaller').change(function() {
-                var selectedId = $(this).val();
+            $('#endDate,#startDate').change(function() {
+                // var selectedId = $(this).val();
+                var startDate = $('#startDate').val();
+                var endDate = $('#endDate').val();
                 $.ajax({
-                    url: 'fetch_telecaller_data.php', // PHP script to fetch telecaller data
+                    url: 'fetch_telecaller_data.php',
                     type: 'POST',
-                    data: { teleCallerId: selectedId },
+                    data: { startDate: startDate, endDate: endDate },
                     success: function(response) {
                         $('#TeleId').html(response);
                     },
@@ -92,11 +103,14 @@ if (mysqli_num_rows($fetchAuth) > 0) {
             });
         });
     </script>
+
+    <?php include('helper/footer.php'); ?>
 </body>
 </html>
 
 <?php 
 } else {
     header('location: ../');
+    exit();
 }
 ?>

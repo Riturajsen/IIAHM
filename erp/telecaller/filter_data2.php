@@ -9,6 +9,7 @@ include "../../core/main.php";
 // Fetching POST data
 $status     =  $_POST['status'] ?? '';
 $dateFilter =  $_POST['date'] ?? '';
+$dateFilterE =  $_POST['dateE'] ?? '';
 $allotedId  =  $_POST['allotedId'];
 $locationn  =  $_POST['locationn'] ?? ''; //  filter value
 $institute  =  $_POST['institute'] ?? ''; // allotedId filter value
@@ -23,14 +24,15 @@ if (!empty($status)) {
 if (!empty($dateFilter)) {
   // Format the date in a way that matches your database date format
   $formattedDate = date('Y-m-d', strtotime($dateFilter));
-  $sql .= " AND DATE(addedOn) = '$formattedDate'";
+  $formattedDateE = date('Y-m-d', strtotime($dateFilterE));
+  $sql .= " AND addedOn BETWEEN '$formattedDate' And '$formattedDateE'";
 }
-if (!empty($locationn)) {
-  $sql .= " AND locationn = '$locationn'";
-}
-if (!empty($institute)) {
-  $sql .= " AND institute = '$institute'";
-}
+// if (!empty($locationn)) {
+//   $sql .= " AND locationn = '$locationn'";
+// }
+// if (!empty($institute)) {
+//   $sql .= " AND institute = '$institute'";
+// }
 
 
 // Add similar clauses for other filters (location, institute)

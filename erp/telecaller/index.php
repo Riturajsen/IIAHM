@@ -14,7 +14,7 @@ $id = $returnAuth['id']
 </head>
 <body>
 <div class="container p-3">
-  <div class="row mb-3">
+  <div class="row mb-3 border border-dark p-3">
     <div class="col-md-3">
       <select id="statusFilter" class="form-select">
                     <option value="">Select An option</option>
@@ -29,9 +29,14 @@ $id = $returnAuth['id']
         <!-- Add more options as needed -->
       </select> 
     </div>
-    <div class="col-md-3">
+               <div class="border col-md-3 p-1">
                 <input type="date" id="dateFilter" class="form-control">
-            </div>
+             
+                
+                <input type="date" id="dateFilterE" class="form-control">
+                </div>
+                
+            
             <div class="col-md-3">
                 <select id="institute" class="form-select">
                 <?php
@@ -64,7 +69,22 @@ $id = $returnAuth['id']
           ?>
           </select>
             </div>
-
+            <div class="col-md-3">
+                <select  id="filesource" class="form-select">
+                <?php
+                $queryins = "SELECT filesource from studentdetails where allotedTo ='$id' GROUP BY filesource";
+                $ret = mysqli_query($con , $queryins);
+                if (mysqli_num_rows($ret) > 0) {
+                  echo '<option>Select A location</option>';
+                  while ($row = mysqli_fetch_array($ret)) {
+                      echo '<option value="' . $row['filesource'] . '">' . $row['filesource'] . '</option>';
+                  }
+              } else {
+                  echo '<option value="">No location Added</option>';
+              }
+          ?>
+          </select>
+            </div>
     <!-- Add similar dropdowns for 'location', 'institute', and 'addedOn' -->
   </div>
 
@@ -99,7 +119,7 @@ $id = $returnAuth['id']
             $('#statusFilter').change(function() {
                 applyFilters();
             });
-            $(' #dateFilter').change(function() {
+            $(' #dateFilter, #dateFilterE').change(function() {
                 applyFilters();
             });
             $(' #institute').change(function() {
@@ -111,6 +131,7 @@ $id = $returnAuth['id']
     var statusFilter = $('#statusFilter').val();
     var dateFilter   = $('#dateFilter').val();
     var locationn    = $('#locationn').val();
+    var dateFilterE  = $('#dateFilterE').val();
     var institute    = $('#institute').val();
     var filterAdd    = $('#hidden').addClass("Hide");
 
@@ -123,6 +144,7 @@ $id = $returnAuth['id']
         status: statusFilter,
         allotedId : <?php echo $returnAuth['id'] ?>,
         date: dateFilter,
+        dateE : dateFilterE,
         locationn: locationn,
         institute: institute
         // Add other filter values here
@@ -134,7 +156,7 @@ $id = $returnAuth['id']
   }
 
   // Initially load table data without any filters
-  applyFilters();
+  // applyFilters();
 
 
 });

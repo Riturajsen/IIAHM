@@ -1,4 +1,5 @@
 <?php
+error_reporting(false);
 session_start();
 include "../core/main.php";
 

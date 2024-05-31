@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(false);
 session_start();
 $secure_id = $_SESSION['secure_id'];
 
