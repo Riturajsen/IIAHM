@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['startDate']) && isset(
                         <div class="card-body">
                           <div class="card-title">Caller Name: <span class="text-danger">' . getName($name, $conn) . '</span></div>
                           <p class="card-text">Number of Calls: ' . $row['student_count'] . '</p>
-                          <a href="helper/getBroadView.php?id='.$row['allotedTo'].'" class="btn btn-warning">BroadView</a>
+                          <a href="helper/getBroadView.php?id='.$row['allotedTo'].'&start_date='.$startDate.'&end_date='.$endDate.'" class="btn btn-warning">BroadView</a>
                         </div>
                       </div>
                     </div>';
