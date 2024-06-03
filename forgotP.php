@@ -17,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sec_res = mysqli_query($conn,$secure_query);
     if($sec_res){
         $row = mysqli_fetch_array($result);
+        $_SESSION['token'] = $token;
         $fname = $row['fname'];
         $email = $row['email'];
         include 'mail/getMessage.php';

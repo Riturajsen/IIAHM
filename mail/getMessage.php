@@ -2,7 +2,7 @@
 // $fname = $_POST['fname'];
 // $email = $_POST['email'];
 
-
+$token = $_SESSION['token'];
 
 use PHPMailer\PHPMailer\PHPMailer;
 require 'PHPMailer/src/PHPMailer.php';
@@ -19,7 +19,7 @@ $link = "http://localhost/iiahm/changePass.php?token='.$token.'";
 // $mailMsg = $_POST['msg'];
 // $mail_pass = $_['mail_pass'];
  
-
+$_SESSION['token'] =  " ";
 
 
 $mail = new PHPMailer();

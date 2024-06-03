@@ -114,7 +114,7 @@ while ($row = $result->fetch_assoc()) {
     <div class="container mt-5">
         <div class="card">
             <div class="card-header bg-warning text-danger">
-                <h4>Here are the details about <?=getName($id, $conn)?>
+                <h4>Here are the details about <?=getName($id, $conn)['fname']?>
                 <span class="float-end"><a href="javascript:void(0)" id="backButton" class="btn btn-danger ">X</a></span> </h4>
             </div>
             <div class="card-body">
@@ -138,16 +138,28 @@ while ($row = $result->fetch_assoc()) {
                 </div>
                 <hr class="border border-warning border-2 opacity-50">
                 <div class="row mt-5">
-                    <h4 class=""><u>Effectiveness</u></h4>
+                 
                     <div class="card">
                             <?php
-                         $queryInt   =  "SELECT * from studentdetails where `status`= 'interested' AND allotedTo = $id";
-                         $resInt     =  mysqli_query($conn , $queryInt);
-                         $rowint     =  mysqli_num_rows($resInt);
-                         $returnint  =  mysqli_fetch_assoc($resInt);
+                        //  $queryInt   =  "SELECT * from studentdetails where `status`= 'interested' AND allotedTo = $id";
+                        //  $resInt     =  mysqli_query($conn , $queryInt);
+                        //  $rowint     =  mysqli_num_rows($resInt);
+                        //  $returnint  =  mysqli_fetch_assoc($resInt);
                          
                         ?>
-                        this is the report for <?php echo "<pre>";  print_r(getName($id, $conn))?> 
+                        <div class="card-header">
+                        This report of <b><?=(getName($id, $conn))['fname']?> </b>shows the work performance between
+                       <b><?=$start_date."".$end_date?> </b> 
+                        </div>
+                        <div class="card-body p-3">
+                        <h4 class="mb-3"><u>Effectiveness</u></h4>
+                        <b>Pending : </b> Total Pending Calls : <?=(GetCount($id,$conn,"pending",$start_date, $end_date))?><br>
+                        <b>Follow Up : </b> Total Follow Up Calls : <?=(GetCount($id,$conn,"follow_up",$start_date, $end_date))?><br>
+                        <b>Interested : </b> Total Interested Calls : <?=(GetCount($id,$conn,"interested",$start_date, $end_date))?><br>
+                <hr>
+                        
+                        <h4 class="mt-3"><u>Category</u></h4>  
+                    </div>
                     
                     </div>
                 </div>
